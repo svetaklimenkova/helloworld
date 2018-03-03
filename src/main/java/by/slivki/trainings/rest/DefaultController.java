@@ -8,12 +8,12 @@ public class DefaultController {
 
     @GetMapping("/")
     public String home1() {
-        return "/index";
+        return "/home";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/home")
     public String home() {
-        return "/index";
+        return "/home";
     }
 
     @GetMapping("/admin")
