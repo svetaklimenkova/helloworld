@@ -21,7 +21,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "register?login=" + stripTags($(this).val()),
+            url: "valid?username=" + stripTags($(this).val()),
             dataType: 'json',
             cache: false,
             timeout: 600000,
@@ -56,8 +56,8 @@ $(document).ready(function () {
 
 function registerUser() {
     var user = {};
-    user["login"] = stripTags($("#login").val());
-    user["mail"] = stripTags($("#email").val());
+    user["username"] = stripTags($("#login").val());
+    user["email"] = stripTags($("#email").val());
     user["password"] = stripTags($("#password").val());
     user["creationDate"] = new Date();
 
@@ -66,7 +66,7 @@ function registerUser() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "register",
+        url: "/signUpUser",
         data: JSON.stringify(user),
         dataType: 'json',
         cache: false,
