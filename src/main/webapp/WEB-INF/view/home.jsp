@@ -9,14 +9,16 @@
     <title><spring:message code="message.brand"/> </title>
     <link rel="shortcut icon" href="/static/icon.png" type="image/png">
 
-
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <!-- Project CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/login_form.css">
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -30,7 +32,7 @@
                     </a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
+                    <li class="dropdo wn">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <spring:message code="message.language"/>
                             <span class="caret"></span></a>
@@ -56,30 +58,39 @@
         </div>
         <div class="login-form col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <div class="row">
-                <div class="form-login">
+                <div class="form-login login-container">
                     <form action="j_spring_security_check" method="post">
-                    <h4><spring:message code="message.welcome_back"/></h4>
-                    <input name="username" type="text" id="username" maxlength="255"
-                           class="form-control chat-input form-input"
-                           placeholder="<spring:message code="message.username"/>"/>
-                    <input name="password" type="password" id="password" maxlength="36"
-                           class="form-control chat-input form-input"
-                           placeholder="<spring:message code="message.password"/>" />
-                    <h5 id="error" style="display: none"><spring:message code="message.error.invalid_username_or_password"/></h5>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <div class="wrapper">
-                        <span class="group-btn">
-                            <button type="submit" class="btn btn-primary btn-block btn-login">
-                                <spring:message code="message.sign_in"/>
-                                <i class="fa fa-sign-in"></i></button>
-                        </span>
-                    </div>
+
+                        <h4><spring:message code="message.welcome_back"/></h4>
+
+                        <div class="input">
+                            <label for="username"><spring:message code="message.username"/></label>
+                            <input name="username" type="text" id="username" maxlength="255"/>
+                            <span class="spin"></span>
+                        </div>
+
+                        <div class="input">
+                            <label for="password"><spring:message code="message.password"/></label>
+                            <input name="password" type="password" id="password" maxlength="20"/>
+                            <span class="spin"></span>
+                        </div>
+
+                        <h5 id="error" style="display: none"><spring:message code="message.error.invalid_username_or_password"/></h5>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+                        <div class="button login">
+                            <button type="submit"><spring:message code="message.sign_in"/></button>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="particles"></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

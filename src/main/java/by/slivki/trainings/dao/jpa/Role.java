@@ -7,18 +7,33 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-@Getter
-@Setter
 @Entity
-@Table(name="users")
+@Table(name="roles")
 public class Role {
     @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long roleId;
+    private int roleId;
     @Column
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
     private String roleName;
 
+    public Role(RoleEnum roleEnum) {
+        this.roleId = roleEnum.getI();
+        this.roleName = roleEnum.name();
+    }
 
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

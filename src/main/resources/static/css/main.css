@@ -1,0 +1,140 @@
+body {
+    background: url(/static/background.png) repeat;
+    padding: 0;
+    color: #454545;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+}
+
+.input,
+.input label,
+.input input,
+.input .spin,
+.button,
+.button button .button.login button,
+.button.login button {
+    /* время анимации перехода */
+    transition: 300ms cubic-bezier(.4, 0, .2, 1);
+    -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+    -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* правильное расположение инпутов и лейблов */
+.input,
+.input label,
+.input input,
+.input .spin,
+.button,
+.button button {
+    width: 90%;
+    left: 5%;
+    float: left;
+}
+
+.input {
+    height: 60px;
+}
+
+/* правильное расположение инпутов и лейблов */
+.input,
+.input input,
+.button,
+.button button {
+    position: relative;
+}
+
+/* правильное расположение инпутов и лейблов */
+.input input {
+    height: 50px;
+    top: 10px;
+    border: none;
+    background: transparent;
+}
+
+/* убирает выделение вокруг инпута */
+textarea:focus, input:focus{
+    outline: none;
+}
+/* убирает желтый фон */
+input:-webkit-autofill{
+    box-shadow:inset 0 0 0 1000px #fff;
+}
+
+.input:before,
+.input .spin {
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+}
+
+.input:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.input .spin {
+    background: #237585;
+    z-index: 4;
+    width: 0;
+}
+
+.input label {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* цвет невыделенной кнопки */
+.button.login button,
+.button button {
+    line-height: 35px;
+    left: 0;
+    background-color: transparent;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+/* изменение цвета на кнопке */
+.button.login button:hover {
+    color: #237585;
+    border-color: #237585;
+}
+
+/* изменение цвета на кнопке */
+.button.login button:hover:disabled {
+    color: #B72E3E;
+    border-color: #B72E3E;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+    color: #237585;
+    text-rendering: optimizelegibility;
+}
+
+label {
+    color: #237585;
+}
+
+#error, .error {
+    font-size: 22px;
+    color: #7e2331;
+    text-align: center;
+}
+
+#particles {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: -2;
+}
