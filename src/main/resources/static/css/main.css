@@ -104,6 +104,12 @@ input:-webkit-autofill{
     border-color: #237585;
 }
 
+/* изменение цвета на кнопке */
+.button.login button:hover:disabled {
+    color: #B72E3E;
+    border-color: #B72E3E;
+}
+
 h1 {
     font-size: 64px;
     font-weight: bold;
