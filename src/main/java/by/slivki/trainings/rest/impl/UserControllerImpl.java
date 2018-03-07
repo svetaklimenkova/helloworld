@@ -6,6 +6,9 @@ import by.slivki.trainings.service.api.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,4 +56,37 @@ public class UserControllerImpl {
     public ResponseEntity<?> isValidUsername(@RequestParam("username") String username) {
         return ResponseEntity.ok(userService.checkUsername(username));
     }
+
+    /**
+     * Process GET request to '/username' and
+     * return the username of the current user.
+     *
+     * @return username
+     * */
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsername() {
+        UserDetails currentUser = getCurrentUser();
+        if (currentUser != null) {
+            return ResponseEntity.ok(currentUser.getUsername());
+        } else {
+            return ResponseEntity.ok(false);
+        }
+    }
+
+    private UserDetails getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (null == auth) {
+            return null;
+        }
+
+        Object obj = auth.getPrincipal();
+
+        if (obj instanceof UserDetails) {
+            return (UserDetails) obj;
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -37,7 +37,7 @@ public class DefaultController {
 
         String page = "/error/403";
         if (userDetails != null && userDetails.getAuthorities().contains(admin)) {
-            page = "/admin";
+            page = "/admin/admin";
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
@@ -47,10 +47,10 @@ public class DefaultController {
         return page;
     }
 
-//    @GetMapping("/admin")
-//    public String admin() {
-//        return "/admin";
-//    }
+    @GetMapping("/admin")
+    public String admin() {
+        return "/admin/admin";
+    }
 //
 //    @GetMapping("/user")
 //    public String user() {

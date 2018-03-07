@@ -48,12 +48,14 @@
 
 .invalid, .tooltip-invalid .tooltip-inner {
     color: #FA7080 !important;
-    background-color: #B72E3E !important;
+    background-color: transparent !important;
+    border-color: transparent;
 }
 
 .valid, .tooltip-valid .tooltip-inner {
     color: #bbebe5 !important;
-    background-color: #237585 !important;
+    background-color: transparent !important;
+    border-color: transparent;
 }
 
 #error, .error {

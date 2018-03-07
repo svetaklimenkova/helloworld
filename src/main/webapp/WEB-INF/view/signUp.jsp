@@ -61,7 +61,7 @@
 
                 <div class="input">
                     <label for="email"><spring:message code="message.mail"/></label>
-                    <input type="text" class="form-control" name="email" id="email" maxlength="254"/>
+                    <input type="text" name="email" id="email" maxlength="254"/>
                     <span class="input-group-addon invalid input-check">
                         <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto left"
                         title="<spring:message code="message.valid.incorrect_mail"/>"></i>
@@ -70,7 +70,7 @@
 
                 <div class="input">
                     <label for="password" class="cols-sm-2 control-label"><spring:message code="message.password"/></label>
-                    <input type="password" class="form-control" name="password" id="password" maxlength="20"/>
+                    <input type="password" name="password" id="password" maxlength="20"/>
                     <span class="input-group-addon invalid input-check">
                         <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto left"
                            title="<spring:message code="message.valid.incorrect_password"/>"></i>
@@ -79,7 +79,7 @@
 
                 <div class="input">
                     <label for="confirm"><spring:message code="message.confirm_password"/></label>
-                    <input type="password" class="form-control" name="confirm" id="confirm" maxlength="20"/>
+                    <input type="password" name="confirm" id="confirm" maxlength="20"/>
                     <span class="input-group-addon invalid input-check">
                         <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto left"
                            title="<spring:message code="message.valid.incorrect_password_confirm"/>"></i>
