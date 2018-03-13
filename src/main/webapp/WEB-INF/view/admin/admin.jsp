@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><spring:message code="message.brand"/> </title>
+    <title><spring:message code="main.brand"/> </title>
     <link rel="shortcut icon" href="/static/icon.png" type="image/png">
 
     <!-- Bootstrap CSS -->
@@ -29,13 +29,13 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <spring:message code="message.brand"/>
+                    <spring:message code="main.brand"/>
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <spring:message code="message.language"/>
+                        <spring:message code="main.language"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="?lang=ru">RU</a></li>
@@ -43,7 +43,7 @@
                     </ul>
                 </li>
                 <li><a id="username"></a></li>
-                <li><a href="/logout"><spring:message code="message.exit"/></a></li>
+                <li><a href="/logout"><spring:message code="main.exit"/></a></li>
             </ul>
         </div>
     </nav>
@@ -66,7 +66,7 @@
         <li>
             <a href="#">
                 <i class="fa fa-cog" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-sm"><spring:message code="trainingcategories.title"/></span>
+                <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
             </a>
         </li>
     </ul>

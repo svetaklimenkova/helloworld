@@ -1,14 +1,15 @@
 body {
-    background: url(/static/background.png) repeat;
+    background: url(../static/background.png) repeat;
     padding: 0;
-    color: #454545;
     font-family: 'Caveat', cursive;
-    font-size: 22px;
+    font-size: 26px;
+    color: #237585;
 }
 
 .input,
 .input label,
 .input input,
+.input textarea,
 .input .spin,
 .button,
 .button button .button.login button,
@@ -23,6 +24,7 @@ body {
 .input,
 .input label,
 .input input,
+.input textarea,
 .input .spin,
 .button,
 .button button {
@@ -43,8 +45,14 @@ body {
     position: relative;
 }
 
+label {
+    line-height: 40px;
+    font-size: 24px;
+    top : 10px;
+}
+
 /* правильное расположение инпутов и лейблов */
-.input input {
+.input input, .input textarea {
     height: 50px;
     top: 10px;
     border: none;
@@ -88,32 +96,29 @@ input:-webkit-autofill{
 }
 
 /* цвет невыделенной кнопки */
-.button.login button,
 .button button {
     line-height: 35px;
     left: 0;
     background-color: transparent;
     border: 3px solid rgba(0, 0, 0, 0.1);
     font-weight: 900;
-    color: rgba(0, 0, 0, 0.2);
 }
 
 /* изменение цвета на кнопке */
-.button.login button:hover {
+.button button:hover {
     color: #237585;
     border-color: #237585;
 }
 
 /* изменение цвета на кнопке */
-.button.login button:hover:disabled {
+.button button:hover:disabled {
     color: #B72E3E;
     border-color: #B72E3E;
 }
 
-h1 {
+.main-text {
     font-size: 64px;
     font-weight: bold;
-    color: #237585;
     text-rendering: optimizelegibility;
 }
 
@@ -128,14 +133,11 @@ label {
 }
 
 #particles {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    position: absolute;
+    position: fixed;
     z-index: -2;
 }
 
@@ -167,4 +169,25 @@ li,ul{
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-text {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+footer {
+    font-size: 20px;
+    height: 150px;
+}
+
+footer .spin {
+    width: 96%;
+    left: 2%;
+    float: left;
+    height: 1px;
+    background: #237585;
+    z-index: 4;
+    margin-bottom: 20px;
 }

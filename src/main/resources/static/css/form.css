@@ -1,0 +1,124 @@
+.my-form {
+    padding: 30px;
+    margin-top: 50px;
+    float: left;
+}
+
+.my-form-right {
+    float: right;
+}
+
+.my-form h4 {
+    color: #237585;
+    border-bottom-width:1px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.my-form a {
+    color: rgba(0, 0, 0, 0.48);
+    border-bottom-width:1px;
+    text-align: center;
+    font-size: 24px;
+    display: block;
+}
+
+.my-form a.return {
+    text-align: start;
+}
+
+.my-form a:hover {
+    color: #237585; !important;
+}
+
+.my-form::before,.my-form::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    left: 0;
+    background: #fff;
+    z-index: -1;
+    -webkit-transform: rotateZ(4deg);
+    -moz-transform: rotateZ(4deg);
+    -ms-transform: rotateZ(4deg);
+    border: 1px solid #ccc;
+}
+
+.my-form::after{
+    top: 5px;
+    z-index: -2;
+    -webkit-transform: rotateZ(-2deg);
+    -moz-transform: rotateZ(-2deg);
+    -ms-transform: rotateZ(-2deg);
+}
+
+.my-form .glyphicon {
+    top: 17px;
+}
+
+.tooltip-inner{
+    margin: 5px;
+    color: #fababf;
+    background-color: #B72E3E;
+    border-color: #7e2331;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px
+}
+
+.invalid, .tooltip-invalid .tooltip-inner {
+    color: #FA7080 !important;
+    background-color: transparent !important;
+    border-color: transparent;
+    font-size: 20px;
+    text-align: end;
+}
+
+.valid, .tooltip-valid .tooltip-inner {
+    color: #bbebe5 !important;
+    background-color: transparent !important;
+    border-color: transparent;
+}
+
+#error, .error {
+    margin-top: 30px;
+}
+
+.button.login {
+    margin-top: 10px;
+    width: 60%;
+    left: 20%;
+}
+
+.button.login.sign-up {
+    margin-top: 30px;
+    width: 40%;
+    left: 30%;
+}
+
+.main-text {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.description-text {
+    padding: 5%;
+}
+
+.description-image {
+    padding: 10%;
+    background: #237585;
+}
+
+.bottom-text {
+    padding: 50px;
+    text-align: center;
+}
+
+.myclearfix {
+    height: 150px;
+}
