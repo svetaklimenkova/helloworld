@@ -15,16 +15,16 @@ import javax.validation.constraints.Size;
 @Setter
 public class SignUpUserDto {
     @NotNull
-    @Size(min = 4, max = 32, message = "username.valid.size")
+    @Size(min = 4, max = 32, message = "form.username.size")
     private String username;
 
     @NotNull
-    @Size(min = 4, max = 32, message = "username.valid.size")
+    @Size(min = 4, max = 32, message = "form.username.size")
     private String password;
 
     @NotNull
     @Email
-    @Size(min = 4, max = 32, message = "username.valid.size")
+    @Size(min = 4, max = 32, message = "form.username.size")
     private String email;
 
     private Role role = new Role(RoleEnum.USER);

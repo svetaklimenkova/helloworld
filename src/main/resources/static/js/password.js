@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('#login').on("change paste keyup", function () {
+
+    $('#mail').on("change paste keyup", function () {
         var elem = $(this);
         if(isEmpty($(this))) {
             return;
@@ -8,7 +9,7 @@ $(document).ready(function () {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "valid?username=" + $(this).val(),
+            url: "valid?mail=" + $(this).val(),
             dataType: 'json',
             cache: false,
             timeout: 600000,
@@ -20,6 +21,7 @@ $(document).ready(function () {
             }
         });
     });
+
 
     $('#mail').on("change paste keyup", function () {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -38,6 +40,33 @@ $(document).ready(function () {
         event.preventDefault();
         registerUser();
     });
+
+    $(".input input").focus(function() {
+
+        $(this).parent(".input").each(function() {
+            $("label", this).css({
+                "line-height": "18px",
+                "font-size": "18px",
+                "top": "0px"
+            })
+            $(".spin", this).css({
+                "width": "100%"
+            })
+        });
+    }).blur(function() {
+        $(".spin").css({
+            "width": "0px"
+        })
+        if ($(this).val() == "") {
+            $(this).parent(".input").each(function() {
+                $("label", this).css({
+                    "line-height": "40px",
+                    "font-size": "22px",
+                    "top": "10px"
+                })
+            });
+        }
+    });
 });
 
 function registerUser() {
@@ -45,6 +74,7 @@ function registerUser() {
     user["username"] = $("#login").val();
     user["email"] = $("#email").val();
     user["password"] = $("#password").val();
+    user["creationDate"] = new Date();
 
     $("#btn_sign_up").prop("disabled", true);
 
@@ -59,7 +89,7 @@ function registerUser() {
         success: function (data) {
             if (data !== null) {
                 if (data.id !== -1) {
-                    window.location.href = 'home.html';
+                    window.location.href = 'goal/';
                 }
             } else {
                 $('.error').css('display', 'block');
@@ -78,7 +108,7 @@ function switchValid(elem, result) {
     if (isEmpty(elem)) {
         return;
     }
-    var spanCheck = $(elem).parent().find('.input-check');
+    var spanCheck = $(elem).next('.input-check');
     if (result) {
         if (spanCheck.hasClass('invalid')) {
             setValid(spanCheck);
@@ -96,7 +126,7 @@ function switchValid(elem, result) {
 }
 
 function isEmpty(elem) {
-    var spanCheck = $(elem).parent().find('.input-check');
+    var spanCheck = $(elem).next('.input-check');
 
     if ($(elem).val() === "") {
         if (spanCheck.hasClass('valid')) {

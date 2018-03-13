@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DefaultController {
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/")
     public String home1() {
@@ -27,7 +25,7 @@ public class DefaultController {
         return "/home";
     }
 
-    @GetMapping("/userAccountInfo")
+    @GetMapping("/user")
     public String userAccountInfo() {
         UserDetails userDetails = getCurrentUser();
 
@@ -51,30 +49,15 @@ public class DefaultController {
     public String admin() {
         return "/admin/admin";
     }
-//
-//    @GetMapping("/user")
-//    public String user() {
-//        return "/user";
-//    }
-//
-//    @GetMapping("/about")
-//    public String about() {
-//        return "/about";
-//    }
-//
-//    @GetMapping("/login")
-//    public String login() {
-//        return "/login";
-//    }
-//
-//    @GetMapping("/403")
-//    public String error403() {
-//        return "/error/403";
-//    }
 
     @GetMapping("/signUp")
     public String signUp() {
         return "/signUp";
+    }
+
+    @GetMapping("/application/password")
+    public String applicationPassword() {
+        return "/applications/password";
     }
 
     private UserDetails getCurrentUser() {
@@ -92,5 +75,4 @@ public class DefaultController {
             return null;
         }
     }
-
 }
