@@ -31,7 +31,31 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      * */
     @Override
+    public boolean checkMail(String mail) {
+        return userDao.findUserByMail(mail) == null;
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
     public User loadUserByUsername(String username) {
         return userDao.findUserByUsername(username);
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    public User loadUserByMail(String mail){
+        return userDao.findUserByMail(mail);
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    public User updateUser(User user){
+        return userDao.updateUser(user);
     }
 }

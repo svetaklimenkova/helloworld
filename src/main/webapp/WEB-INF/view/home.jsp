@@ -39,6 +39,9 @@
                         <li><a href="?lang=en">EN</a></li>
                     </ul>
                 </li>
+                <li><a href="">
+                    <spring:message code="main.be_trainer"/>
+                </a></li>
                 <li><a href="/signUp"><span class="glyphicon glyphicon-user"></span>
                     <spring:message code="form.sign_up"/>
                 </a></li>
@@ -112,6 +115,7 @@
 
             <div class="bottom-text col-xs-12">
                 <spring:message code="main.inspiring_text"/>
+                <div class="clearfix hidden-xs"></div>
                 <div class="button login sign-up">
                     <form action="/signUp">
                         <button type="submit"><spring:message code="main.join_us"/></button>

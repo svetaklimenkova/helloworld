@@ -53,8 +53,16 @@ public class UserControllerImpl {
      * @return result of check (true or false)
      * */
     @RequestMapping(value = "/valid", method = RequestMethod.GET)
-    public ResponseEntity<?> isValidUsername(@RequestParam("username") String username) {
-        return ResponseEntity.ok(userService.checkUsername(username));
+    public ResponseEntity<?> isValidUsername(
+            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "mail", required = false) String mail) {
+        if (username != null) {
+            return ResponseEntity.ok(userService.checkUsername(username));
+        } else if (mail != null) {
+            return ResponseEntity.ok(userService.checkMail(mail));
+        } else {
+            return ResponseEntity.ok(true);
+        }
     }
 
     /**

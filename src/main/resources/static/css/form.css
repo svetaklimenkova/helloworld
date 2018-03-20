@@ -59,15 +59,10 @@
 }
 
 .tooltip-inner{
+    min-width: 200px;
     margin: 5px;
-    color: #fababf;
-    background-color: #B72E3E;
-    border-color: #7e2331;
     font-family: 'Caveat', cursive;
     font-size: 22px;
-    -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px
 }
 
 .invalid, .tooltip-invalid .tooltip-inner {

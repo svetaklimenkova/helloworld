@@ -30,10 +30,9 @@ $(document).ready(function () {
 
     $("[data-toggle='tooltip']").on("mouseover", function () {
         if ($(this).parent().hasClass("invalid")) {
-            $(".tooltip").addClass("tooltip-invalid").removeClass("tooltip-valid");
+            $('.tooltip').addClass("tooltip-invalid").removeClass("tooltip-valid");
         } else if ($(this).parent().hasClass("valid")) {
             $(".tooltip").addClass("tooltip-valid").removeClass("tooltip-invalid").hide();
-
         } else {
             $(".tooltip").removeClass("tooltip-invalid tooltip-valid");
         }

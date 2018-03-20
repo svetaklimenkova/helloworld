@@ -21,6 +21,16 @@ public interface UserService {
     boolean checkUsername(String username);
 
     /**
+     * Checks mail. If user with this mail exists
+     * it returns false else true.
+     *
+     * @param mail mail
+     *
+     * @return true (if mail is free) or false (mail isn't free)
+     * */
+    boolean checkMail(String mail);
+
+    /**
      * Loads user by username. If user with this username does not exist
      * it returns null.
      *
@@ -29,4 +39,23 @@ public interface UserService {
      * @return user
      * */
     User loadUserByUsername(String username);
+
+    /**
+     * Loads user by mail. If user with this mail does not exist
+     * it returns null.
+     *
+     * @param mail mail
+     *
+     * @return user
+     * */
+    User loadUserByMail(String mail);
+
+    /**
+     * Updates user
+     *
+     * @param user user
+     *
+     * @return user
+     * */
+    User updateUser(User user);
 }

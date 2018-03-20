@@ -59,17 +59,25 @@
                         <span class="spin"></span>
                         <span class="input-group-addon invalid input-check">
                             <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
-                               title="<spring:message code="form.username.size"/>"></i>
+                               title="<spring:message code="form.username.empty"/>"></i>
+                            <input id="login-size" type="hidden" value="<spring:message code="form.username.size"/>">
+                            <input id="login-empty" type="hidden" value="<spring:message code="form.username.empty"/>">
+                            <input id="login-exist" type="hidden" value="<spring:message code="form.username.existed"/>">
+                            <input id="login-invalid" type="hidden" value="<spring:message code="form.username.invalid"/>">
                         </span>
                     </div>
 
                     <div class="input">
-                        <label for="email"><spring:message code="form.mail"/></label>
-                        <input type="email" name="email" id="email" maxlength="254"/>
+                        <label for="mail"><spring:message code="form.mail"/></label>
+                        <input type="email" name="email" id="mail" maxlength="254"/>
                         <span class="spin"></span>
                         <span class="input-group-addon invalid input-check">
                             <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
-                               title="<spring:message code="form.mail.incorrect"/>"></i>
+                               title="<spring:message code="form.mail.empty"/>"></i>
+                            <input id="mail-size" type="hidden" value="<spring:message code="form.mail.size"/>">
+                            <input id="mail-empty" type="hidden" value="<spring:message code="form.mail.empty"/>">
+                            <input id="mail-exist" type="hidden" value="<spring:message code="form.mail.existed"/>">
+                            <input id="mail-invalid" type="hidden" value="<spring:message code="form.mail.invalid"/>">
                         </span>
                     </div>
 
