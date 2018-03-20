@@ -6,21 +6,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><spring:message code="main.brand"/> </title>
+    <title><spring:message code="main.brand"/></title>
     <link rel="shortcut icon" href="/static/icon.png" type="image/png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     <!-- Project CSS -->
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
 
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
-
-    <!-- Page content -->
-    <link rel="import" href="/view/usermanagement.html">
+    <link href="/fonts/caveat.css" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation Bar -->
@@ -49,32 +47,41 @@
     </nav>
 </header>
 
-<div class="navi col-xs-12 col-sm-6 col-md-2 col-lg-1">
-    <ul>
-        <li class="active">
-            <a href="#">
-                <i class="fa fa-home" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-                <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
-            </a>
-        </li>
-    </ul>
-</div>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+            <div class="content my-form col-xs-12 col-sm-6 col-md-8 col-lg-9">
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script src="/js/fr/jquery-3.3.1.min.js"></script>
+<script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/admin.js"></script>
 </body>

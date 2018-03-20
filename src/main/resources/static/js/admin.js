@@ -1,14 +1,9 @@
 $(document).ready(function () {
-    importContent();
     var username = getUsername();
     $('#username').text(username);
-});
 
-function importContent() {
-    var content = document.querySelector('link[rel="import"]').import;
-    var el = content.querySelector('.content');
-    document.body.appendChild(el.cloneNode(true));
-}
+    showUserList(getUserList());
+});
 
 function getUsername() {
     var username = "";
@@ -30,4 +25,46 @@ function getUsername() {
         }
     });
     return username;
+}
+
+function getUserList() {
+    var users = null;
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/admin/users",
+        cache: false,
+        timeout: 600000,
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            if(data) {
+                users = data
+            }
+        },
+        error: function (e) {
+            console.log(JSON.stringify(e.responseText));
+            return false;
+        }
+    });
+    return users;
+}
+
+function showUserList(users) {
+    $('.content').prepend(
+        '<div class="user-info">' +
+        '<div class="user-role col-xs-3"><spring:message code="main.role"/></div>' +
+        '<div class="user-role col-xs-4"><spring:message code="main.username"/></div>' +
+        '<div class="user-role col-xs-5"><spring:message code="main.mail"/></div>' +
+        '</div>'
+    );
+    for (var i = 0; i < users.length; i++) {
+        $('.content').prepend(
+            '<div class="user-info">' +
+                '<div class="user-role col-xs-3">' + users[i].role + '</div>' +
+                '<div class="user-role col-xs-4">' + users[i].username + '</div>' +
+                '<div class="user-role col-xs-5">' + users[i].mail + '</div>' +
+            '</div>'
+        );
+    }
 }

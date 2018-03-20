@@ -2,9 +2,12 @@ package by.slivki.trainings.service.impl;
 
 import by.slivki.trainings.dao.api.UserDao;
 import by.slivki.trainings.dao.jpa.User;
+import by.slivki.trainings.rest.dto.UserListItemDto;
 import by.slivki.trainings.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,5 +60,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(User user){
         return userDao.updateUser(user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<User> loadUserList() {
+        return userDao.loadUserList();
     }
 }

@@ -2,8 +2,6 @@ package by.slivki.trainings.rest;
 
 import by.slivki.trainings.dao.jpa.Role;
 import by.slivki.trainings.dao.jpa.RoleEnum;
-import by.slivki.trainings.service.api.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,23 +15,18 @@ public class DefaultController {
 
     @GetMapping("/")
     public String home1() {
-        return "/home";
+        return getHomePage();
     }
 
     @GetMapping("/home")
-    public String home() {
-        return "/home";
-    }
-
-    @GetMapping("/user")
-    public String userAccountInfo() {
+    public String getHomePage() {
         UserDetails userDetails = getCurrentUser();
 
         GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ADMIN).getRoleName());
         GrantedAuthority trainer = new SimpleGrantedAuthority(new Role(RoleEnum.TRAINER).getRoleName());
         GrantedAuthority user = new SimpleGrantedAuthority(new Role(RoleEnum.USER).getRoleName());
 
-        String page = "/error/403";
+        String page = "/home";
         if (userDetails != null && userDetails.getAuthorities().contains(admin)) {
             page = "/admin/admin";
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
@@ -43,11 +36,6 @@ public class DefaultController {
         }
 
         return page;
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "/admin/admin";
     }
 
     @GetMapping("/signUp")

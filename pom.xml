@@ -54,6 +54,12 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>4.3.11.Final</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- Tomcat for jsp pages -->
     <dependency>

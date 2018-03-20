@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -23,10 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throws UsernameNotFoundException {
         User activeUserInfo = userDao.findUserByUsername(username);
         GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole().getRoleName());
-        UserDetails userDetails =  new org.springframework.security.core.userdetails.User(
+        return new org.springframework.security.core.userdetails.User(
                 activeUserInfo.getUsername(),
                 activeUserInfo.getPassword(),
-                Arrays.asList(authority));
-        return userDetails;
+                Collections.singletonList(authority));
     }
 }
