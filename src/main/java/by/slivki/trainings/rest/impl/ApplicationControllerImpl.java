@@ -1,15 +1,17 @@
 package by.slivki.trainings.rest.impl;
 
-import by.slivki.trainings.dao.jpa.User;
+import by.slivki.trainings.dao.jpa.*;
+import by.slivki.trainings.rest.dto.TrainerCreationApplicationDto;
+import by.slivki.trainings.rest.mapper.UserMapper;
+import by.slivki.trainings.service.api.ApplicationService;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/application")
@@ -17,6 +19,10 @@ public class ApplicationControllerImpl {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ApplicationService applicationService;
+    @Autowired
+    private UserMapper userMapper;
     @Autowired
     private BCryptPasswordEncoder encoder;
 
@@ -45,6 +51,42 @@ public class ApplicationControllerImpl {
         System.out.println("USER: " + user.getUsername() + "; NEW PASSWORD : " + password);
 
         userService.updateUser(user);
+
+        return ResponseEntity.ok(true);
+    }
+
+    /**
+     * Processes POST request to '/application/password'.
+     * If user with the mail existed then it changes it and
+     * receives a message to user mail.
+     *
+     * @param applicationDto application with login, mail and message
+     *
+     * @return result (true or false)
+     * */
+    @RequestMapping(value = "/trainer", method = RequestMethod.POST)
+    public ResponseEntity<?> postApplicationOnTrainer(
+            @RequestBody @Valid TrainerCreationApplicationDto applicationDto) {
+
+        User user = userMapper.from(applicationDto);
+        user.setConfirmed(false);
+        user.setRole(new Role(RoleEnum.TRAINER));
+
+        String password = PasswordHelper.generatePassword();
+        user.setPassword(encoder.encode(password));
+
+        // change for release
+        System.out.println("TRAINER: " + user.getUsername() + "; PASSWORD : " + password);
+
+        user = userService.createUser(user);
+
+        Application application = new Application();
+        application.setApplicationType(new ApplicationType(ApplicationTypeEnum.TRAINER));
+        application.setDescription(applicationDto.getMessage());
+        application.setUser(user);
+        application.setStatus(new Status(StatusEnum.IN_PROGRESS));
+
+        applicationService.createApplication(application);
 
         return ResponseEntity.ok(true);
     }

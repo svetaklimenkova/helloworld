@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="clearfix hidden-xs"></div>
-                    <div class="message" style="display: none">
+                    <div align="center" class="message" style="display: none; color: indigo">
                         <spring:message code="form.application.accepted"/>
                     </div>
 

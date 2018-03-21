@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      * */
     @Override
-    public void createUser(User user) {
-        userDao.createUser(user);
+    public User createUser(User user) {
+        return userDao.createUser(user);
     }
 
     /**

@@ -3,6 +3,7 @@ package by.slivki.trainings.dao.impl;
 import by.slivki.trainings.dao.api.UserDao;
 import by.slivki.trainings.dao.impl.criterias.UserCriteria;
 import by.slivki.trainings.dao.jpa.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -21,10 +22,12 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private UserCriteria userCriteria;
+
     @Override
     public User findUserByUsername(String username) {
         try {
-            UserCriteria userCriteria = new UserCriteria(entityManager.getCriteriaBuilder());
             return entityManager.createQuery(userCriteria.getUserByUsername(username)).getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -34,16 +37,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByMail(String mail) {
         try {
-            return (User) entityManager.createQuery("FROM User WHERE email=:email")
-                    .setParameter("email", mail).getSingleResult();
+            return entityManager.createQuery(userCriteria.getUserByMail(mail)).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
 
     @Override
-    public void createUser(User user) {
+    public User createUser(User user) {
         entityManager.persist(user);
+        return user;
     }
 
     @Override
@@ -53,7 +56,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> loadUserList() {
-        UserCriteria userCriteria = new UserCriteria(entityManager.getCriteriaBuilder());
         return entityManager.createQuery(userCriteria.getAll()).getResultList();
     }
 }

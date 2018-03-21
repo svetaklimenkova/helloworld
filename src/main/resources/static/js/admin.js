@@ -51,20 +51,31 @@ function getUserList() {
 }
 
 function showUserList(users) {
-    $('.content').prepend(
-        '<div class="user-info">' +
-        '<div class="user-role col-xs-3"><spring:message code="main.role"/></div>' +
-        '<div class="user-role col-xs-4"><spring:message code="main.username"/></div>' +
-        '<div class="user-role col-xs-5"><spring:message code="main.mail"/></div>' +
-        '</div>'
-    );
-    for (var i = 0; i < users.length; i++) {
-        $('.content').prepend(
-            '<div class="user-info">' +
-                '<div class="user-role col-xs-3">' + users[i].role + '</div>' +
-                '<div class="user-role col-xs-4">' + users[i].username + '</div>' +
-                '<div class="user-role col-xs-5">' + users[i].mail + '</div>' +
-            '</div>'
-        );
-    }
+    var options = {
+        valueNames: [ 'role', 'username', "mail" ],
+        // Since there are no elements in the list, this will be used as template.
+        item: '<li><div class="user-info"><div class="role col-xs-3 "></div>' +
+        '<div class="username col-xs-4"></div>\<' +
+        'div class="mail col-xs-5"></div>' +
+        '</div></li>\''
+    };
+
+    var userList = new List('content', options, users);
+
+    // $('.content').prepend(
+    //     '<div class="user-info">' +
+    //     '<div class="user-role col-xs-3"><spring:message code="main.role"/></div>' +
+    //     '<div class="user-role col-xs-4"><spring:message code="main.username"/></div>' +
+    //     '<div class="user-role col-xs-5"><spring:message code="main.mail"/></div>' +
+    //     '</div>'
+    // );
+    // for (var i = 0; i < users.length; i++) {
+    //     $('.content').prepend(
+    //         '<div class="user-info">' +
+    //             '<div class="user-role col-xs-3">' + users[i].role + '</div>' +
+    //             '<div class="user-role col-xs-4">' + users[i].username + '</div>' +
+    //             '<div class="user-role col-xs-5">' + users[i].mail + '</div>' +
+    //         '</div>'
+    //     );
+    // }
 }

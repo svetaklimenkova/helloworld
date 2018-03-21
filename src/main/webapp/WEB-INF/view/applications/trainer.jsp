@@ -50,13 +50,27 @@
             <div class="my-form col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
                 <form>
                     <a class="return" href="/home"><spring:message code="main.back"/></a>
-                    <h4><spring:message code="form.password.recovery"/></h4>
+                    <h4><spring:message code="main.be_trainer"/></h4>
 
                     <div class="input">
-                        <label for="mail"><spring:message code="form.mail"/></label>
-                        <input type="text" name="email" id="mail" maxlength="254"/>
+                        <label for="login"><spring:message code="form.username"/></label>
+                        <input type="text" name="name" maxlength="254" id="login"/>
                         <span class="spin"></span>
                         <span class="input-group-addon invalid input-check">
+                            <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
+                               title="<spring:message code="form.username.empty"/>"></i>
+                            <input id="login-size" type="hidden" value="<spring:message code="form.username.size"/>">
+                            <input id="login-empty" type="hidden" value="<spring:message code="form.username.empty"/>">
+                            <input id="login-exist" type="hidden" value="<spring:message code="form.username.existed"/>">
+                            <input id="login-invalid" type="hidden" value="<spring:message code="form.username.invalid"/>">
+                        </span>
+                    </div>
+
+                    <div class="input">
+                    <label for="mail"><spring:message code="form.mail"/></label>
+                    <input type="text" name="email" id="mail" maxlength="254"/>
+                    <span class="spin"></span>
+                    <span class="input-group-addon invalid input-check">
                             <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
                                title="<spring:message code="form.mail.empty"/>"></i>
                             <input id="mail-size" type="hidden" value="<spring:message code="form.mail.size"/>">
@@ -65,8 +79,20 @@
                         </span>
                     </div>
 
+                    <div class="input">
+                        <label for="message"><spring:message code="form.message.description"/></label>
+                        <input type="text" name="message" id="message" maxlength="1000"/>
+                        <span class="spin"></span>
+                        <span class="input-group-addon invalid input-check">
+                            <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
+                               title="<spring:message code="form.mail.empty"/>"></i>
+                            <input id="message-empty" type="hidden" value="<spring:message code="form.mail.empty"/>">
+                            <input id="message-size" type="hidden" value="<spring:message code="form.mail.size"/>">
+                        </span>
+                    </div>
+
                     <div class="clearfix hidden-xs"></div>
-                    <div class="message" style="display: none">
+                    <div align="center" class="message" style="display: none; color: indigo">
                         <spring:message code="form.application.accepted"/>
                     </div>
 
@@ -110,6 +136,6 @@
 <script src="/js/com/stars.js"></script>
 <script src="/js/com/form.js"></script>
 
-<script src="/js/password.js"></script>
+<script src="/js/trainer.js"></script>
 </body>
 </html>

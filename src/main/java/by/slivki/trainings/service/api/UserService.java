@@ -11,7 +11,7 @@ public interface UserService {
      *
      * @param user user
      * */
-    void createUser(User user);
+    User createUser(User user);
 
     /**
      * Checks username. If user with this username exists

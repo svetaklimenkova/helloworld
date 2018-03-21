@@ -39,7 +39,7 @@
                         <li><a href="?lang=en">EN</a></li>
                     </ul>
                 </li>
-                <li><a href="">
+                <li><a href="/application/trainer">
                     <spring:message code="main.be_trainer"/>
                 </a></li>
                 <li><a href="/signUp"><span class="glyphicon glyphicon-user"></span>
@@ -74,7 +74,7 @@
                         <span class="spin"></span>
                     </div>
 
-                    <h5 id="error" style="display: none"><spring:message code="form.error.invalid_username_or_password"/></h5>
+                    <h5 align="center" id="error" style="display: none"><spring:message code="form.error.invalid_username_or_password"/></h5>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div class="button login">

@@ -48,6 +48,11 @@ public class DefaultController {
         return "/applications/password";
     }
 
+    @GetMapping("/application/trainer")
+    public String applicationTrainer() {
+        return "/applications/trainer";
+    }
+
     private UserDetails getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
