@@ -135,6 +135,7 @@
 
 <script src="/js/com/stars.js"></script>
 <script src="/js/com/form.js"></script>
+<script src="/js/com/form_checker.js"></script>
 
 <script src="/js/trainer.js"></script>
 </body>

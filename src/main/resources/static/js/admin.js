@@ -61,21 +61,4 @@ function showUserList(users) {
     };
 
     var userList = new List('content', options, users);
-
-    // $('.content').prepend(
-    //     '<div class="user-info">' +
-    //     '<div class="user-role col-xs-3"><spring:message code="main.role"/></div>' +
-    //     '<div class="user-role col-xs-4"><spring:message code="main.username"/></div>' +
-    //     '<div class="user-role col-xs-5"><spring:message code="main.mail"/></div>' +
-    //     '</div>'
-    // );
-    // for (var i = 0; i < users.length; i++) {
-    //     $('.content').prepend(
-    //         '<div class="user-info">' +
-    //             '<div class="user-role col-xs-3">' + users[i].role + '</div>' +
-    //             '<div class="user-role col-xs-4">' + users[i].username + '</div>' +
-    //             '<div class="user-role col-xs-5">' + users[i].mail + '</div>' +
-    //         '</div>'
-    //     );
-    // }
 }

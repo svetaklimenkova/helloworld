@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a id="user-management" href="#">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
                         </a>

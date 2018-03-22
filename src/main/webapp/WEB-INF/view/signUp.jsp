@@ -136,12 +136,13 @@
 <div id="particles"></div>
 
 
-<script src="js/fr/jquery-3.3.1.min.js"></script>
-<script src="js/fr/bootstrap.min.js"></script>
+<script src="/js/fr/jquery-3.3.1.min.js"></script>
+<script src="/js/fr/bootstrap.min.js"></script>
 
-<script src="js/com/form.js"></script>
-<script src="js/com/stars.js"></script>
-<script src="js/signUp.js"></script>
+<script src="/js/com/form.js"></script>
+<script src="/js/com/form_checker.js"></script>
+<script src="/js/com/stars.js"></script>
+<script src="/js/signUp.js"></script>
 
 </body>
 </html>
