@@ -15,4 +15,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Application createApplication(Application application) {
         return applicationDao.createApplication(application);
     }
+
+    @Override
+    public Application loadApplicationById(int id) {
+        return null;
+    }
 }

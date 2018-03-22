@@ -1,6 +1,7 @@
 package by.slivki.trainings.rest.impl;
 
 import by.slivki.trainings.dao.jpa.*;
+import by.slivki.trainings.rest.dto.StatusDto;
 import by.slivki.trainings.rest.dto.TrainerCreationApplicationDto;
 import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.ApplicationService;
@@ -36,7 +37,7 @@ public class ApplicationControllerImpl {
      * @return result (true or false)
      * */
     @RequestMapping(value = "/password", method = RequestMethod.POST)
-    public ResponseEntity<?> postApplicationOnPassword(
+    public ResponseEntity<?> createApplicationOnPassword(
             @RequestParam String mail) {
 
         User user = userService.loadUserByMail(mail);
@@ -65,7 +66,7 @@ public class ApplicationControllerImpl {
      * @return result (true or false)
      * */
     @RequestMapping(value = "/trainer", method = RequestMethod.POST)
-    public ResponseEntity<?> postApplicationOnTrainer(
+    public ResponseEntity<?> createApplicationOnTrainer(
             @RequestBody @Valid TrainerCreationApplicationDto applicationDto) {
 
         User user = userMapper.from(applicationDto);
@@ -88,6 +89,26 @@ public class ApplicationControllerImpl {
 
         applicationService.createApplication(application);
 
+        return ResponseEntity.ok(true);
+    }
+
+    /**
+     * Processes POST request to '/application/{id}'.
+     * If user with the mail existed then it changes it and
+     * receives a message to user mail.
+     *
+     * @param id application id
+     * @param statusDto new status of application
+     *
+     * @return result (true or false)
+     * */
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ResponseEntity<?> createApplicationOnTrainer(
+            @PathVariable int id,
+            @RequestBody @Valid StatusDto statusDto) {
+
+        Application application = applicationService.loadApplicationById(id);
+        //application.setStatus(statusDto.getStatus());
         return ResponseEntity.ok(true);
     }
 }

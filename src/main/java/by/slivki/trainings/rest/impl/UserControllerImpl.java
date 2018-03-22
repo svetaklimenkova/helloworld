@@ -53,16 +53,17 @@ public class UserControllerImpl {
      * @return result of check (true or false)
      * */
     @RequestMapping(value = "/valid", method = RequestMethod.GET)
-    public ResponseEntity<?> isValidUsername(
+    public ResponseEntity<?> isValid(
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "mail", required = false) String mail) {
+        Boolean result = true;
+
         if (username != null) {
-            return ResponseEntity.ok(userService.checkUsername(username));
+            result = userService.checkUsername(username);
         } else if (mail != null) {
-            return ResponseEntity.ok(userService.checkMail(mail));
-        } else {
-            return ResponseEntity.ok(true);
+            result = userService.checkMail(mail);
         }
+        return ResponseEntity.ok(result);
     }
 
     /**
@@ -73,12 +74,14 @@ public class UserControllerImpl {
      * */
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     public ResponseEntity<?> getUsername() {
+        Object result = false;
         UserDetails currentUser = getCurrentUser();
+
         if (currentUser != null) {
-            return ResponseEntity.ok(currentUser.getUsername());
-        } else {
-            return ResponseEntity.ok(false);
+            result = currentUser.getUsername();
         }
+
+        return ResponseEntity.ok(result);
     }
 
     private UserDetails getCurrentUser() {

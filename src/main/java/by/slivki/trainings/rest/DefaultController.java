@@ -28,11 +28,11 @@ public class DefaultController {
 
         String page = "/home";
         if (userDetails != null && userDetails.getAuthorities().contains(admin)) {
-            page = "/admin/admin";
+            page = "/admin/home";
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
-            page = "/trainer";
+            page = "/trainer/home";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
-            page = "/user";
+            page = "/user/home";
         }
 
         return page;
@@ -56,16 +56,14 @@ public class DefaultController {
     private UserDetails getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (null == auth) {
-            return null;
-        }
+        UserDetails userDetails = null;
+        if (null != auth) {
+            Object obj = auth.getPrincipal();
 
-        Object obj = auth.getPrincipal();
-
-        if (obj instanceof UserDetails) {
-            return (UserDetails) obj;
-        } else {
-            return null;
+            if (obj instanceof UserDetails) {
+                userDetails = (UserDetails) obj;
+            }
         }
+        return userDetails;
     }
 }

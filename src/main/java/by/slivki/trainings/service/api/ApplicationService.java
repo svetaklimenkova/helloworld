@@ -13,4 +13,5 @@ public interface ApplicationService {
      * */
     Application createApplication(Application application);
 
+    Application loadApplicationById(int id);
 }
