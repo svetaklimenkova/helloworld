@@ -94,8 +94,7 @@ public class ApplicationControllerImpl {
 
     /**
      * Processes POST request to '/application/{id}'.
-     * If user with the mail existed then it changes it and
-     * receives a message to user mail.
+     * Modify status of application by id and statusDto.
      *
      * @param id application id
      * @param statusDto new status of application
@@ -103,12 +102,23 @@ public class ApplicationControllerImpl {
      * @return result (true or false)
      * */
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public ResponseEntity<?> createApplicationOnTrainer(
+    public ResponseEntity<?> modifyApplicationStatus (
             @PathVariable int id,
             @RequestBody @Valid StatusDto statusDto) {
+        applicationService.updateStatusOfApplication(id, StatusEnum.valueOf(statusDto.getStatus()));
+        return ResponseEntity.ok(true);
+    }
 
-        Application application = applicationService.loadApplicationById(id);
-        //application.setStatus(statusDto.getStatus());
+    /**
+     * Processes POST request to '/application/{id}'.
+     * Modify status of application by id and statusDto.
+     *
+     * @return result (true or false)
+     * */
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> loadAll() {
+        /*TODO*/
+        //applicationService.updateStatusOfApplication(id, StatusEnum.valueOf(statusDto.getStatus()));
         return ResponseEntity.ok(true);
     }
 }

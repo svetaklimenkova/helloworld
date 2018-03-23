@@ -28,7 +28,7 @@ public class DefaultController {
 
         String page = "/home";
         if (userDetails != null && userDetails.getAuthorities().contains(admin)) {
-            page = "/admin/home";
+            page = "/admin/applications";
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer/home";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
