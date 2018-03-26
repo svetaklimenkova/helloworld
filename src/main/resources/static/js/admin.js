@@ -9,7 +9,7 @@ function getUsername() {
     var username = "";
     $.ajax({
         type: "GET",
-        url: "/username",
+        url: "/rest/username",
         cache: false,
         timeout: 600000,
         dataType: "text",
@@ -32,7 +32,7 @@ function getUserList() {
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "/admin/users",
+        url: "/rest/users",
         cache: false,
         timeout: 600000,
         dataType: "json",

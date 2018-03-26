@@ -1,13 +1,10 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name="applications")
@@ -27,6 +24,10 @@ public class Application {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "applicationTypeId")
     private ApplicationType applicationType;
+    @Column
+    private Date createdBy;
+    @Column
+    private Date updatedBy;
 
     public int getApplicationId() {
         return applicationId;
@@ -66,5 +67,21 @@ public class Application {
 
     public void setApplicationType(ApplicationType applicationType) {
         this.applicationType = applicationType;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Date createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Date updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }

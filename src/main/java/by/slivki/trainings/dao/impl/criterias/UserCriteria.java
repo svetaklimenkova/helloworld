@@ -16,19 +16,25 @@ public class UserCriteria {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public CriteriaQuery<User> getAll() {
+    public CriteriaQuery<User> get() {
         CriteriaQuery<User> query = getBuilder().createQuery(User.class);
-        Root<User> user = query.from(User.class);
-        return query.where(getBuilder().equal(user.get(User_.isConfirmed), true));
+        query.from(User.class);
+        return query;
     }
 
-    public CriteriaQuery<User> getUserByUsername(String username) {
+    public CriteriaQuery<User> getById(int id) {
+        CriteriaQuery<User> query = getBuilder().createQuery(User.class);
+        Root<User> user = query.from(User.class);
+        return query.where(getBuilder().equal(user.get(User_.userId), id));
+    }
+
+    public CriteriaQuery<User> getByUsername(String username) {
         CriteriaQuery<User> query = getBuilder().createQuery(User.class);
         Root<User> user = query.from(User.class);
         return query.where(getBuilder().equal(user.get(User_.username), username));
     }
 
-    public CriteriaQuery<User> getUserByMail(String mail) {
+    public CriteriaQuery<User> getByMail(String mail) {
         CriteriaQuery<User> query = getBuilder().createQuery(User.class);
         Root<User> user = query.from(User.class);
         return query.where(getBuilder().equal(user.get(User_.email), mail));

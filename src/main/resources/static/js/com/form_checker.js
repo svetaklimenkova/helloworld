@@ -38,7 +38,7 @@ function checkUsername() {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "valid?username=" + $(this).val(),
+            url: "/rest/users/valid?username=" + $(this).val(),
             dataType: 'json',
             cache: false,
             timeout: 600000,
@@ -81,7 +81,7 @@ function checkMail() {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "valid?mail=" + $(this).val(),
+            url: "/rest/users/valid?mail=" + $(this).val(),
             dataType: 'json',
             cache: false,
             timeout: 600000,

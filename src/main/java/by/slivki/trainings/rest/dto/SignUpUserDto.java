@@ -10,8 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@NoArgsConstructor
-@Getter
 @Setter
 public class SignUpUserDto {
     @NotNull
@@ -30,4 +28,24 @@ public class SignUpUserDto {
     private Role role = new Role(RoleEnum.USER);
 
     private boolean isConfirmed = true;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public boolean isConfirmed() {
+        return isConfirmed;
+    }
 }

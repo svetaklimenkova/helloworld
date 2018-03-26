@@ -1,45 +1,18 @@
 $(document).ready(function () {
-    var username = getUsername();
-    $('#username').text(username);
-
-    showUserList(getUserList());
+    getApplications();
 });
 
-function getUsername() {
-    var username = "";
-    $.ajax({
-        type: "GET",
-        url: "/username",
-        cache: false,
-        timeout: 600000,
-        dataType: "text",
-        async: false,
-        success: function (data) {
-            if(data) {
-                username = data;
-            }
-        },
-        error: function (e) {
-            console.log(JSON.stringify(e.responseText));
-            return false;
-        }
-    });
-    return username;
-}
-
-function getUserList() {
-    var users = null;
+function getApplications() {
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "/admin/users",
+        url: "/rest/applications",
         cache: false,
         timeout: 600000,
         dataType: "json",
-        async: false,
         success: function (data) {
             if(data) {
-                users = data
+                showApplications(data);
             }
         },
         error: function (e) {
@@ -47,18 +20,31 @@ function getUserList() {
             return false;
         }
     });
-    return users;
 }
 
-function showUserList(users) {
+function showApplications(applications) {
     var options = {
-        valueNames: [ 'role', 'username', "mail" ],
+        valueNames: [
+            'id',
+            'type',
+            "mailOfReceiver",
+            "status",
+            "updatedBy",
+            { attr: 'href', name: 'link' }],
         // Since there are no elements in the list, this will be used as template.
-        item: '<li><div class="user-info"><div class="role col-xs-3 "></div>' +
-        '<div class="username col-xs-4"></div>\<' +
-        'div class="mail col-xs-5"></div>' +
-        '</div></li>\''
+        item: '<li><div><a class="link application-info my-list-item row">' +
+            '<div class="col-xs-1"></div>' +
+            '<div class="id col-xs-2"></div>' +
+            '<div class="type col-xs-3"></div>' +
+            '<div class="mailOfReceiver col-xs-3"></div>' +
+            '<div class="updatedBy col-xs-3"></div>' +
+        '</a></div></li>'
     };
 
-    var userList = new List('content', options, users);
+    for (var i = 0; i < applications.length; i++) {
+        applications[i].link = "/applications/" + applications[i].id;
+        applications[i].updatedBy = new Date(applications[i].updatedBy).toLocaleDateString();
+    }
+
+    var userList = new List('content', options, applications);
 }

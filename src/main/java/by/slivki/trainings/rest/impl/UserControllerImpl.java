@@ -1,56 +1,55 @@
 package by.slivki.trainings.rest.impl;
 
 import by.slivki.trainings.dao.jpa.User;
+import by.slivki.trainings.rest.api.UserController;
+import by.slivki.trainings.rest.dto.BaseUserDto;
 import by.slivki.trainings.rest.dto.SignUpUserDto;
+import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.UserService;
-import org.modelmapper.ModelMapper;
+import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-public class UserControllerImpl {
+@RequestMapping(value = "/rest/users")
+public class UserControllerImpl implements UserController {
     @Autowired
     private UserService userService;
-
     @Autowired
-    private BCryptPasswordEncoder encoder;
-
+    private UserMapper userMapper;
     @Autowired
-    private ModelMapper modelMapper;
+    private UserHelper userHelper;
 
     /**
-     * Processes POST request to '/signUpUser'.
-     * Creates a user by signUpUserDto.
-     *
-     * @param signUpUserDto signUpUserDto
-     *
-     * @return result of creating a user (true or false)
+     * {@inheritDoc}
      * */
-    @RequestMapping(value = "/signUpUser", method = RequestMethod.POST)
-    public ResponseEntity<?> signUpUser(
+    @Override
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getAll() {
+        List<User> users = userService.loadAll();
+        List<BaseUserDto> baseUserDtos = userMapper.toBaseUserDtos(users);
+        return ResponseEntity.ok(baseUserDtos);
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> create(
             @RequestBody @Valid SignUpUserDto signUpUserDto) {
-        User user = modelMapper.map(signUpUserDto, User.class);
-
-        user.setPassword(encoder.encode(user.getPassword()));
+        User user = userMapper.from(signUpUserDto);
         userService.createUser(user);
-
         return ResponseEntity.ok(true);
     }
 
     /**
-     * Process GET request to '/register' and
-     * check existing of username.
-     *
-     * @param username username
-     *
-     * @return result of check (true or false)
+     * {@inheritDoc}
      * */
     @RequestMapping(value = "/valid", method = RequestMethod.GET)
     public ResponseEntity<?> isValid(
@@ -67,37 +66,18 @@ public class UserControllerImpl {
     }
 
     /**
-     * Process GET request to '/username' and
-     * return the username of the current user.
-     *
-     * @return username
+     * {@inheritDoc}
      * */
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     public ResponseEntity<?> getUsername() {
         Object result = false;
-        UserDetails currentUser = getCurrentUser();
+        UserDetails currentUser = userHelper.getCurrentUser();
 
         if (currentUser != null) {
             result = currentUser.getUsername();
         }
 
         return ResponseEntity.ok(result);
-    }
-
-    private UserDetails getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        if (null == auth) {
-            return null;
-        }
-
-        Object obj = auth.getPrincipal();
-
-        if (obj instanceof UserDetails) {
-            return (UserDetails) obj;
-        } else {
-            return null;
-        }
     }
 
 }

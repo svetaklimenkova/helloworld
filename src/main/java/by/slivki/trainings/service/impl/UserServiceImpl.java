@@ -2,7 +2,6 @@ package by.slivki.trainings.service.impl;
 
 import by.slivki.trainings.dao.api.UserDao;
 import by.slivki.trainings.dao.jpa.User;
-import by.slivki.trainings.rest.dto.UserListItemDto;
 import by.slivki.trainings.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public User createUser(User user) {
-        return userDao.createUser(user);
+        return userDao.create(user);
     }
 
     /**
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public boolean checkUsername(String username) {
-        return userDao.findUserByUsername(username) == null;
+        return userDao.getByUsername(username) == null;
     }
 
     /**
@@ -35,7 +34,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public boolean checkMail(String mail) {
-        return userDao.findUserByMail(mail) == null;
+        return userDao.getByMail(mail) == null;
     }
 
     /**
@@ -43,7 +42,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public User loadUserByUsername(String username) {
-        return userDao.findUserByUsername(username);
+        return userDao.getByUsername(username);
     }
 
     /**
@@ -51,7 +50,7 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public User loadUserByMail(String mail){
-        return userDao.findUserByMail(mail);
+        return userDao.getByMail(mail);
     }
 
     /**
@@ -59,14 +58,22 @@ public class UserServiceImpl implements UserService {
      * */
     @Override
     public User updateUser(User user){
-        return userDao.updateUser(user);
+        return userDao.update(user);
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    public void deleteUser(int id) {
+        userDao.delete(userDao.getById(id));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<User> loadUserList() {
-        return userDao.loadUserList();
+    public List<User> loadAll() {
+        return userDao.getAll();
     }
 }

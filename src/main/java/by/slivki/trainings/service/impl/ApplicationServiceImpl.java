@@ -16,26 +16,35 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationDao applicationDao;
 
     @Override
-    public Application createApplication(Application application) {
-        return applicationDao.createApplication(application);
+    public Application create(Application application) {
+        return applicationDao.create(application);
     }
 
     @Override
-    public Application loadApplicationById(int id) {
-        /*TODO*/
-        return null;
+    public Application getApplicationById(int id) {
+        return applicationDao.getById(id);
+    }
+
+    @Override
+    public void deleteApplicationById(int id) {
+        applicationDao.delete(applicationDao.getById(id));
     }
 
     @Override
     public List<Application> loadAll() {
-        return applicationDao.loadAll();
+        return applicationDao.getAll();
     }
 
     @Override
-    public Application updateStatusOfApplication(int applicationId, StatusEnum statusEnum) {
-        Application application = applicationDao.loadById(applicationId);
+    public List<Application> loadAllByUserId(int id) {
+        return applicationDao.getAllByUserId(id);
+    }
+
+    @Override
+    public Application updateStatus(int applicationId, StatusEnum statusEnum) {
+        Application application = applicationDao.getById(applicationId);
         application.setStatus(new Status(statusEnum));
-        application = applicationDao.modify(application);
+        application = applicationDao.update(application);
         return application;
     }
 }

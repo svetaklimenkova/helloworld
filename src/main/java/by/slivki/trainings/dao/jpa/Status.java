@@ -25,4 +25,20 @@ public class Status {
         this.statusId = statusEnum.getI();
         this.statusName = statusEnum.name();
     }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
 }

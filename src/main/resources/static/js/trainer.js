@@ -19,7 +19,7 @@ function sendApplication() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/application/trainer",
+        url: "/rest/applications/trainer",
         dataType: 'json',
         data: JSON.stringify(application),
         cache: false,

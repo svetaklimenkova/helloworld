@@ -1,8 +1,11 @@
 package by.slivki.trainings.rest.mapper;
 
 import by.slivki.trainings.dao.jpa.User;
-import by.slivki.trainings.rest.dto.TrainerCreationApplicationDto;
-import by.slivki.trainings.rest.dto.UserListItemDto;
+import by.slivki.trainings.rest.dto.SignUpUserDto;
+import by.slivki.trainings.rest.dto.TrainerApplicationDto;
+import by.slivki.trainings.rest.dto.BaseUserDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,26 +14,32 @@ import java.util.List;
 @Component
 public class UserMapper {
 
-    public List<UserListItemDto> toUserListItemDtos(List<User> users) {
-        List<UserListItemDto> userListItemDtos = new ArrayList<>();
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
+    public List<BaseUserDto> toBaseUserDtos(List<User> users) {
+        List<BaseUserDto> baseUserDtos = new ArrayList<>();
         for (User user : users) {
-            userListItemDtos.add(toUserListItemDto(user));
+            baseUserDtos.add(toUserListItemDto(user));
         }
-        return userListItemDtos;
+        return baseUserDtos;
     }
 
-    private UserListItemDto toUserListItemDto(User user) {
-        UserListItemDto userListItemDto = new UserListItemDto();
-        userListItemDto.setUsername(user.getUsername());
-        userListItemDto.setMail(user.getEmail());
-        userListItemDto.setRole(user.getRole().getRoleName());
-        return userListItemDto;
+    private BaseUserDto toUserListItemDto(User user) {
+        BaseUserDto baseUserDto = new BaseUserDto();
+        baseUserDto.setUsername(user.getUsername());
+        baseUserDto.setMail(user.getEmail());
+        baseUserDto.setRole(user.getRole().getRoleName());
+        return baseUserDto;
     }
 
-    public User from(TrainerCreationApplicationDto application) {
+    public User from(SignUpUserDto userDto) {
         User user = new User();
-        user.setUsername(application.getUsername());
-        user.setEmail(application.getEmail());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(encoder.encode(userDto.getPassword()));
+        user.setEmail(userDto.getEmail());
+        user.setRole(userDto.getRole());
+        user.setConfirmed(userDto.isConfirmed());
         return user;
     }
 }

@@ -2,16 +2,22 @@ package by.slivki.trainings.rest;
 
 import by.slivki.trainings.dao.jpa.Role;
 import by.slivki.trainings.dao.jpa.RoleEnum;
+import by.slivki.trainings.util.UserHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DefaultController {
+
+    @Autowired
+    private UserHelper userHelper;
 
     @GetMapping("/")
     public String home1() {
@@ -20,7 +26,7 @@ public class DefaultController {
 
     @GetMapping("/home")
     public String getHomePage() {
-        UserDetails userDetails = getCurrentUser();
+        UserDetails userDetails = userHelper.getCurrentUser();
 
         GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ADMIN).getRoleName());
         GrantedAuthority trainer = new SimpleGrantedAuthority(new Role(RoleEnum.TRAINER).getRoleName());
@@ -43,27 +49,18 @@ public class DefaultController {
         return "/signUp";
     }
 
-    @GetMapping("/application/password")
+    @GetMapping("/error")
+    public String error() {
+        return "/error";
+    }
+
+    @GetMapping("/applications/password")
     public String applicationPassword() {
         return "/applications/password";
     }
 
-    @GetMapping("/application/trainer")
+    @GetMapping("/applications/trainer")
     public String applicationTrainer() {
         return "/applications/trainer";
-    }
-
-    private UserDetails getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        UserDetails userDetails = null;
-        if (null != auth) {
-            Object obj = auth.getPrincipal();
-
-            if (obj instanceof UserDetails) {
-                userDetails = (UserDetails) obj;
-            }
-        }
-        return userDetails;
     }
 }

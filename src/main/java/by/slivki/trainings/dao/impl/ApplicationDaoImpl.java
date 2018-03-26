@@ -1,20 +1,20 @@
 package by.slivki.trainings.dao.impl;
 
 import by.slivki.trainings.dao.api.ApplicationDao;
+import by.slivki.trainings.dao.api.BaseDao;
 import by.slivki.trainings.dao.impl.criterias.ApplicationCriteria;
 import by.slivki.trainings.dao.jpa.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 @Transactional
-public class ApplicationDaoImpl implements ApplicationDao {
+public class ApplicationDaoImpl extends BaseDao<Application> implements ApplicationDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -23,27 +23,22 @@ public class ApplicationDaoImpl implements ApplicationDao {
     private ApplicationCriteria applicationCriteria;
 
     @Override
-    public Application createApplication(Application application) {
-        entityManager.persist(application);
-        return application;
+    public Application getById(int id) {
+        return super.get(applicationCriteria.getById(id));
     }
 
     @Override
-    public Application loadById(int id) {
-        try {
-            return entityManager.createQuery(applicationCriteria.getApplicationById(id)).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
+    public List<Application> getAll() {
+        return super.getAll(applicationCriteria.get());
     }
 
     @Override
-    public List<Application> loadAll() {
-        return entityManager.createQuery(applicationCriteria.getAll()).getResultList();
+    public List<Application> getAllByUserId(int id) {
+        return super.getAll(applicationCriteria.getByUserId(id));
     }
 
     @Override
-    public Application modify(Application application) {
-        return entityManager.merge(application);
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 }

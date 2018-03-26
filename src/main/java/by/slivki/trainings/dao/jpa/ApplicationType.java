@@ -25,4 +25,20 @@ public class ApplicationType {
         this.applicationTypeId = applicationTypeEnum.getI();
         this.applicationTypeName = applicationTypeEnum.name();
     }
+
+    public int getApplicationTypeId() {
+        return applicationTypeId;
+    }
+
+    public void setApplicationTypeId(int applicationTypeId) {
+        this.applicationTypeId = applicationTypeId;
+    }
+
+    public String getApplicationTypeName() {
+        return applicationTypeName;
+    }
+
+    public void setApplicationTypeName(String applicationTypeName) {
+        this.applicationTypeName = applicationTypeName;
+    }
 }

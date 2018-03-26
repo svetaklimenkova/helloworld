@@ -2,7 +2,6 @@ package by.slivki.trainings.service.api;
 
 import by.slivki.trainings.dao.jpa.Application;
 import by.slivki.trainings.dao.jpa.StatusEnum;
-import by.slivki.trainings.dao.jpa.User;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface ApplicationService {
      *
      * @return application
      * */
-    Application createApplication(Application application);
+    Application create(Application application);
 
     /**
      * Loads application by id.
@@ -23,7 +22,15 @@ public interface ApplicationService {
      *
      * @return application
      * */
-    Application loadApplicationById(int id);
+    Application getApplicationById(int id);
+
+    /**
+     * Deletes application by id.
+     *
+     * @param id application id
+     *
+     * */
+    void deleteApplicationById(int id);
 
     /**
      * Loads all applications.
@@ -33,6 +40,13 @@ public interface ApplicationService {
     List<Application> loadAll();
 
     /**
+     * Loads all applications by user id.
+     *
+     * @return applications
+     * */
+    List<Application> loadAllByUserId(int id);
+
+    /**
      * Update status of application.
      *
      * @param applicationId application id
@@ -40,5 +54,5 @@ public interface ApplicationService {
      *
      * @return application
      * */
-    Application updateStatusOfApplication(int applicationId, StatusEnum statusEnum);
+    Application updateStatus(int applicationId, StatusEnum statusEnum);
 }

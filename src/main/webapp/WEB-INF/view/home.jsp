@@ -39,7 +39,7 @@
                         <li><a href="?lang=en">EN</a></li>
                     </ul>
                 </li>
-                <li><a href="/application/trainer">
+                <li><a href="/applications/trainer">
                     <spring:message code="main.be_trainer"/>
                 </a></li>
                 <li><a href="/signUp"><span class="glyphicon glyphicon-user"></span>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="my-form my-form-right col-xs-12 col-sm-5 col-md-4 col-lg-3 ">
-                <form action="j_spring_security_check" method="post">
+                <form action="/j_spring_security_check" method="post">
 
                     <h4><spring:message code="form.welcome_back"/></h4>
 
@@ -81,7 +81,7 @@
                         <button type="submit"><spring:message code="form.sign_in"/></button>
                     </div>
                     <div class="clearfix"></div>
-                    <a href="/application/password"><spring:message code="form.password.forgot"/></a>
+                    <a href="/applications/password"><spring:message code="form.password.forgot"/></a>
 
                 </form>
             </div>

@@ -16,24 +16,40 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
-    <link rel="stylesheet" type="text/css" href="/css/mylist.css">
 
     <!-- Font -->
     <link href="/fonts/caveat.css" rel="stylesheet">
+    <style>
+        .very-big-text {
+            font-size: 450px;
+            text-align: center;
+            line-height: 0.8;
+        }
+        .big-text {
+            font-size: 80px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .text {
+            font-size: 25px;
+            text-align: center;
+            line-height: 1;
+            padding-top: 20px;
+        }
+    </style>
 </head>
-<body>
-<!-- Navigation Bar -->
 <header>
-    <nav class="navbar mynav">
-        <div class="container">
+    <div class="container">
+        <nav class="navbar mynav container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand brand-text">
+                    <span class="glyphicon brand-image"></span>
                     <spring:message code="main.brand"/>
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         <spring:message code="main.language"/>
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -41,55 +57,26 @@
                         <li><a href="?lang=en">EN</a></li>
                     </ul>
                 </li>
-                <li><a id="username"></a></li>
-                <li><a href="/logout"><spring:message code="main.exit"/></a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </header>
 
 <main>
     <div class="container">
         <div class="row">
-            <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <ul>
-                    <li class="active">
-                        <a href="/applications">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/users">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/categories">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-xs-12 very-big-text">
+                404
             </div>
-
-            <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="id col-xs-2"><spring:message code="form.id_application"/></div>
-                    <div class="type col-xs-3"><spring:message code="form.application_type"/></div>
-                    <div class="mailOfReceiver col-xs-3"><spring:message code="form.mail"/></div>
-                    <div class="status col-xs-3"><spring:message code="form.date"/></div>
-                </div>
-                <ul class="list">
-
-                </ul>
+            <div class="col-xs-12 big-text">
+                <spring:message code="main.page_not_found"/>
+            </div>
+            <div class="col-xs-12 text">
+                <spring:message code="main.page_not_found_description"/>
             </div>
 
             <div class="clearfix"></div>
             <div class="myclearfix col-sm-12"></div>
-
         </div>
     </div>
 </main>
@@ -110,15 +97,16 @@
                 <spring:message code="main.brand_text"/>
             </div>
         </div>
-    </div>
-</footer>
+    </div></footer>
+
+<div id="particles"></div>
 
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
-<script src="/js/fr/list.min.js"></script>
 
-<script src="/js/com/username.js"></script>
+<script src="/js/com/form.js"></script>
+<script src="/js/com/stars.js"></script>
+<script src="/js/home.js"></script>
 
-<script src="/js/admin/applications.js"></script>
 </body>
 </html>

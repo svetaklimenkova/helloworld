@@ -1,124 +1,120 @@
 package by.slivki.trainings.rest.impl;
 
 import by.slivki.trainings.dao.jpa.*;
+import by.slivki.trainings.rest.api.ApplicationController;
+import by.slivki.trainings.rest.dto.BaseApplicationDto;
 import by.slivki.trainings.rest.dto.StatusDto;
-import by.slivki.trainings.rest.dto.TrainerCreationApplicationDto;
+import by.slivki.trainings.rest.dto.TrainerApplicationDto;
+import by.slivki.trainings.rest.mapper.ApplicationMapper;
 import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.ApplicationService;
 import by.slivki.trainings.service.api.UserService;
-import by.slivki.trainings.util.PasswordHelper;
+import by.slivki.trainings.util.ApplicationHelper;
+import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("/application")
-public class ApplicationControllerImpl {
+@RequestMapping("/rest/applications")
+public class ApplicationControllerImpl implements ApplicationController {
 
     @Autowired
     private UserService userService;
     @Autowired
+    private UserHelper userHelper;
+
+    @Autowired
     private ApplicationService applicationService;
     @Autowired
-    private UserMapper userMapper;
+    private ApplicationMapper applicationMapper;
     @Autowired
-    private BCryptPasswordEncoder encoder;
+    private ApplicationHelper applicationHelper;
 
     /**
-     * Processes POST request to '/application/password'.
-     * If user with the mail existed then it changes it and
-     * receives a message to user mail.
-     *
-     * @param mail mail
-     *
-     * @return result (true or false)
+     * {@inheritDoc}
      * */
-    @RequestMapping(value = "/password", method = RequestMethod.POST)
-    public ResponseEntity<?> createApplicationOnPassword(
-            @RequestParam String mail) {
-
+    @Override
+    public ResponseEntity<?> createApplicationOnPassword(@RequestParam String mail) {
         User user = userService.loadUserByMail(mail);
-        if (user == null) {
-            return ResponseEntity.ok(false);
+        if (user != null) {
+            Application application = applicationHelper.generate(user, ApplicationTypeEnum.PASSWORD, null);
+            applicationService.create(application);
         }
-
-        String password = PasswordHelper.generatePassword();
-        user.setPassword(encoder.encode(password));
-
-        // change for release
-        System.out.println("USER: " + user.getUsername() + "; NEW PASSWORD : " + password);
-
-        userService.updateUser(user);
-
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(user != null);
     }
 
     /**
-     * Processes POST request to '/application/password'.
-     * If user with the mail existed then it changes it and
-     * receives a message to user mail.
-     *
-     * @param applicationDto application with login, mail and message
-     *
-     * @return result (true or false)
+     * {@inheritDoc}
      * */
-    @RequestMapping(value = "/trainer", method = RequestMethod.POST)
+    @Override
     public ResponseEntity<?> createApplicationOnTrainer(
-            @RequestBody @Valid TrainerCreationApplicationDto applicationDto) {
-
-        User user = userMapper.from(applicationDto);
-        user.setConfirmed(false);
-        user.setRole(new Role(RoleEnum.TRAINER));
-
-        String password = PasswordHelper.generatePassword();
-        user.setPassword(encoder.encode(password));
-
-        // change for release
-        System.out.println("TRAINER: " + user.getUsername() + "; PASSWORD : " + password);
-
+            @RequestBody @Valid TrainerApplicationDto applicationDto) {
+        User user = userHelper.generateTrainer(applicationDto);
         user = userService.createUser(user);
 
-        Application application = new Application();
-        application.setApplicationType(new ApplicationType(ApplicationTypeEnum.TRAINER));
-        application.setDescription(applicationDto.getMessage());
-        application.setUser(user);
-        application.setStatus(new Status(StatusEnum.IN_PROGRESS));
+        Application application = applicationHelper.generate(
+                user, ApplicationTypeEnum.TRAINER, applicationDto.getMessage()
+        );
 
-        applicationService.createApplication(application);
+        applicationService.create(application);
 
         return ResponseEntity.ok(true);
     }
 
     /**
-     * Processes POST request to '/application/{id}'.
-     * Modify status of application by id and statusDto.
-     *
-     * @param id application id
-     * @param statusDto new status of application
-     *
-     * @return result (true or false)
+     * {@inheritDoc}
      * */
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public ResponseEntity<?> modifyApplicationStatus (
+    @Override
+    public ResponseEntity<?> getAll() {
+        GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ADMIN).getRoleName());
+        UserDetails currentUser = userHelper.getCurrentUser();
+
+        List<Application> applications;
+        if (currentUser.getAuthorities().contains(admin)) {
+            applications = applicationService.loadAll();
+        } else {
+            User user = userService.loadUserByUsername(currentUser.getUsername());
+            applications = applicationService.loadAllByUserId(user.getUserId());
+        }
+
+        List<BaseApplicationDto> applicationDtos = applicationMapper.toBaseApplicationDtos(applications);
+        return ResponseEntity.ok(applicationDtos);
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    public ResponseEntity<?> getApplication (@PathVariable int id) {
+        Application application = applicationService.getApplicationById(id);
+        return ResponseEntity.ok(applicationMapper.toApplicationDto(application));
+    }
+
+    /**
+     * {@inheritDoc}
+     * */
+    @Override
+    public ResponseEntity<?> updateApplication (
             @PathVariable int id,
             @RequestBody @Valid StatusDto statusDto) {
-        applicationService.updateStatusOfApplication(id, StatusEnum.valueOf(statusDto.getStatus()));
-        return ResponseEntity.ok(true);
+        Application application = applicationService.updateStatus(id, StatusEnum.valueOf(statusDto.getStatus()));
+        return ResponseEntity.ok(application);
     }
 
     /**
-     * Processes POST request to '/application/{id}'.
-     * Modify status of application by id and statusDto.
-     *
-     * @return result (true or false)
+     * {@inheritDoc}
      * */
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> loadAll() {
-        /*TODO*/
-        //applicationService.updateStatusOfApplication(id, StatusEnum.valueOf(statusDto.getStatus()));
+    @Override
+    public ResponseEntity<?> deleteApplication(int id) {
+        applicationService.deleteApplicationById(id);
         return ResponseEntity.ok(true);
     }
 }

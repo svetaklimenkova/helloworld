@@ -21,7 +21,7 @@ function registerUser() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/signUpUser",
+        url: "/rest/users",
         data: JSON.stringify(user),
         dataType: 'json',
         cache: false,

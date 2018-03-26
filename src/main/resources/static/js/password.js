@@ -12,7 +12,7 @@ function recoveryPassword() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/application/password?mail=" + $('#mail').val(),
+        url: "/rest/applications/password?mail=" + $('#mail').val(),
         dataType: 'json',
         cache: false,
         timeout: 600000,

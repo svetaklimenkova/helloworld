@@ -1,7 +1,6 @@
 package by.slivki.trainings.service.api;
 
 import by.slivki.trainings.dao.jpa.User;
-import by.slivki.trainings.rest.dto.UserListItemDto;
 
 import java.util.List;
 
@@ -54,7 +53,7 @@ public interface UserService {
     User loadUserByMail(String mail);
 
     /**
-     * Updates user
+     * Updates user.
      *
      * @param user user
      *
@@ -63,9 +62,16 @@ public interface UserService {
     User updateUser(User user);
 
     /**
+     * Deletes user.
+     *
+     * @param id user id
+     * */
+    void deleteUser(int id);
+
+    /**
      * Loads list of users.
      *
      * @return list of users
      * */
-    List<User> loadUserList();
+    List<User> loadAll();
 }

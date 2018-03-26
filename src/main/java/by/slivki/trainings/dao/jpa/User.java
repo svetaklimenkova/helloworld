@@ -1,6 +1,8 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 

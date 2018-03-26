@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @Setter
-public class TrainerCreationApplicationDto {
+public class TrainerApplicationDto {
     @NotNull
     @Size(min = 4, max = 32, message = "form.username.size")
     private String username;
