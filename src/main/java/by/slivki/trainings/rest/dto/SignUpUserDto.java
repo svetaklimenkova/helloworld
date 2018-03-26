@@ -25,7 +25,7 @@ public class SignUpUserDto {
     @Size(min = 4, max = 32, message = "form.username.size")
     private String email;
 
-    private Role role = new Role(RoleEnum.USER);
+    private Role role = new Role(RoleEnum.ROLE_USER);
 
     private boolean isConfirmed = true;
 

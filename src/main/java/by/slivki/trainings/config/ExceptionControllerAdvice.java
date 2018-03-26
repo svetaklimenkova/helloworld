@@ -1,6 +1,7 @@
 package by.slivki.trainings.config;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,9 +15,9 @@ public class ExceptionControllerAdvice {
      *
      * @return Exception view.
      */
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    @ExceptionHandler({ Exception.class })
-    public String databaseError(Exception exception) {
-        return "/error";
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    @ExceptionHandler({ RequestRejectedException.class })
+    public void databaseError(Exception exception) {
+        System.out.println("EXCEPTION " + exception.getMessage());
     }
 }

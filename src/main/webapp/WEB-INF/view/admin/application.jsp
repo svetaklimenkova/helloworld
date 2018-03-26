@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/mylist.css">
 
     <!-- Font -->
     <link href="/fonts/caveat.css" rel="stylesheet">
@@ -52,13 +53,13 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li>
+                    <li class="active">
                         <a href="/applications">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/users">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
@@ -73,10 +74,54 @@
                 </ul>
             </div>
 
-            <div id='content' class="content my-form col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                <ul class="list">
+            <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
+                <div class="row">
+                    <div class="col-xs-12 title"><b><spring:message code="applications.one"/> ${application.id}</b></div>
 
-                </ul>
+                    <input id="id" type="hidden" value="${application.id}">
+
+                    <div class="col-xs-4"><b><spring:message code="applications.type"/></b></div>
+                    <div id="type" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="form.username"/></b></div>
+                    <div id="receiver" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="form.mail"/></b></div>
+                    <div id="mail" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="applications.createdBy"/></b></div>
+                    <div id="createdBy" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="applications.updatedBy"/></b></div>
+                    <div id="updatedBy" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="applications.status"/></b></div>
+                    <div id="status" class="col-xs-8"></div>
+
+                    <div class="col-xs-4"><b><spring:message code="form.message"/></b></div>
+                    <div id="description" class="col-xs-8"></div>
+
+                    <div class="col-xs-6">
+                        <div class="button">
+                            <button id="accept" type="button"><spring:message code="applications.accept"/></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 ">
+                        <div class="button">
+                            <button id="reject" type="button"><spring:message code="applications.reject"/></button>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-offset-3 col-xs-6 ">
+                        <div class="button">
+                            <button id="delete" type="button"><spring:message code="applications.delete"/></button>
+                        </div>
+                    </div>
+
+                    <input type="hidden"
+                           name="${_csrf.parameterName}"
+                           value="${_csrf.token}"/>
+                </div>
             </div>
 
             <div class="clearfix"></div>
@@ -109,6 +154,8 @@
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
 
-<script src="/js/admin.js"></script>
+<script src="/js/com/username.js"></script>
+
+<script src="/js/admin/application.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 package by.slivki.trainings.dao.jpa;
 
 public enum RoleEnum {
-    ADMIN(1),
-    TRAINER(2),
-    USER(3);
+    ROLE_ADMIN(1),
+    ROLE_TRAINER(2),
+    ROLE_USER(3);
 
     private int i;
 

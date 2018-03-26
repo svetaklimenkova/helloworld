@@ -28,12 +28,12 @@ function showApplications(applications) {
             'id',
             'type',
             "mailOfReceiver",
-            "status",
+            { attr: 'name', name: 'status' },
             "updatedBy",
             { attr: 'href', name: 'link' }],
         // Since there are no elements in the list, this will be used as template.
         item: '<li><div><a class="link application-info my-list-item row">' +
-            '<div class="col-xs-1"></div>' +
+            '<div class="status col-xs-1"><span><i class="glyphicon"></i></span></div>' +
             '<div class="id col-xs-2"></div>' +
             '<div class="type col-xs-3"></div>' +
             '<div class="mailOfReceiver col-xs-3"></div>' +
@@ -47,4 +47,17 @@ function showApplications(applications) {
     }
 
     var userList = new List('content', options, applications);
+
+    $.each($('.list').find('.status'), function () {
+        if ($(this).attr("name") === "IN_PROGRESS") {
+            $(this).find("span").addClass("valid");
+            $(this).find("i").addClass("glyphicon glyphicon-pencil");
+        } else if ($(this).attr("name") === "ACCEPTED") {
+            $(this).find("span").addClass("valid");
+            $(this).find("i").addClass("glyphicon glyphicon-ok");
+        } else if ($(this).attr("name") === "REJECTED") {
+            $(this).find("span").addClass("invalid");
+            $(this).find("i").addClass("glyphicon glyphicon-remove");
+        }
+    });
 }

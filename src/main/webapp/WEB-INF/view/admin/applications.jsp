@@ -77,10 +77,10 @@
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-xs-1"></div>
-                    <div class="id col-xs-2"><spring:message code="form.id_application"/></div>
-                    <div class="type col-xs-3"><spring:message code="form.application_type"/></div>
-                    <div class="mailOfReceiver col-xs-3"><spring:message code="form.mail"/></div>
-                    <div class="status col-xs-3"><spring:message code="form.date"/></div>
+                    <div class="id col-xs-2"><b><spring:message code="form.id_application"/></b></div>
+                    <div class="type col-xs-3"><b><spring:message code="applications.type"/></b></div>
+                    <div class="mailOfReceiver col-xs-3"><b><spring:message code="form.mail"/></b></div>
+                    <div class="status col-xs-3"><b><spring:message code="form.date"/></b></div>
                 </div>
                 <ul class="list">
 

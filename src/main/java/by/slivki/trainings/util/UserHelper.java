@@ -39,7 +39,7 @@ public class UserHelper {
         user.setUsername(application.getUsername());
         user.setEmail(application.getEmail());
         user.setConfirmed(false);
-        user.setRole(new Role(RoleEnum.TRAINER));
+        user.setRole(new Role(RoleEnum.ROLE_TRAINER));
 
         String password = generatePassword();
         user.setPassword(encoder.encode(password));

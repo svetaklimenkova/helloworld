@@ -3,6 +3,7 @@ package by.slivki.trainings.rest.api;
 import by.slivki.trainings.rest.dto.StatusDto;
 import by.slivki.trainings.rest.dto.TrainerApplicationDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ public interface ApplicationController {
      * @return list of applications
      * */
     @RequestMapping(method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     ResponseEntity<?> getAll();
 
     /**
@@ -26,6 +28,7 @@ public interface ApplicationController {
      *
      * @return application dto
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     ResponseEntity<?> getApplication (@PathVariable int id);
 
@@ -38,6 +41,7 @@ public interface ApplicationController {
      *
      * @return result (true or false)
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     ResponseEntity<?> updateApplication (
             @PathVariable int id,
@@ -52,6 +56,7 @@ public interface ApplicationController {
      *
      * @return result (true or false)
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     ResponseEntity<?> deleteApplication(@PathVariable int id);
 

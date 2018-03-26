@@ -7,7 +7,7 @@ function getUsername() {
     var username = "";
     $.ajax({
         type: "GET",
-        url: "/users/username",
+        url: "/rest/users/username",
         cache: false,
         timeout: 600000,
         dataType: "text",

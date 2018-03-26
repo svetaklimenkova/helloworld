@@ -74,7 +74,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * */
     @Override
     public ResponseEntity<?> getAll() {
-        GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ADMIN).getRoleName());
+        GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_ADMIN).getRoleName());
         UserDetails currentUser = userHelper.getCurrentUser();
 
         List<Application> applications;

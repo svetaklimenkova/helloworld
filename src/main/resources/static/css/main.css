@@ -6,6 +6,15 @@ body {
     color: #237585;
 }
 
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 .input,
 .input label,
 .input input,
