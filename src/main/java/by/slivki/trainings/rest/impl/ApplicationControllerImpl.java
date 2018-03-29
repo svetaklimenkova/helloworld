@@ -1,23 +1,32 @@
 package by.slivki.trainings.rest.impl;
 
-import by.slivki.trainings.dao.jpa.*;
+import by.slivki.trainings.dao.jpa.Application;
+import by.slivki.trainings.dao.jpa.ApplicationTypeEnum;
+import by.slivki.trainings.dao.jpa.Role;
+import by.slivki.trainings.dao.jpa.RoleEnum;
+import by.slivki.trainings.dao.jpa.StatusEnum;
+import by.slivki.trainings.dao.jpa.User;
 import by.slivki.trainings.rest.api.ApplicationController;
 import by.slivki.trainings.rest.dto.BaseApplicationDto;
 import by.slivki.trainings.rest.dto.StatusDto;
 import by.slivki.trainings.rest.dto.TrainerApplicationDto;
 import by.slivki.trainings.rest.mapper.ApplicationMapper;
-import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.ApplicationService;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.ApplicationHelper;
 import by.slivki.trainings.util.UserHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,6 +34,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest/applications")
 public class ApplicationControllerImpl implements ApplicationController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationControllerImpl.class);
 
     @Autowired
     private UserService userService;

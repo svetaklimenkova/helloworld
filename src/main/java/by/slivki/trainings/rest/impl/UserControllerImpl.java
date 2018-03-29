@@ -7,10 +7,16 @@ import by.slivki.trainings.rest.dto.SignUpUserDto;
 import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.UserHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,6 +24,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/rest/users")
 public class UserControllerImpl implements UserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserControllerImpl.class);
+
     @Autowired
     private UserService userService;
     @Autowired

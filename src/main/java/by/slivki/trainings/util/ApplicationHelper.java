@@ -1,6 +1,11 @@
 package by.slivki.trainings.util;
 
-import by.slivki.trainings.dao.jpa.*;
+import by.slivki.trainings.dao.jpa.Application;
+import by.slivki.trainings.dao.jpa.ApplicationType;
+import by.slivki.trainings.dao.jpa.ApplicationTypeEnum;
+import by.slivki.trainings.dao.jpa.Status;
+import by.slivki.trainings.dao.jpa.StatusEnum;
+import by.slivki.trainings.dao.jpa.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

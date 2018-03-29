@@ -13,8 +13,10 @@ public class ApplicationMapper {
 
     public List<BaseApplicationDto> toBaseApplicationDtos(List<Application> applications) {
         List<BaseApplicationDto> baseApplicationDtos = new ArrayList<>();
-        for (Application application : applications) {
-            baseApplicationDtos.add(toBaseApplicationDto(application));
+        if (applications != null) {
+            for (Application application : applications) {
+                baseApplicationDtos.add(toBaseApplicationDto(application));
+            }
         }
         return baseApplicationDtos;
     }

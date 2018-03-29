@@ -1,9 +1,8 @@
 package by.slivki.trainings.rest.mapper;
 
 import by.slivki.trainings.dao.jpa.User;
-import by.slivki.trainings.rest.dto.SignUpUserDto;
-import by.slivki.trainings.rest.dto.TrainerApplicationDto;
 import by.slivki.trainings.rest.dto.BaseUserDto;
+import by.slivki.trainings.rest.dto.SignUpUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -19,8 +18,10 @@ public class UserMapper {
 
     public List<BaseUserDto> toBaseUserDtos(List<User> users) {
         List<BaseUserDto> baseUserDtos = new ArrayList<>();
-        for (User user : users) {
-            baseUserDtos.add(toUserListItemDto(user));
+        if (users != null) {
+            for (User user : users) {
+                baseUserDtos.add(toUserListItemDto(user));
+            }
         }
         return baseUserDtos;
     }

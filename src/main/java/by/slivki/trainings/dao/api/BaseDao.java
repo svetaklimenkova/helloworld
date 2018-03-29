@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -21,22 +20,22 @@ public abstract class BaseDao<T> implements CrudDao<T> {
 
     @Override
     public T get(CriteriaQuery<T> criteriaQuery) {
-        T object = null;
+        T object;
         try {
             object = getEntityManager().createQuery(criteriaQuery).getSingleResult();
-        } catch (NoResultException ignored) {
-
+        } catch (NoResultException e) {
+            object = null;
         }
         return object;
     }
 
     @Override
     public List<T> getAll(CriteriaQuery<T> criteriaQuery) {
-        List<T> list = new ArrayList<>();
+        List<T> list;
         try {
             list = getEntityManager().createQuery(criteriaQuery).getResultList();
-        } catch (NoResultException ignored) {
-
+        } catch (NoResultException e) {
+            list = new ArrayList<>();
         }
         return list;
     }
