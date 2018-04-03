@@ -76,10 +76,7 @@
 
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="col-xs-1"></div>
-                    <div class="role col-xs-3"><b><spring:message code="form.role"/></b></div>
-                    <div class="username col-xs-4"><b><spring:message code="form.username"/></b></div>
-                    <div class="mail col-xs-4"><b><spring:message code="form.mail"/></b></div>
+                    <div class="role col-xs-12"><b><spring:message code="training.categories"/></b></div>
                 </div>
                 <ul class="list">
 
@@ -116,6 +113,6 @@
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
 
-<script src="/js/admin/users.js"></script>
+<script src="/js/admin/categories.js"></script>
 </body>
 </html>

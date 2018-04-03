@@ -94,4 +94,10 @@ public class DefaultController {
     public String users() {
         return "/admin/users";
     }
+
+    @GetMapping("/categories")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String categories() {
+        return "/admin/categories";
+    }
 }

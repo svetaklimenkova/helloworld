@@ -16,16 +16,8 @@ import java.util.List;
 @Transactional
 public class UserDaoImpl extends BaseDao<User> implements UserDao {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     @Autowired
     private UserCriteria userCriteria;
-
-    @Override
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
 
     @Override
     public User getById(int id) {

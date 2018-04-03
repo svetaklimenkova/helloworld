@@ -37,8 +37,4 @@ public class ApplicationDaoImpl extends BaseDao<Application> implements Applicat
         return super.getAll(applicationCriteria.getByUserId(id));
     }
 
-    @Override
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
 }
