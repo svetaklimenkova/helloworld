@@ -61,6 +61,16 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- TestNG dependency -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+    </dependency>
+
     <!-- Tomcat for jsp pages -->
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
@@ -116,6 +126,11 @@
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.14.2</version>
     </dependency>
   </dependencies>
 

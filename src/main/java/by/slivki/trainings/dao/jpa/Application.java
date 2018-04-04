@@ -37,6 +37,19 @@ public class Application {
     @Column
     private Date updatedBy;
 
+    public Application() {
+
+    }
+
+    public Application(String description, User user, Status status, ApplicationType applicationType, Date createdBy, Date updatedBy) {
+        this.description = description;
+        this.user = user;
+        this.status = status;
+        this.applicationType = applicationType;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
+    }
+
     public int getApplicationId() {
         return applicationId;
     }

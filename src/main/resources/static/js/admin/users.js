@@ -1,31 +1,6 @@
 $(document).ready(function () {
-    var username = getUsername();
-    $('#username').text(username);
-
     showUserList(getUserList());
 });
-
-function getUsername() {
-    var username = "";
-    $.ajax({
-        type: "GET",
-        url: "/rest/username",
-        cache: false,
-        timeout: 600000,
-        dataType: "text",
-        async: false,
-        success: function (data) {
-            if(data) {
-                username = data;
-            }
-        },
-        error: function (e) {
-            console.log(JSON.stringify(e.responseText));
-            return false;
-        }
-    });
-    return username;
-}
 
 function getUserList() {
     var users = null;

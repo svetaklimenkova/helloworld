@@ -7,17 +7,12 @@ import by.slivki.trainings.dao.jpa.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 @Transactional
 public class ApplicationDaoImpl extends BaseDao<Application> implements ApplicationDao {
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Autowired
     private ApplicationCriteria applicationCriteria;

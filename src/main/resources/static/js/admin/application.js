@@ -18,6 +18,51 @@ $(document).ready(function () {
                     $("#delete").show();
                     $("#accept").hide();
                     $("#reject").hide();
+                    $('#status').text(dto.status);
+                }
+            },
+            error: function (e) {
+                console.log(e.toString());
+            }
+        });
+    });
+
+    $('#reject').click(function () {
+        var dto = {};
+        dto.status = "REJECTED";
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/rest/applications/" + $('#id').val(),
+            data: JSON.stringify(dto),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                if (data !== null) {
+                    $("#delete").show();
+                    $("#accept").hide();
+                    $("#reject").hide();
+                    $('#status').text(dto.status);
+                }
+            },
+            error: function (e) {
+                console.log(e.toString());
+            }
+        });
+    });
+
+    $('#delete').click(function () {
+        $.ajax({
+            type: "DELETE",
+            contentType: "application/json",
+            url: "/rest/applications/" + $('#id').val(),
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                if (data) {
+                    window.location.href = "/applications";
                 }
             },
             error: function (e) {

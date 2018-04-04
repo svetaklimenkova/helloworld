@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 @Transactional
 public abstract class BaseDao<T> implements CrudDao<T> {
+
     @PersistenceContext
     private EntityManager entityManager;
 

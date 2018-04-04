@@ -1,11 +1,15 @@
 package by.slivki.trainings.rest.impl;
 
+import by.slivki.trainings.dao.jpa.Category;
 import by.slivki.trainings.rest.api.CategoriesController;
+import by.slivki.trainings.rest.mapper.CategoryMapper;
 import by.slivki.trainings.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/rest/categories")
@@ -14,9 +18,14 @@ public class CategoriesControllerImpl implements CategoriesController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     @Override
     public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(categoryService.loadAll());
+        List<Category> list = categoryService.loadAll();
+        return ResponseEntity.ok(
+                categoryMapper.toCategoryDtos(list));
     }
 
     @Override

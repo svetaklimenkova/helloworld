@@ -116,6 +116,8 @@
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
 
+<script src="/js/com/username.js"></script>
+
 <script src="/js/admin/users.js"></script>
 </body>
 </html>

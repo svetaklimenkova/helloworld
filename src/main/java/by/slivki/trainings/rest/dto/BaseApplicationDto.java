@@ -4,7 +4,6 @@ import lombok.Getter;
 
 import java.util.Date;
 
-@Getter
 public class BaseApplicationDto {
     private int id;
     private String type;
@@ -12,6 +11,30 @@ public class BaseApplicationDto {
     private String status;
     private Date createdBy;
     private Date updatedBy;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getMailOfReceiver() {
+        return mailOfReceiver;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public Date getUpdatedBy() {
+        return updatedBy;
+    }
 
     public void setId(int id) {
         this.id = id;

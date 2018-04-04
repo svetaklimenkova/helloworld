@@ -117,6 +117,7 @@ public class ApplicationControllerImpl implements ApplicationController {
             @PathVariable int id,
             @RequestBody @Valid StatusDto statusDto) {
         Application application = applicationService.updateStatus(id, StatusEnum.valueOf(statusDto.getStatus()));
+        applicationService.processApplication(application);
         return ResponseEntity.ok(application);
     }
 
@@ -124,7 +125,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> deleteApplication(int id) {
+    public ResponseEntity<?> deleteApplication(@PathVariable int id) {
         applicationService.deleteApplicationById(id);
         return ResponseEntity.ok(true);
     }

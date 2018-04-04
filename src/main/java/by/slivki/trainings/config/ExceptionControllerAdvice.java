@@ -16,8 +16,6 @@ public class ExceptionControllerAdvice {
     /**
      * Convert a predefined exception to an HTTP Status code and specify the
      * name of a specific view that will be used to display the error.
-     *
-     * @return Exception view.
      */
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     @ExceptionHandler({ RequestRejectedException.class })

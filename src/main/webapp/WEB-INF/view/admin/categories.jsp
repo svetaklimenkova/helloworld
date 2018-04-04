@@ -59,13 +59,13 @@
                             <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/users">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/categories">
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
@@ -112,6 +112,8 @@
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
+
+<script src="/js/com/username.js"></script>
 
 <script src="/js/admin/categories.js"></script>
 </body>
