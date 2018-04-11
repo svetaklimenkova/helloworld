@@ -8,6 +8,7 @@ import by.slivki.trainings.dao.jpa.Status;
 import by.slivki.trainings.dao.jpa.StatusEnum;
 import by.slivki.trainings.dao.jpa.User;
 import by.slivki.trainings.service.api.ApplicationService;
+import by.slivki.trainings.util.ApplicationHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ import java.util.List;
 public class ApplicationServiceImpl implements ApplicationService {
     @Autowired
     private ApplicationDao applicationDao;
+
+    @Autowired
+    private ApplicationHelper applicationHelper;
 
     @Autowired
     private UserDao userDao;
@@ -34,7 +38,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public void deleteApplicationById(int id) {
-        applicationDao.delete(applicationDao.getById(id));
+        Application application = applicationDao.getById(id);
+        applicationHelper.checkApplicationHasNoStatus(application, StatusEnum.IN_PROGRESS);
+        applicationDao.delete(application);
     }
 
     @Override
