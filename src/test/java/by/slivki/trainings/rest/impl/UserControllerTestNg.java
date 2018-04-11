@@ -1,36 +1,63 @@
 package by.slivki.trainings.rest.impl;
 
+import by.slivki.trainings.rest.api.UserController;
+import by.slivki.trainings.service.api.UserService;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlGroup;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import java.util.List;
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(locations = "classpath:application-test.properties")
+@SpringBootTest
 public class UserControllerTestNg extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private UserController userController;
+
+    @Mock
+    private UserService userService;
+
+    @BeforeMethod
+    public void setUp(){
+        MockitoAnnotations.initMocks(this);
+        Mockito.when(userService.checkUsername(Mockito.anyString())).thenReturn(true);
+        Mockito.when(userService.checkMail(Mockito.anyString())).thenReturn(true);
+    }
 
     @Test
-    public void getAllShouldReturnAllUsers() {
+    public void isValidWithUsernameShouldReturnTrue() {
+        // given
+        String username = "test";
+
         // when
-        ResponseEntity<List> responseEntity =
-               restTemplate.getForEntity("/rest/users", List.class);
-        List users = responseEntity.getBody();
+        Boolean result = (Boolean) userController.isValid(username, null).getBody();
 
         // then
-        Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Assert.assertNotNull(users);
-        Assert.assertEquals(users.size(), 2);
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void isValidWithMailShouldReturnTrue() {
+        // given
+        String mail = "test";
+
+        // when
+        Boolean result = (Boolean) userController.isValid(null, mail).getBody();
+
+        // then
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void isValidWithoutParamsShouldReturnFalse() {
+        // when
+        Boolean result = (Boolean) userController.isValid(null, null).getBody();
+
+        // then
+        Assert.assertFalse(result);
     }
 }

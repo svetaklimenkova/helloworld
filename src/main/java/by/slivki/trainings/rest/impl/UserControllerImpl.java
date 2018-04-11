@@ -64,7 +64,7 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<?> isValid(
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "mail", required = false) String mail) {
-        Boolean result = true;
+        Boolean result = false;
 
         if (username != null) {
             result = userService.checkUsername(username);
