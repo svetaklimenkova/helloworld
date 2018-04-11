@@ -7,6 +7,7 @@ import by.slivki.trainings.service.api.ApplicationService;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

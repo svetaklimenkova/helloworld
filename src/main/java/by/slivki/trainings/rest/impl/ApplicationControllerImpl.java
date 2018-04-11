@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> getApplication (@PathVariable int id) {
+    public ResponseEntity<?> getApplication (@PathVariable int id, HttpServletRequest request) {
         Application application = applicationService.getApplicationById(id);
         return ResponseEntity.ok(applicationMapper.toApplicationDto(application));
     }

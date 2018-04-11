@@ -123,8 +123,18 @@ INSERT INTO roles (roleId, roleName) VALUES (1, 'ADMIN');
 INSERT INTO roles (roleId, roleName) VALUES (2, 'TRAINER');
 INSERT INTO roles (roleId, roleName) VALUES (3, 'USER');
 
+INSERT INTO statuses (statusId, statuseName) VALUES (1, 'IN_PROGRESS');
+INSERT INTO statuses (statusId, statuseName) VALUES (2, 'ACCEPTED');
+INSERT INTO statuses (statusId, statuseName) VALUES (3, 'REJECTED');
+
+INSERT INTO applicationtype (applicationTypeId, applicationTypeName) VALUES (1, 'TRAINER');
+INSERT INTO applicationtype (applicationTypeId, applicationTypeName) VALUES (2, 'PASSWORD');
+
 INSERT INTO users (userId, username, email, roleId, isConfirmed) VALUES (1, 'test_user', 'test@mail.ru', 3, 1);
 INSERT INTO users (userId, username, email, roleId, isConfirmed) VALUES (2, 'test_user 2', 'test2@mail.ru', 3, 1);
 
 INSERT INTO categories (categoryId, categoryName) VALUES (1, 'test category 1');
 INSERT INTO categories (categoryId, categoryName) VALUES (2, 'test category 2');
+
+INSERT INTO applications (applicationId, description, userId, statusId, applicationTypeId)
+  VALUES (1, 'test 1', 1, 1, 1);

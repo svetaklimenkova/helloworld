@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 public interface ApplicationController {
@@ -34,7 +35,7 @@ public interface ApplicationController {
      * */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ResponseEntity<?> getApplication (@PathVariable int id);
+    ResponseEntity<?> getApplication (@PathVariable int id, HttpServletRequest request);
 
     /**
      * Processes POST request to '/applications/{id}'.
