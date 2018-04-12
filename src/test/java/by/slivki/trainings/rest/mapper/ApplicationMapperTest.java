@@ -21,7 +21,7 @@ public class ApplicationMapperTest {
     private ApplicationMapper mapper;
 
     @Test
-    public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() throws Exception {
+    public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() {
         // when
         List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null);
 
@@ -31,7 +31,7 @@ public class ApplicationMapperTest {
     }
 
     @Test
-    public void toBaseApplicationDtosWithCorrectParamsShouldReturnedCorrectList() throws Exception {
+    public void toBaseApplicationDtosWithCorrectParamsShouldReturnedCorrectList() {
         // given
         List<Application> applications = Arrays.asList(
                 TestGenerator.createApplication(1),

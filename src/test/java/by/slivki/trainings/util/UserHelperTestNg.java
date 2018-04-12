@@ -30,7 +30,7 @@ public class UserHelperTestNg extends AbstractTestNGSpringContextTests {
 
             // then
             Assert.assertNotNull(currentUser);
-            Assert.assertEquals("user", currentUser.getUsername());
+            Assert.assertEquals(currentUser.getUsername(), "user");
         }
 
         @Test

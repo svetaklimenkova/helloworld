@@ -19,17 +19,17 @@ public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
     private ApplicationMapper mapper;
 
     @Test
-    public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() throws Exception {
+    public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() {
         // when
         List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null);
 
         //then
         Assert.assertNotNull(result);
-        Assert.assertEquals(0, result.size());
+        Assert.assertEquals(result.size(), 0);
     }
 
     @Test
-    public void toBaseApplicationDtosWithCorrectParamsShouldReturnedCorrectList() throws Exception {
+    public void toBaseApplicationDtosWithCorrectParamsShouldReturnedCorrectList() {
         // given
         List<Application> applications = Arrays.asList(
                 TestGenerator.createApplication(1),
@@ -41,10 +41,10 @@ public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
 
         //then
         Assert.assertNotNull(result);
-        Assert.assertEquals(applications.size(), result.size());
-        Assert.assertEquals(applications.get(0).getApplicationId(), result.get(0).getId());
-        Assert.assertEquals(applications.get(0).getUser().getEmail(), result.get(0).getMailOfReceiver());
-        Assert.assertEquals(applications.get(0).getStatus().getStatusName(), result.get(0).getStatus());
-        Assert.assertEquals(applications.get(0).getApplicationType().getApplicationTypeName(), result.get(0).getType());
+        Assert.assertEquals(result.size(), applications.size());
+        Assert.assertEquals(result.get(0).getId(), applications.get(0).getApplicationId());
+        Assert.assertEquals(result.get(0).getMailOfReceiver(), applications.get(0).getUser().getEmail());
+        Assert.assertEquals(result.get(0).getStatus(), applications.get(0).getStatus().getStatusName());
+        Assert.assertEquals(result.get(0).getType(), applications.get(0).getApplicationType().getApplicationTypeName());
     }
 }
