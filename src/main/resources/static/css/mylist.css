@@ -6,7 +6,8 @@
     background: white;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 5px;
+    padding: 20px;
+    min-height: 300px;
 }
 
 a.my-list-item {

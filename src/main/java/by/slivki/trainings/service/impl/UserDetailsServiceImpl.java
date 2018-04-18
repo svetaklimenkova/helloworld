@@ -1,6 +1,6 @@
 package by.slivki.trainings.service.impl;
 
-import by.slivki.trainings.dao.api.UserDao;
+import by.slivki.trainings.dao.api.UserRepository;
 import by.slivki.trainings.dao.jpa.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,12 +16,12 @@ import java.util.Collections;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        User activeUserInfo = userDao.getByUsername(username);
+        User activeUserInfo = userRepository.findByUsername(username);
         GrantedAuthority authority = new SimpleGrantedAuthority(activeUserInfo.getRole().getRoleName());
         return new org.springframework.security.core.userdetails.User(
                 activeUserInfo.getUsername(),

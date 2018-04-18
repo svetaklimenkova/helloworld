@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Locale;
+
 @Controller
 public class DefaultController {
 
@@ -82,10 +84,10 @@ public class DefaultController {
 
     @GetMapping("/applications/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView applicationById(@PathVariable int id) {
+    public ModelAndView applicationById(@PathVariable int id, Locale locale) {
         ModelAndView modelAndView = new ModelAndView("/admin/application");
         modelAndView.addObject("application",
-                applicationMapper.toApplicationDto(applicationService.getApplicationById(id))
+                applicationMapper.toApplicationDto(applicationService.getApplicationById(id), locale)
         );
         return modelAndView;
     }

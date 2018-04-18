@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 
 public interface ApplicationController {
 
@@ -22,8 +23,7 @@ public interface ApplicationController {
      * @return list of applications
      * */
     @RequestMapping(method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    ResponseEntity<?> getAll();
+    ResponseEntity<?> getAll(Locale locale);
 
     /**
      * Processes GET request to '/applications/{id}'.
@@ -35,7 +35,7 @@ public interface ApplicationController {
      * */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ResponseEntity<?> getApplication (@PathVariable int id, HttpServletRequest request);
+    ResponseEntity<?> getApplication (@PathVariable int id, Locale locale);
 
     /**
      * Processes POST request to '/applications/{id}'.

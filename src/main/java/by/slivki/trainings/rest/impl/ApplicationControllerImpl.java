@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/rest/applications")
@@ -55,7 +56,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * */
     @Override
     public ResponseEntity<?> createApplicationOnPassword(@RequestParam String mail) {
-        User user = userService.loadUserByMail(mail);
+        User user = userService.findByMail(mail);
         if (user != null) {
             Application application = applicationHelper.generate(user, ApplicationTypeEnum.PASSWORD, null);
             applicationService.create(application);
@@ -70,7 +71,7 @@ public class ApplicationControllerImpl implements ApplicationController {
     public ResponseEntity<?> createApplicationOnTrainer(
             @RequestBody @Valid TrainerApplicationDto applicationDto) {
         User user = userHelper.generateTrainer(applicationDto);
-        user = userService.createUser(user);
+        user = userService.create(user);
 
         Application application = applicationHelper.generate(
                 user, ApplicationTypeEnum.TRAINER, applicationDto.getMessage()
@@ -85,7 +86,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> getAll() {
+    public ResponseEntity<?> getAll(Locale locale) {
         GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_ADMIN).getRoleName());
         UserDetails currentUser = userHelper.getCurrentUser();
 
@@ -93,11 +94,12 @@ public class ApplicationControllerImpl implements ApplicationController {
         if (currentUser.getAuthorities().contains(admin)) {
             applications = applicationService.loadAll();
         } else {
-            User user = userService.loadUserByUsername(currentUser.getUsername());
+            User user = userService.findByUsername(currentUser.getUsername());
             applications = applicationService.loadAllByUserId(user.getUserId());
         }
 
-        List<BaseApplicationDto> applicationDtos = applicationMapper.toBaseApplicationDtos(applications);
+        List<BaseApplicationDto> applicationDtos =
+                applicationMapper.toBaseApplicationDtos(applications, locale);
         return ResponseEntity.ok(applicationDtos);
     }
 
@@ -105,9 +107,9 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> getApplication (@PathVariable int id, HttpServletRequest request) {
+    public ResponseEntity<?> getApplication (@PathVariable int id, Locale locale) {
         Application application = applicationService.getApplicationById(id);
-        return ResponseEntity.ok(applicationMapper.toApplicationDto(application));
+        return ResponseEntity.ok(applicationMapper.toApplicationDto(application, locale));
     }
 
     /**

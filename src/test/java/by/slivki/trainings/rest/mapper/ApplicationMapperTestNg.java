@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @SpringBootTest
 public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
@@ -21,7 +22,7 @@ public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
     @Test
     public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() {
         // when
-        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null);
+        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null, Locale.getDefault());
 
         //then
         Assert.assertNotNull(result);
@@ -37,7 +38,7 @@ public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
         );
 
         // when
-        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(applications);
+        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(applications, Locale.getDefault());
 
         //then
         Assert.assertNotNull(result);
@@ -45,6 +46,5 @@ public class ApplicationMapperTestNg extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(result.get(0).getId(), applications.get(0).getApplicationId());
         Assert.assertEquals(result.get(0).getMailOfReceiver(), applications.get(0).getUser().getEmail());
         Assert.assertEquals(result.get(0).getStatus(), applications.get(0).getStatus().getStatusName());
-        Assert.assertEquals(result.get(0).getType(), applications.get(0).getApplicationType().getApplicationTypeName());
     }
 }

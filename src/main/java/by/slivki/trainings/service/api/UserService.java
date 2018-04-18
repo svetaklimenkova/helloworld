@@ -7,10 +7,9 @@ import java.util.List;
 public interface UserService {
     /**
      * Creates new user.
-     *
-     * @param user user
+     *  @param user user
      * */
-    User createUser(User user);
+    User create(User user);
 
     /**
      * Checks username. If user with this username exists
@@ -40,7 +39,7 @@ public interface UserService {
      *
      * @return user
      * */
-    User loadUserByUsername(String username);
+    User findByUsername(String username);
 
     /**
      * Loads user by mail. If user with this mail does not exist
@@ -50,7 +49,7 @@ public interface UserService {
      *
      * @return user
      * */
-    User loadUserByMail(String mail);
+    User findByMail(String mail);
 
     /**
      * Updates user.
@@ -59,19 +58,19 @@ public interface UserService {
      *
      * @return user
      * */
-    User updateUser(User user);
+    User update(User user);
 
     /**
      * Deletes user.
      *
      * @param id user id
      * */
-    void deleteUser(int id);
+    void delete(int id);
 
     /**
      * Loads list of users.
      *
      * @return list of users
      * */
-    List<User> loadAll();
+    List<User> findAll();
 }

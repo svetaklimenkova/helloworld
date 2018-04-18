@@ -7,6 +7,7 @@ import by.slivki.trainings.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,8 +23,9 @@ public class CategoriesControllerImpl implements CategoriesController {
     private CategoryMapper categoryMapper;
 
     @Override
-    public ResponseEntity<?> getAll() {
-        List<Category> list = categoryService.loadAll();
+    public ResponseEntity<?> getAll(
+            @RequestParam(value = "name", required = false, defaultValue = "") String categoryName) {
+        List<Category> list = categoryService.findAllByCategoryName(categoryName);
         return ResponseEntity.ok(
                 categoryMapper.toCategoryDtos(list));
     }

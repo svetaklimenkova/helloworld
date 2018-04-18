@@ -2,7 +2,6 @@ package by.slivki.trainings.service.api;
 
 import by.slivki.trainings.dao.jpa.Application;
 import by.slivki.trainings.dao.jpa.StatusEnum;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.List;
 

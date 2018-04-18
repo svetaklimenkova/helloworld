@@ -1,6 +1,6 @@
 package by.slivki.trainings.service.impl;
 
-import by.slivki.trainings.dao.api.CategoryDao;
+import by.slivki.trainings.dao.api.CategoryRepository;
 import by.slivki.trainings.dao.jpa.Category;
 import by.slivki.trainings.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,30 +12,30 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private CategoryRepository categoryRepository;
 
     @Override
     public Category create(String categoryName) {
         Category category = new Category();
         category.setCategoryName(categoryName);
-        return categoryDao.create(category);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public List<Category> loadAll() {
-        return categoryDao.getAll();
+    public List<Category> findAllByCategoryName(String categoryName) {
+        return categoryRepository.findAllByCategoryNameContainingIgnoreCaseOrderByCategoryName(categoryName);
     }
 
     @Override
     public Category update(String oldName, String newName) {
-        Category category = categoryDao.get(oldName);
+        Category category = categoryRepository.findByCategoryName(oldName);
         category.setCategoryName(newName);
-        return categoryDao.update(category);
+        return categoryRepository.save(category);
     }
 
     @Override
     public void delete(String categoryName) {
-        Category category = categoryDao.get(categoryName);
-        categoryDao.delete(category);
+        Category category = categoryRepository.findByCategoryName(categoryName);
+        categoryRepository.delete(category);
     }
 }

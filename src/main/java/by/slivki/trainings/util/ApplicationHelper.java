@@ -28,7 +28,7 @@ public class ApplicationHelper {
 
     public void checkApplicationHasNoStatus(Application application, StatusEnum status) {
         if (application.getStatus().getStatusId() == status.getI()) {
-            throw new RestException(ErrorCode.APPLICATION_SHOULD_NOT_BE_WITH_CURRENT_STATUS, status.name());
+            throw new RestException(ErrorCode.APPLICATION_TO_DELETE_SHOULD_NOT_BE_IN_PROGRESS, null);
         }
     }
 }

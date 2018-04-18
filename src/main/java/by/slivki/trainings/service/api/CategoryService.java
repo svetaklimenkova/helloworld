@@ -19,7 +19,7 @@ public interface CategoryService {
      *
      * @return list of categories
      * */
-    List<Category> loadAll();
+    List<Category> findAllByCategoryName(String categoryName);
 
     /**
      * Update status of application.

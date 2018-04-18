@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,7 +24,7 @@ public class ApplicationMapperTest {
     @Test
     public void toBaseApplicationDtosWithNullShouldReturnedEmptyList() {
         // when
-        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null);
+        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(null, Locale.getDefault());
 
         //then
         Assert.assertNotNull(result);
@@ -39,7 +40,7 @@ public class ApplicationMapperTest {
         );
 
         // when
-        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(applications);
+        List<BaseApplicationDto> result = mapper.toBaseApplicationDtos(applications, Locale.getDefault());
 
         //then
         Assert.assertNotNull(result);
@@ -47,6 +48,5 @@ public class ApplicationMapperTest {
         Assert.assertEquals(applications.get(0).getApplicationId(), result.get(0).getId());
         Assert.assertEquals(applications.get(0).getUser().getEmail(), result.get(0).getMailOfReceiver());
         Assert.assertEquals(applications.get(0).getStatus().getStatusName(), result.get(0).getStatus());
-        Assert.assertEquals(applications.get(0).getApplicationType().getApplicationTypeName(), result.get(0).getType());
     }
 }

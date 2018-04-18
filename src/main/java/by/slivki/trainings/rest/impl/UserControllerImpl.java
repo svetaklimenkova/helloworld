@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping(value = "/rest/users")
@@ -39,9 +40,9 @@ public class UserControllerImpl implements UserController {
      * */
     @Override
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAll() {
-        List<User> users = userService.loadAll();
-        List<BaseUserDto> baseUserDtos = userMapper.toBaseUserDtos(users);
+    public ResponseEntity<?> getAll(Locale locale) {
+        List<User> users = userService.findAll();
+        List<BaseUserDto> baseUserDtos = userMapper.toBaseUserDtos(users, locale);
         return ResponseEntity.ok(baseUserDtos);
     }
 
@@ -53,7 +54,7 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<?> create(
             @RequestBody @Valid SignUpUserDto signUpUserDto) {
         User user = userMapper.from(signUpUserDto);
-        userService.createUser(user);
+        userService.create(user);
         return ResponseEntity.ok(true);
     }
 

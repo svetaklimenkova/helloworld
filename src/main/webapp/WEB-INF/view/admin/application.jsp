@@ -53,21 +53,21 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li class="active">
+                    <li>
                         <a href="/applications">
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <i aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
                         </a>
                     </li>
                     <li>
                         <a href="/users">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <i aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
                         </a>
                     </li>
                     <li>
                         <a href="/categories">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <i aria-hidden="true"></i>
                             <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
                         </a>
                     </li>
@@ -76,51 +76,53 @@
 
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="col-xs-12 title"><b><spring:message code="applications.one"/> ${application.id}</b></div>
+                    <div class="col-xs-12 title">
+                        <div class="title-back">
+                            <a class="title-back" href="/applications">
+                                <spring:message code="main.back"/>
+                            </a>
+                        </div>
+                        <div class="title-text">
+                            <spring:message code="applications.one"/> ${application.id}
+                        </div>
+                        <div class="title-text" id="type"></div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-trash" id="delete" type="button"></button>
+                        </div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-remove-sign" id="reject" type="button"></button>
+                        </div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-ok-sign" id="accept" type="button"></button>
+                        </div>
+                    </div>
 
                     <input id="id" type="hidden" value="${application.id}">
 
-                    <div class="col-xs-4"><b><spring:message code="applications.type"/></b></div>
-                    <div id="type" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="form.username"/></b></div>
-                    <div id="receiver" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="form.mail"/></b></div>
-                    <div id="mail" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="applications.createdBy"/></b></div>
-                    <div id="createdBy" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="applications.updatedBy"/></b></div>
-                    <div id="updatedBy" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="applications.status"/></b></div>
-                    <div id="status" class="col-xs-8"></div>
-
-                    <div class="col-xs-4"><b><spring:message code="form.message"/></b></div>
-                    <div id="description" class="col-xs-8"></div>
-
-                    <div class="col-xs-6">
-                        <div class="button">
-                            <button id="accept" type="button"><spring:message code="applications.accept"/></button>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 ">
-                        <div class="button">
-                            <button id="reject" type="button"><spring:message code="applications.reject"/></button>
-                        </div>
+                    <div class="col-xs-12 col-md-4 text-small">
+                        <div class="float-left"><b><spring:message code="applications.from"/></b></div>
+                        <div class="float-left">:&nbsp;</div>
+                        <div id="receiver" class="float-left"></div>
+                        <div class="float-left">&nbsp;(</div>
+                        <div id="mail" class="float-left"></div>
+                        <div class="float-left">)</div>
                     </div>
 
-                    <div class="col-xs-offset-3 col-xs-6 ">
-                        <div class="button">
-                            <button id="delete" type="button"><spring:message code="applications.delete"/></button>
-                        </div>
+                    <div class="col-xs-12 col-md-4 text-small">
+                        <div class="float-left"><b><spring:message code="applications.createdBy"/></b></div>
+                        <div class="float-left">:&nbsp;</div>
+                        <div id="createdBy" class="float-left"></div>
                     </div>
 
-                    <input type="hidden"
-                           name="${_csrf.parameterName}"
-                           value="${_csrf.token}"/>
+                    <div class="col-xs-12 col-md-4 text-small">
+                        <div class="float-left"><b><spring:message code="applications.updatedBy"/></b></div>
+                        <div class="float-left">:&nbsp;</div>
+                        <div id="updatedBy" class="float-left"></div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div id="description" class="col-xs-12"></div>
                 </div>
             </div>
 
@@ -150,6 +152,10 @@
     </div>
 </footer>
 
+<div class='error_box'>
+    <p id='error_message'>Error</p>
+</div>
+
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
@@ -157,5 +163,6 @@
 <script src="/js/com/username.js"></script>
 
 <script src="/js/admin/application.js"></script>
+<script src="/js/com/error_message.js"></script>
 </body>
 </html>

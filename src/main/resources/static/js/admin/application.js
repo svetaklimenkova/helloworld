@@ -16,13 +16,12 @@ $(document).ready(function () {
             success: function (data) {
                 if (data !== null) {
                     $("#delete").show();
-                    $("#accept").hide();
+                    $("#accept").addClass("active");
                     $("#reject").hide();
-                    $('#status').text(dto.status);
                 }
             },
             error: function (e) {
-                console.log(e.toString());
+                throwMessage(e.responseJSON.message);
             }
         });
     });
@@ -43,12 +42,11 @@ $(document).ready(function () {
                 if (data !== null) {
                     $("#delete").show();
                     $("#accept").hide();
-                    $("#reject").hide();
-                    $('#status').text(dto.status);
+                    $("#reject").addClass("active");
                 }
             },
             error: function (e) {
-                console.log(e.toString());
+                throwMessage(e.responseJSON.message);
             }
         });
     });
@@ -66,7 +64,7 @@ $(document).ready(function () {
                 }
             },
             error: function (e) {
-                console.log(e.toString());
+                throwMessage(e.responseJSON.message);
             }
         });
     });
@@ -87,7 +85,7 @@ function getApplicationById() {
             }
         },
         error: function (e) {
-            console.log(e.toString());
+            throwMessage(e.responseJSON.message);
         }
     });
 }
@@ -99,12 +97,14 @@ function showApplication(application) {
     $('#mail').text(application.mailOfReceiver);
     $('#description').text(application.description);
     $('#receiver').text(application.receiver);
-    $('#status').text(application.status);
 
     if (application.status === "IN_PROGRESS") {
         $("#delete").hide();
-    } else {
-        $("#accept").hide();
+    } else if (application.status === "ACCEPTED") {
+        $("#accept").addClass("active");
         $("#reject").hide();
+    } else if (application.status === "REJECTED") {
+        $("#accept").hide();
+        $("#reject").addClass("active");
     }
 }

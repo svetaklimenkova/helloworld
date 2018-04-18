@@ -78,6 +78,9 @@
                 <div class="row">
                     <div class="role col-xs-12"><b><spring:message code="training.categories"/></b></div>
                 </div>
+                <div class="row">
+                    <div><input class=""></div>
+                </div>
                 <ul class="list">
 
                 </ul>

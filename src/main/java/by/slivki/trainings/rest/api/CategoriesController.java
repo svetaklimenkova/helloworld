@@ -1,5 +1,6 @@
 package by.slivki.trainings.rest.api;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public interface CategoriesController {
      * @return list of categories
      * */
     @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<?> getAll();
+    ResponseEntity<?> getAll(String categoryName);
 
     /**
      * Processes POST request to '/categories'.

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 public interface UserController {
 
@@ -18,7 +19,7 @@ public interface UserController {
      * @return list of user
      * */
     @RequestMapping(method = RequestMethod.GET)
-    ResponseEntity<?> getAll();
+    ResponseEntity<?> getAll(Locale locale);
 
     /**
      * Processes POST request to '/users'.
