@@ -15,7 +15,7 @@ import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
-public class UserDaoTestNg extends AbstractTestNGSpringContextTests {
+public class UserRepositoryTestNg extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private UserRepository userRepository;
@@ -104,7 +104,7 @@ public class UserDaoTestNg extends AbstractTestNGSpringContextTests {
     @Test
     public void getAllShouldReturnedAllUsers() {
         // when
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAllByOrderByRole_RoleName();
 
         // then
         Assert.assertNotNull(users);
@@ -143,6 +143,10 @@ public class UserDaoTestNg extends AbstractTestNGSpringContextTests {
         // then
         Assert.assertNotNull(updated);
         Assert.assertEquals(updated.getUsername(), newUsername);
+
+        // after
+        user.setUsername(TestConstants.USER_NAME);
+        userRepository.save(user);
     }
 
     @Test

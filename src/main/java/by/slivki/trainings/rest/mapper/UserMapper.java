@@ -38,6 +38,9 @@ public class UserMapper {
         baseUserDto.setRole(messageSource.getMessage(
                 user.getRole().getRoleName().toLowerCase(locale),
                 null, locale));
+        if (!user.isConfirmed()) {
+            baseUserDto.setRole(baseUserDto.getRole() + "*");
+        }
         return baseUserDto;
     }
 

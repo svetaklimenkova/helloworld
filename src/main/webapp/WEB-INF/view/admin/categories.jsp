@@ -79,7 +79,10 @@
                     <div class="role col-xs-12"><b><spring:message code="training.categories"/></b></div>
                 </div>
                 <div class="row">
-                    <div><input class=""></div>
+                    <div class="input col-lg-11"><input id="category"></div>
+                    <div class="button button-small col-lg-1">
+                        <button class="glyphicon glyphicon-plus-sign" id="add" type="button"></button>
+                    </div>
                 </div>
                 <ul class="list">
 

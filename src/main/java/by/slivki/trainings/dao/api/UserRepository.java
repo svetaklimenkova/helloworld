@@ -20,7 +20,7 @@ public interface UserRepository extends
     User findByUsername(String username);
     User findByEmail(String email);
 
-    List<User> findAll();
+    List<User> findAllByOrderByRole_RoleName();
 
     @Override
     default void customize(QuerydslBindings bindings, QUser root) {

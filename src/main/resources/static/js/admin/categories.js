@@ -1,5 +1,8 @@
 $(document).ready(function () {
     getCategoryList("");
+
+    $('#add').click(function () {
+    })
 });
 
 function getCategoryList(name) {

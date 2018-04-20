@@ -2,6 +2,9 @@ $(document).ready(function () {
     getApplicationById();
 
     $('#accept').click(function () {
+        if ($('#accept').hasClass('active')) {
+            return;
+        }
         var dto = {};
         dto.status = "ACCEPTED";
 
@@ -27,6 +30,9 @@ $(document).ready(function () {
     });
 
     $('#reject').click(function () {
+        if ($('#reject').hasClass('active')) {
+            return;
+        }
         var dto = {};
         dto.status = "REJECTED";
 

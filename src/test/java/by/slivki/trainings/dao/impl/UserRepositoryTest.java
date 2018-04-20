@@ -106,7 +106,7 @@ public class UserRepositoryTest {
     @Test
     public void getAllShouldReturnedAllUsers() {
         // when
-        List<User> users = userRepository.findAll();
+        List<User> users = userRepository.findAllByOrderByRole_RoleName();
 
         // then
         Assert.assertNotNull(users);
@@ -145,6 +145,10 @@ public class UserRepositoryTest {
         // then
         Assert.assertNotNull(updated);
         Assert.assertEquals(newUsername, updated.getUsername());
+
+        // after
+        user.setUsername(TestConstants.USER_NAME);
+        userRepository.save(user);
     }
 
     @Test

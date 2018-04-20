@@ -50,6 +50,10 @@ public class ApplicationServiceImpl implements ApplicationService {
         Application application = applicationRepository.findByApplicationId(id);
         applicationHelper.checkApplicationHasNoStatus(application, StatusEnum.IN_PROGRESS);
         applicationRepository.deleteById(id);
+
+        if (application.getStatus().getStatusName().equalsIgnoreCase(StatusEnum.REJECTED.name())) {
+            userRepository.delete(application.getUser());
+        }
     }
 
     @Override
@@ -100,9 +104,6 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     private void rejectApplication(Application application) {
-        if (application.getApplicationType().getApplicationTypeName()
-                .equals(ApplicationTypeEnum.TRAINER.name())) {
-            userRepository.delete(application.getUser());
-        }
+
     }
 }

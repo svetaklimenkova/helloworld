@@ -119,9 +119,9 @@ CREATE TABLE `participantstasks` (
   CONSTRAINT `fk_user_user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO roles (roleId, roleName) VALUES (1, 'ADMIN');
-INSERT INTO roles (roleId, roleName) VALUES (2, 'TRAINER');
-INSERT INTO roles (roleId, roleName) VALUES (3, 'USER');
+INSERT INTO roles (roleId, roleName) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO roles (roleId, roleName) VALUES (2, 'ROLE_TRAINER');
+INSERT INTO roles (roleId, roleName) VALUES (3, 'ROLE_USER');
 
 INSERT INTO statuses (statusId, statuseName) VALUES (1, 'IN_PROGRESS');
 INSERT INTO statuses (statusId, statuseName) VALUES (2, 'ACCEPTED');
