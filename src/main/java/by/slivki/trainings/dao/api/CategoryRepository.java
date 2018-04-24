@@ -20,6 +20,7 @@ public interface CategoryRepository extends
         CrudRepository<Category, Integer>, QuerydslPredicateExecutor<Category>, QuerydslBinderCustomizer<QCategory> {
 
     Category findByCategoryName(String categoryName);
+    Category findByCategoryId(int categoryId);
 
     List<Category> findAllByCategoryNameContainingIgnoreCaseOrderByCategoryName(String categotyName);
 

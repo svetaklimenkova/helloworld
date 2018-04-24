@@ -24,18 +24,18 @@ public interface CategoryService {
     /**
      * Update status of application.
      *
-     * @param oldName old name of category
+     * @param id category id
      * @param newName new name of category
      *
      * @return application
      * */
-    Category update(String oldName, String newName);
+    Category update(int id, String newName);
 
     /**
      * Deletes application by id.
      *
-     * @param categoryName category name
+     * @param id category id
      *
      * */
-    void delete(String categoryName);
+    void delete(int id);
 }

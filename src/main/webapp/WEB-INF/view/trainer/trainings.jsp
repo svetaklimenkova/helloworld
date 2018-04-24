@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -53,22 +52,24 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li>
-                        <a href="/applications">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="applications.title"/></span>
+                    <li class="active">
+                        <a href="/trainings">
+                            <span><spring:message code="trainings.mine"/></span>
                         </a>
                     </li>
                     <li>
                         <a href="/users">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="user_management.title"/></span>
+                            <span><spring:message code="trainings.participants"/></span>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="/categories">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-sm"><spring:message code="training_categories.title"/></span>
+                    <li>
+                        <a href="/reports">
+                            <span><spring:message code="reports.many"/></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/profile">
+                            <span><spring:message code="profile.mine"/></span>
                         </a>
                     </li>
                 </ul>
@@ -76,13 +77,11 @@
 
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="role col-xs-12"><b><spring:message code="trainings.categories"/></b></div>
-                </div>
-                <div class="row">
-                    <div class="input col-lg-11"><input id="category" class="fuzzy-search"></div>
-                    <div class="button button-small col-lg-1">
-                        <button class="glyphicon glyphicon-plus-sign" id="add" type="button"></button>
-                    </div>
+                    <div class="col-xs-1"></div>
+                    <div class="id col-xs-2"><b><spring:message code="form.id_application"/></b></div>
+                    <div class="type col-xs-3"><b><spring:message code="applications.type"/></b></div>
+                    <div class="mailOfReceiver col-xs-3"><b><spring:message code="form.mail"/></b></div>
+                    <div class="status col-xs-3"><b><spring:message code="form.date"/></b></div>
                 </div>
                 <ul class="list">
 
@@ -115,27 +114,12 @@
     </div>
 </footer>
 
-<div class='error_box'>
-    <p id='error_message'>Error</p>
-</div>
-
-<div class='message_box'>
-    <p>***</p>
-</div>
-
-<input id="category_added" type="hidden" value="<spring:message code="categories.added"/>">
-<input id="category_updated" type="hidden" value="<spring:message code="categories.updated"/>">
-<input id="category_empty" type="hidden" value="<spring:message code="categories.empty"/>">
-<input id="category_deleted" type="hidden" value="<spring:message code="categories.deleted"/>">
-<input id="category_really_delete" type="hidden" value="<spring:message code="categories.really_delete"/>">
-
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 <script src="/js/fr/list.min.js"></script>
 
 <script src="/js/com/username.js"></script>
-<script src="/js/com/error_message.js"></script>
 
-<script src="/js/admin/categories.js"></script>
+<script src="/js/admin/applications.js"></script>
 </body>
 </html>

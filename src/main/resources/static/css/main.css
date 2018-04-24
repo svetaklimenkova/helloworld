@@ -88,7 +88,7 @@ label {
 }
 
 /* убирает выделение вокруг инпута */
-textarea:focus, input:focus{
+textarea:focus, input:focus, button:focus {
     outline: none;
 }
 /* убирает желтый фон */
@@ -232,6 +232,10 @@ footer .spin {
     color: rgba(0, 0, 0, 0.1);
 }
 
+.button-small button.small{
+    font-size: 30px;
+}
+
 .button-small button.active {
     border: 0;
     font-size: 35px;
@@ -247,9 +251,12 @@ footer .spin {
     float: left;
 }
 
-.error_box {
+.float-right {
+    float: right;
+}
+
+.error_box, .message_box {
     display: none;
-    background: rgba(126, 35, 49, 0.55);
     position: fixed;
     width: 100%;
     left: 0;
@@ -258,10 +265,22 @@ footer .spin {
     box-shadow: 0px 5px 5px 3px rgba(0, 0, 0, 0.3);
 }
 
-.error_box p {
+.error_box {
+    background: rgba(126, 35, 49, 0.55);
+}
+
+.message_box {
+    background: rgba(103, 81, 126, 0.62);
+}
+
+.error_box p, .message_box p {
     color: rgba(248, 248, 248, 0.79);
     margin-top: 10px;
     font-weight: bold;
     filter: dropshadow(color=rgba(248, 248, 248, 0.75), offx=1, offy=1);
     text-align: center;
+}
+
+.starthidden {
+    display: none;
 }

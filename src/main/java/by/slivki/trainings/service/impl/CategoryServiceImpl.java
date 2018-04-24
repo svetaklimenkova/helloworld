@@ -2,6 +2,8 @@ package by.slivki.trainings.service.impl;
 
 import by.slivki.trainings.dao.api.CategoryRepository;
 import by.slivki.trainings.dao.jpa.Category;
+import by.slivki.trainings.exception.ErrorCode;
+import by.slivki.trainings.exception.RestException;
 import by.slivki.trainings.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category create(String categoryName) {
+        checkDuplicateName(categoryName);
         Category category = new Category();
         category.setCategoryName(categoryName);
+
         return categoryRepository.save(category);
     }
 
@@ -27,15 +31,21 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category update(String oldName, String newName) {
-        Category category = categoryRepository.findByCategoryName(oldName);
+    public Category update(int id, String newName) {
+        checkDuplicateName(newName);
+        Category category = categoryRepository.findByCategoryId(id);
         category.setCategoryName(newName);
         return categoryRepository.save(category);
     }
 
     @Override
-    public void delete(String categoryName) {
-        Category category = categoryRepository.findByCategoryName(categoryName);
-        categoryRepository.delete(category);
+    public void delete(int id) {
+        categoryRepository.deleteById(id);
+    }
+
+    private void checkDuplicateName(String categoryName) {
+        if (categoryRepository.findByCategoryName(categoryName) != null) {
+            throw new RestException(ErrorCode.CATEGORY_ALREADY_EXIST);
+        }
     }
 }

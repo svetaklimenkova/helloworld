@@ -1,7 +1,7 @@
 package by.slivki.trainings.exception;
 
 public class RestException extends RuntimeException {
-    public static final String PREFIX = "error_";
+    public static final String PREFIX = "message_";
     private int code;
     private String message;
     private Object[] args;
