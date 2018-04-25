@@ -106,7 +106,6 @@ public class DefaultController {
 
     @GetMapping("/trainings")
     public String trainings() {
-
         UserDetails userDetails = userHelper.getCurrentUser();
 
         GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_ADMIN).getRoleName());
@@ -118,6 +117,26 @@ public class DefaultController {
             page = "/error/403";
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer/trainings";
+        } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
+            page = "/user/404";
+        }
+
+        return page;
+    }
+
+    @GetMapping("/trainings/{id}")
+    public String trainingById(@PathVariable int id) {
+        UserDetails userDetails = userHelper.getCurrentUser();
+
+        GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_ADMIN).getRoleName());
+        GrantedAuthority trainer = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_TRAINER).getRoleName());
+        GrantedAuthority user = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_USER).getRoleName());
+
+        String page = "/home";
+        if (userDetails != null && userDetails.getAuthorities().contains(admin)) {
+            page = "/error/403";
+        } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
+            page = "/trainer/training";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
             page = "/user/404";
         }

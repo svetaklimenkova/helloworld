@@ -17,6 +17,21 @@ body {
     margin-right: 10px;
 }
 
+.title-text-medium {
+    font-size: 26px;
+    font-weight: bold;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.title-text-medium-right {
+    font-size: 26px;
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .title-back {
     font-size: 20px;
     color: rgba(0, 0, 0, 0.1);
@@ -224,6 +239,26 @@ footer .spin {
     float: right;
     width: auto; !important;
     left: 0; !important;
+}
+
+.button-big {
+    width: 100%; !important;
+    left: 0; !important;
+    float: none;
+}
+
+.button-big button {
+    border: 0;
+    font-size: 50px;
+    text-align: center;
+    float: none;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.button-big button.active {
+    border: 0;
+    font-size: 55px;
+    color: #237585;;
 }
 
 .button-small button {

@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name="roles")
@@ -20,6 +18,9 @@ public class Role {
     private int roleId;
     @Column
     private String roleName;
+
+    public Role() {
+    }
 
     public Role(RoleEnum roleEnum) {
         this.roleId = roleEnum.getI();

@@ -308,6 +308,13 @@ CREATE TABLE `trainings` (
 
 LOCK TABLES `trainings` WRITE;
 /*!40000 ALTER TABLE `trainings` DISABLE KEYS */;
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('Training', 'description', 1, 'All', 'No goal', 20, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('Second training', 'vriov', 3, 'revgfs', 'rves', 2, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('hd training', 'vriov', 3, 'revgfs', 'rves', 2, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('dhfbf training', 'vriov', 1, 'revgfs', 'rves', 2, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('hd training', 'vriov', 3, 'revgfs', 'rves', 2, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('fjtj training', 'vriov', 3, 'revgfs', 'rves', 2, 7);
+INSERT INTO trainings.trainings (title, description, categoryId, forWhom, goal, maxParticipants, userId) VALUES ('hed training', '7u,fj', 1, 'revgfs', 'rves', 2, 7);
 /*!40000 ALTER TABLE `trainings` ENABLE KEYS */;
 UNLOCK TABLES;
 

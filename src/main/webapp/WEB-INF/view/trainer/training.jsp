@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
     <link rel="stylesheet" type="text/css" href="/css/mylist.css">
-    <link rel="stylesheet" type="text/css" href="/css/block.css">
 
     <!-- Font -->
     <link href="/fonts/caveat.css" rel="stylesheet">
@@ -76,15 +75,38 @@
                 </ul>
             </div>
 
-            <div id="content" class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-                <div id='result' class="row">
-                </div>
+            <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div align="center">
-                    <div class="button button-big" align="center">
-                        <button class="glyphicon glyphicon-circle-arrow-down" id="search" type="button"></button>
+                    <div class="col-xs-12 title">
+                        <div class="title-back">
+                            <a class="title-back" href="/trainings">
+                                <spring:message code="main.back"/>
+                            </a>
+                        </div>
+                        <div class="title-back" id="category"></div>
+                        <div class="title-text" id="title"></div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-trash" id="delete" type="button"></button>
+                        </div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-pencil" id="edit" type="button"></button>
+                        </div>
                     </div>
-                    </div>
+
+                    <input id="id" type="hidden">
+
+                    <div class="title-text-medium"><spring:message code="trainings.trainer"/></div>
+                    <div id="trainer" class="col-xs-12"></div>
+
+                    <div class="title-text-medium"><spring:message code="trainings.for_whom"/></div>
+                    <div id="for-whom" class="col-xs-12"></div>
+
+                    <div class="title-text-medium"><spring:message code="trainings.goal"/></div>
+                    <div id="goal" class="col-xs-12"></div>
+
+                    <div class="title-text-medium"><spring:message code="trainings.description"/></div>
+                    <div id="description" class="col-xs-12"></div>
+
                 </div>
             </div>
 
@@ -114,11 +136,16 @@
     </div>
 </footer>
 
+<div class='error_box'>
+    <p id='error_message'>Error</p>
+</div>
+
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/trainer/trainings.js"></script>
+<script src="/js/trainer/training.js"></script>
+<script src="/js/com/error_message.js"></script>
 </body>
 </html>
