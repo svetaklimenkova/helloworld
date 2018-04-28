@@ -107,6 +107,7 @@
                     <div class="title-text-medium"><spring:message code="trainings.description"/></div>
                     <div id="description" class="col-xs-12"></div>
 
+                    <div class="stages row"></div>
                 </div>
             </div>
 

@@ -94,28 +94,33 @@
 
                     <input id="id" type="hidden">
 
-                    <div class="input">
+                    <div class="edit-input">
+                        <label for="categories"><spring:message code="trainings.categories"/></label>
+                        <select id="categories" name="categories"></select>
+                    </div>
+
+                    <div class="edit-input">
                         <label for="title"><spring:message code="trainings.title"/></label>
                         <input type="text" name="title" maxlength="52" id="title"/>
-                        <span class="spin"></span>
                     </div>
 
-                    <div class="input">
+                    <div class="edit-input">
                         <label for="for-whom"><spring:message code="trainings.for_whom"/></label>
-                        <input type="text" name="for-whom" maxlength="255" id="for-whom"/>
-                        <span class="spin"></span>
+                        <textarea name="for-whom" maxlength="255" id="for-whom"></textarea>
                     </div>
 
-                    <div class="input">
+                    <div class="edit-input">
                         <label for="goal"><spring:message code="trainings.goal"/></label>
-                        <input type="text" name="goal" maxlength="255" id="goal"/>
-                        <span class="spin"></span>
+                        <textarea name="goal" maxlength="255" id="goal"></textarea>
                     </div>
 
-                    <div class="input">
+                    <div class="edit-input">
                         <label for="description"><spring:message code="trainings.description"/></label>
-                        <input type="text" name="description" maxlength="255" id="description"/>
-                        <span class="spin"></span>
+                        <textarea name="description" maxlength="255" id="description"></textarea>
+                    </div>
+
+                    <div class="edit-stage">
+
                     </div>
                 </div>
             </div>

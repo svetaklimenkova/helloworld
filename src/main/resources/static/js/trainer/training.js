@@ -51,4 +51,18 @@ function showTraining(training) {
     $('#for-whom').text(training.forWhom);
     $('#goal').text(training.goal);
     $('#trainer').text(training.userName);
+
+    training.stages.forEach(function(stage) {
+        var stageDiv = '<div class="stage col-xs-12">' +
+            '<div class="stage-name">' + stage.index + '. ' + stage.name + '</div>' +
+            '<div class="tasks row">';
+        stage.tasks.forEach(function (task) {
+            stageDiv += '<div class="task col-xs-12">' +
+                '<span class="glyphicon glyphicon-record"></span>' +
+                task.name +
+                '</div>';
+        });
+        stageDiv += '</div></div>';
+        $('.stages').append(stageDiv);
+    });
 }

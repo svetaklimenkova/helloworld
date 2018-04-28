@@ -24,6 +24,8 @@ public class Stage {
     @Id
     private int stageId;
     @Column
+    private int stageIndex;
+    @Column
     private String stageName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "trainingId")
@@ -62,5 +64,13 @@ public class Stage {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public int getStageIndex() {
+        return stageIndex;
+    }
+
+    public void setStageIndex(int stageIndex) {
+        this.stageIndex = stageIndex;
     }
 }

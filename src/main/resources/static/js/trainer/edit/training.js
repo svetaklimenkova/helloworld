@@ -26,8 +26,39 @@ function showTraining(training) {
     $('#id').val(training.id);
     $('#title').val(training.title);
     $('#description').val(training.description);
-    $('#category').text(training.category);
-    $('#for-whom').vl(training.forWhom);
+    $('#for-whom').val(training.forWhom);
     $('#goal').val(training.goal);
-    $('#trainer').text(training.userName);
+
+    getCategories($('#category').text(training.category));
+
+
+}
+
+function getCategories(selected) {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/rest/categories/",
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            if (data !== null) {
+                showCategories(data, selected);
+            }
+        },
+        error: function (e) {
+            throwMessage(e.responseJSON.message);
+        }
+    });
+}
+
+function showCategories(categories, selected) {
+    categories.forEach(function (item) {
+        if (item.categoryName === selected) {
+            $('#categories').append('<option selected>' + item.categoryName + '</option>');
+        } else {
+            $('#categories').append('<option>' + item.categoryName + '</option>');
+        }
+    });
+
 }

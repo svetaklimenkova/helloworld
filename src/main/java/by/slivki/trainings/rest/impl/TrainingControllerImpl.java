@@ -1,6 +1,5 @@
 package by.slivki.trainings.rest.impl;
 
-import by.slivki.trainings.dao.jpa.Role;
 import by.slivki.trainings.dao.jpa.RoleEnum;
 import by.slivki.trainings.dao.jpa.Training;
 import by.slivki.trainings.rest.api.TrainingController;
@@ -12,8 +11,6 @@ import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/rest/trainings")

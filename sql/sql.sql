@@ -94,7 +94,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` (`categoryId`, `categoryName`) VALUES (1,'Саморазвитие'),(2,'Языки');
+INSERT INTO `categories` (`categoryId`, `categoryName`) VALUES (1,'Common'),(3,'Langs');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,6 +198,7 @@ DROP TABLE IF EXISTS `stages`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stages` (
   `stageId` int(11) NOT NULL AUTO_INCREMENT,
+  `stageIndex` int(11) NOT NULL,
   `stageName` varchar(128) NOT NULL,
   `trainingId` int(11) NOT NULL,
   PRIMARY KEY (`stageId`),
@@ -212,7 +213,7 @@ CREATE TABLE `stages` (
 
 LOCK TABLES `stages` WRITE;
 /*!40000 ALTER TABLE `stages` DISABLE KEYS */;
-INSERT INTO `stages` (`stageId`, `stageName`, `trainingId`) VALUES (1,'stage 11',1),(2,'stage 12',1);
+INSERT INTO `stages` (`stageId`, `stageIndex`, `stageName`, `trainingId`) VALUES (1, 1,'stage 11',1),(2, 2, 'stage 12',1);
 /*!40000 ALTER TABLE `stages` ENABLE KEYS */;
 UNLOCK TABLES;
 

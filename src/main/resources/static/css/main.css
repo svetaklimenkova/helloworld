@@ -319,3 +319,46 @@ footer .spin {
 .starthidden {
     display: none;
 }
+
+.stage {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.stage-name {
+    color: #1e5969;
+    font-size: 25px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #237585;
+}
+
+.tasks {
+    margin-left: 10px;
+}
+
+.task {
+    color: #237585;
+    font-size: 22px;
+}
+
+.edit-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-input input, .edit-input textarea, .edit-input select {
+    border-radius: 10px;
+    border: 1px solid #237585;
+    background: rgba(171, 171, 255, 0.07);
+}
+.edit-input label {
+    display: block;
+    font-weight: bold;
+}
+
+.edit-input textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 50px;
+    max-height: 500px;
+}

@@ -22,7 +22,7 @@ public class CategoriesControllerImpl implements CategoriesController {
     private CategoryMapper categoryMapper;
 
     @Override
-    public ResponseEntity<?> getAll(
+    public ResponseEntity<List<CategoryDto>> getAll(
             @RequestParam(value = "name", required = false, defaultValue = "") String categoryName) {
         List<Category> list = categoryService.findAllByCategoryName(categoryName);
         return ResponseEntity.ok(categoryMapper.toCategoryDtos(list));
