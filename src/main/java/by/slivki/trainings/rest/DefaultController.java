@@ -143,4 +143,10 @@ public class DefaultController {
 
         return page;
     }
+
+    @GetMapping("/trainings/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_TRAINER')")
+    public String trainingToEditById() {
+        return "/trainer/edit/training";
+    }
 }

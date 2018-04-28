@@ -18,6 +18,8 @@ public class TrainingMapper {
     private CategoryService categoryService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private StageMapper stageMapper;
 
     public List<BaseTrainingDto> toBaseTrainingDtos(List<Training> trainings) {
         List<BaseTrainingDto> baseTrainingDtos = new ArrayList<>();
@@ -39,6 +41,7 @@ public class TrainingMapper {
         trainingDto.setGoal(training.getGoal());
         trainingDto.setMaxParticipants(training.getMaxParticipants());
         trainingDto.setUserName(training.getUser().getUsername());
+        trainingDto.setStages(stageMapper.toStageDtos(training.getStages()));
         return trainingDto;
     }
 
@@ -55,11 +58,12 @@ public class TrainingMapper {
         training.setTrainingId(dto.getId());
         training.setTitle(dto.getTitle());
         training.setDescription(dto.getDescription());
-        training.setCategory(categoryService.findAllByCategoryName(dto.getCategory()).get(0));
         training.setForWhom(dto.getForWhom());
         training.setGoal(dto.getGoal());
         training.setMaxParticipants(dto.getMaxParticipants());
         training.setUser(userService.findByUsername(dto.getUserName()));
+        training.setCategory(categoryService.findAllByCategoryName(dto.getCategory()).get(0));
+        training.setStages(stageMapper.toEntities(dto.getStages()));
         return training;
     }
 }

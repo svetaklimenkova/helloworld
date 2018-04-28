@@ -4,6 +4,7 @@ import by.slivki.trainings.dao.jpa.Role;
 import by.slivki.trainings.dao.jpa.RoleEnum;
 import by.slivki.trainings.dao.jpa.Training;
 import by.slivki.trainings.rest.api.TrainingController;
+import by.slivki.trainings.rest.dto.BaseTrainingDto;
 import by.slivki.trainings.rest.dto.TrainingDto;
 import by.slivki.trainings.rest.mapper.TrainingMapper;
 import by.slivki.trainings.service.api.TrainingService;
@@ -35,28 +36,26 @@ public class TrainingControllerImpl implements TrainingController {
     private UserHelper userHelper;
 
     @Override
-    public ResponseEntity<?> getAll(Pageable pageable) {
+    public ResponseEntity<List<BaseTrainingDto>> getAll(Pageable pageable) {
         UserDetails userDetails = userHelper.getCurrentUser();
 
-        GrantedAuthority trainer = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_TRAINER).getRoleName());
-        GrantedAuthority user = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_USER).getRoleName());
-
         List<Training> trainings = new ArrayList<>(0);
-        if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
+        if (userHelper.isRoleAuthority(userDetails, RoleEnum.ROLE_TRAINER)) {
             trainings = trainingService.loadAllByUsername(userDetails.getUsername(), pageable);
-        } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
+        } else if (userHelper.isRoleAuthority(userDetails, RoleEnum.ROLE_USER)) {
             trainings = trainingService.loadAll(pageable);
         }
         return ResponseEntity.ok(trainingMapper.toBaseTrainingDtos(trainings));
     }
 
     @Override
-    public ResponseEntity<?> getById(@PathVariable("id") int id) {
+    public ResponseEntity<TrainingDto> getById(@PathVariable("id") int id) {
         return ResponseEntity.ok(trainingMapper.toTrainingDto(trainingService.getById(id)));
     }
 
     @Override
-    public ResponseEntity<?> update(@PathVariable("id") int id, @Valid TrainingDto trainingDto) {
+    public ResponseEntity<TrainingDto> update(
+            @PathVariable("id") int id, @Valid TrainingDto trainingDto) {
         return ResponseEntity.ok(trainingMapper.toTrainingDto(
                 trainingService.update(trainingMapper.toEntity(trainingDto))));
     }

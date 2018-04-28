@@ -2,6 +2,8 @@ package by.slivki.trainings.rest.dto;
 
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @EqualsAndHashCode
 public class TrainingDto {
     private int id;
@@ -12,6 +14,7 @@ public class TrainingDto {
     private String goal;
     private int maxParticipants;
     private String userName;
+    private List<StageDto> stages;
 
 
     public int getId() {
@@ -76,5 +79,13 @@ public class TrainingDto {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public List<StageDto> getStages() {
+        return stages;
+    }
+
+    public void setStages(List<StageDto> stages) {
+        this.stages = stages;
     }
 }

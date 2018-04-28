@@ -7,6 +7,8 @@ import by.slivki.trainings.rest.dto.TrainerApplicationDto;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -52,5 +54,10 @@ public class UserHelper {
 
     public String generatePassword() {
         return RandomStringUtils.randomAlphabetic(PASSWORD_LENGTH);
+    }
+
+    public boolean isRoleAuthority(UserDetails userDetails, RoleEnum role) {
+        return userDetails != null &&
+                userDetails.getAuthorities().contains(new SimpleGrantedAuthority(role.name()));
     }
 }

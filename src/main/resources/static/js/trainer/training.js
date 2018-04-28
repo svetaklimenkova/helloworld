@@ -1,11 +1,14 @@
 $(document).ready(function () {
     getTrainingById();
 
+    $('#edit').click(function () {
+        window.location.href = "/trainings/edit/" + window.location.href.match(/([^\/]*)\/*$/)[1];
+    });
     $('#delete').click(function () {
         $.ajax({
             type: "DELETE",
             contentType: "application/json",
-            url: "/rest/trainings/" + $('#id').val(),
+            url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1],
             cache: false,
             timeout: 600000,
             success: function (data) {

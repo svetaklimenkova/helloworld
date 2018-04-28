@@ -2,16 +2,9 @@ package by.slivki.trainings.dao.jpa;
 
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @EqualsAndHashCode
 @Entity
@@ -37,6 +30,9 @@ public class Training {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "trainingId")
+    private List<Stage> stages;
 
     public int getTrainingId() {
         return trainingId;
@@ -100,5 +96,13 @@ public class Training {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Stage> getStages() {
+        return stages;
+    }
+
+    public void setStages(List<Stage> stages) {
+        this.stages = stages;
     }
 }

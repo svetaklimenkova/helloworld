@@ -73,10 +73,10 @@ CREATE TABLE `stages` (
 
 DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks` (
-  `taskId` int(11) NOT NULL,
+  `task` int(11) NOT NULL,
   `taskName` varchar(255) NOT NULL,
   `stageId` int(11) NOT NULL,
-  PRIMARY KEY (`taskId`),
+  PRIMARY KEY (`task`),
   CONSTRAINT `fk_stage_task` FOREIGN KEY (`stageId`) REFERENCES `stages` (`stageId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,22 +99,22 @@ DROP TABLE IF EXISTS `reports`;
 CREATE TABLE `reports` (
   `reportId` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
-  `taskId` int(11) NOT NULL,
+  `task` int(11) NOT NULL,
   `message` text NOT NULL,
   `statusId` int(11) NOT NULL,
   PRIMARY KEY (`reportId`),
   CONSTRAINT `fk_report_status` FOREIGN KEY (`statusId`) REFERENCES `statuses` (`statusId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_report_task` FOREIGN KEY (`taskId`) REFERENCES `tasks` (`taskId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_report_task` FOREIGN KEY (`task`) REFERENCES `tasks` (`task`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_report_user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `participantstasks`;
 CREATE TABLE `participantstasks` (
-  `taskId` int(11) NOT NULL,
+  `task` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `taskStatusId` int(11) NOT NULL,
-  CONSTRAINT `fk_task_task` FOREIGN KEY (`taskId`) REFERENCES `tasks` (`taskId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_task_task` FOREIGN KEY (`task`) REFERENCES `tasks` (`task`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_taskstatus_taskstatus` FOREIGN KEY (`taskStatusId`) REFERENCES `taskstatuses` (`taskStatusId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
