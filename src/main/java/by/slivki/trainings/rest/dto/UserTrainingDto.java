@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @EqualsAndHashCode
-public class TrainingDto {
+public class UserTrainingDto {
 
     private int id;
     @NotNull(message = "trainings.title.not_null")

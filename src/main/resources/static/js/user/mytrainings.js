@@ -1,15 +1,12 @@
 $(document).ready(function () {
-    getTrainings(0);
-    $('#search').click(function () {
+    getTrainings(0, "");
+    $('#page').click(function () {
         getTrainings(-1);
-    })
-
-    $('#add').click(function () {
-        window.location.href = '/trainings/create/';
-    })
+    });
 });
 
 function getTrainings(page) {
+    $('#page').show();
     var size = 6;
     if (page === -1) {
         page = Math.round($('#result').children('div').length / size);
@@ -19,14 +16,14 @@ function getTrainings(page) {
     data['size'] = size;
     $.ajax({
         type: "GET",
-        url: "/rest/trainings",
+        url: "/rest/user/trainings",
         data: data,
         contentType: "application/json",
         success: function (data) {
             if(data) {
                 showTrainings(data, page);
                 if (data.length < size) {
-                    $('#search').hide();
+                    $('#page').hide();
                 }
             }
         },

@@ -52,14 +52,14 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li class="active">
+                    <li>
                         <a href="/trainings">
-                            <span><spring:message code="trainings.mine"/></span>
+                            <span><spring:message code="trainings.all"/></span>
                         </a>
                     </li>
                     <li>
-                        <a href="/users">
-                            <span><spring:message code="trainings.participants"/></span>
+                        <a href="/user/trainings/">
+                            <span><spring:message code="trainings.mine"/></span>
                         </a>
                     </li>
                     <li>
@@ -78,61 +78,36 @@
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-xs-12 title">
-                        <div class="title-text"><spring:message code="trainings.editing"/></div>
-                        <div class="button button-small">
-                            <button class="glyphicon glyphicon-remove-sign" id="cancel" type="button"></button>
+                        <div class="title-back">
+                            <a class="title-back" href="/trainings">
+                                <spring:message code="main.back"/>
+                            </a>
                         </div>
+                        <div class="title-back" id="category"></div>
+                        <div class="title-text" id="title"></div>
                         <div class="button button-small">
-                            <button class="glyphicon glyphicon-ok-sign" id="ok" type="button"></button>
+                            <button class="glyphicon glyphicon-plus-sign" id="add-user-training" type="button"></button>
                         </div>
                     </div>
 
                     <input id="id" type="hidden">
 
-                    <div class="edit-input">
-                        <label for="categories"><spring:message code="trainings.categories"/></label>
-                        <select id="categories" name="categories"></select>
-                    </div>
+                    <div class="title-text-medium"><spring:message code="trainings.trainer"/></div>
+                    <div id="trainer" class="col-xs-12"></div>
 
-                    <div class="edit-input">
-                        <label for="title"><spring:message code="trainings.title"/></label>
-                        <input type="text" name="title" maxlength="52" id="title"/>
-                    </div>
+                    <div class="title-text-medium"><spring:message code="trainings.participants"/></div>
+                    <div id="participants" class="col-xs-12"></div>
 
-                    <div class="edit-input">
-                        <label for="participants"><spring:message code="trainings.maxParticipants"/></label>
-                        <input type="number" name="participants" maxlength="5" id="participants"/>
-                    </div>
+                    <div class="title-text-medium"><spring:message code="trainings.for_whom"/></div>
+                    <div id="for-whom" class="col-xs-12"></div>
 
-                    <div class="edit-input">
-                        <label for="for-whom"><spring:message code="trainings.for_whom"/></label>
-                        <textarea name="for-whom" maxlength="255" id="for-whom"></textarea>
-                    </div>
+                    <div class="title-text-medium"><spring:message code="trainings.goal"/></div>
+                    <div id="goal" class="col-xs-12"></div>
 
-                    <div class="edit-input">
-                        <label for="goal"><spring:message code="trainings.goal"/></label>
-                        <textarea name="goal" maxlength="255" id="goal"></textarea>
-                    </div>
+                    <div class="title-text-medium"><spring:message code="trainings.description"/></div>
+                    <div id="description" class="col-xs-12"></div>
 
-                    <div class="edit-input">
-                        <label for="description"><spring:message code="trainings.description"/></label>
-                        <textarea name="description" maxlength="255" id="description"></textarea>
-                    </div>
-
-                    <div class="edit-stages">
-                        <div class="edit-input edit-stage">
-                            <input type="hidden" class="stage-id">
-                            <div class="stage-index"></div>
-                            <input class="stage" type="text" name="stage" maxlength="128"/>
-
-                            <div class="edit-tasks">
-                                <div class="edit-input edit-task">
-                                    <input type="hidden" class="task-id">
-                                    <textarea class="task" maxlength="255"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="stages row"></div>
                 </div>
             </div>
 
@@ -163,7 +138,7 @@
 </footer>
 
 <div class='error_box'>
-    <p id='error_message'>Error</p>
+    <p>Error</p>
 </div>
 
 <div class='message_box'>
@@ -175,7 +150,7 @@
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/trainer/edit/training.js"></script>
+<script src="/js/user/mytraining.js"></script>
 <script src="/js/com/error_message.js"></script>
 </body>
 </html>

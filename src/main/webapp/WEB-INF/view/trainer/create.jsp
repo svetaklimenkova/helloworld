@@ -52,7 +52,7 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li class="active">
+                    <li>
                         <a href="/trainings">
                             <span><spring:message code="trainings.mine"/></span>
                         </a>
@@ -78,7 +78,7 @@
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-xs-12 title">
-                        <div class="title-text"><spring:message code="trainings.editing"/></div>
+                        <div class="title-text"><spring:message code="trainings.creation"/></div>
                         <div class="button button-small">
                             <button class="glyphicon glyphicon-remove-sign" id="cancel" type="button"></button>
                         </div>
@@ -122,7 +122,7 @@
                     <div class="edit-stages">
                         <div class="edit-input edit-stage">
                             <input type="hidden" class="stage-id">
-                            <div class="stage-index"></div>
+                            <div class="stage-index">1</div>
                             <input class="stage" type="text" name="stage" maxlength="128"/>
 
                             <div class="edit-tasks">
@@ -175,7 +175,7 @@
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/trainer/edit/training.js"></script>
+<script src="/js/trainer/create.js"></script>
 <script src="/js/com/error_message.js"></script>
 </body>
 </html>

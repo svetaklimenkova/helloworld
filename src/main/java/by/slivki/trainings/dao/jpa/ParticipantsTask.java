@@ -25,7 +25,7 @@ public class ParticipantsTask {
     @JoinColumn(name = "userId")
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "task")
+    @JoinColumn(name = "taskId")
     private Task task;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taskStatusId")

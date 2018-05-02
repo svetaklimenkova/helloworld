@@ -1,12 +1,10 @@
 $(document).ready(function () {
-    getTrainingById();
-
     $('#cancel').click(function () {
-        window.location.href = '/trainings/' + window.location.href.match(/([^\/]*)\/*$/)[1];
+        window.location.href = '/trainings/' + training.id;
     });
 
     $('#ok').click(function () {
-        editTraining();
+        createTraining();
     });
 
     $('.edit-tasks').on("change paste keyup", '.edit-task', function () {
@@ -51,77 +49,9 @@ $(document).ready(function () {
         }
         recountStageIndex();
     });
+
+    getCategories("");
 });
-
-function getTrainingById() {
-    $.ajax({
-        type: "GET",
-        contentType: "application/json",
-        url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1],
-        dataType: 'json',
-        cache: false,
-        timeout: 600000,
-        success: function (data) {
-            console.log(data);
-            if (data !== null) {
-                showTraining(data);
-            }
-        },
-        error: function (e) {
-            throwMessage(e.responseJSON.message);
-        }
-    });
-}
-
-function showTraining(training) {
-    $('#id').val(training.id);
-    $('#title').val(training.title);
-    $('#description').val(training.description);
-    $('#for-whom').val(training.forWhom);
-    $('#goal').val(training.goal);
-    $('#participants').val(training.maxParticipants);
-
-    getCategories($('#category').text(training.category));
-
-    showStages(training.stages);
-
-}
-
-function showStages(stages) {
-    for (var i = 0; i < stages.length; i++) {
-        $('.edit-stages').append($($('.edit-stage')[0]).clone(true));
-    }
-
-    var stageNum = 0;
-    $('.edit-stages').children().each(function () {
-        if (stageNum >= stages.length) {
-            return false;
-        }
-
-        $(this).find('.stage-id').val(stages[stageNum].id);
-        $(this).find('.stage-index').text(stages[stageNum].index);
-        $(this).find('.stage').val(stages[stageNum].name);
-
-        var tasks = stages[stageNum].tasks;
-
-        for (var i = 0; i < tasks.length; i++) {
-            $(this).find('.edit-tasks').append($($(this).find('.edit-task')[0]).clone(true));
-        }
-
-        var taskNum = 0;
-        $(this).find('.edit-task').each(function () {
-            if (taskNum >= tasks.length) {
-                return false;
-            }
-
-            $(this).find('.task-id').val(tasks[taskNum].id);
-            $(this).find('.task').val(tasks[taskNum].name);
-            taskNum++;
-        });
-
-        stageNum++;
-    });
-}
 
 function getCategories(selected) {
     $.ajax({
@@ -159,10 +89,9 @@ function recountStageIndex() {
     });
 }
 
-function editTraining() {
+function createTraining() {
     var training = {};
 
-    training["id"] = $("#id").val();
     training["title"] = $("#title").val();
     training["description"] = $("#description").val();
     training["forWhom"] = $('#for-whom').val();
@@ -171,6 +100,27 @@ function editTraining() {
 
     training["category"] = $('#categories').val();
 
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: '/rest/trainings/',
+        data: JSON.stringify(training),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+            if (data !== null) {
+                createStages(data);
+            }
+        },
+        error: function (e) {
+            throwMessage(e.responseJSON.message);
+        }
+    });
+
+}
+
+function createStages(training) {
     var stages = [];
     var stageItems = $('.edit-stages');
     var countStages = 0;
@@ -181,7 +131,7 @@ function editTraining() {
 
             stage['id'] = $(value).find('.stage-id').val();
             stage['name'] = $(value).find('.stage').val();
-            stage['index'] = countStages + 1;
+            stage['index'] = $(value).find('.stage-index').text();
 
             var tasks = [];
             var countTasks = 0;
@@ -203,19 +153,18 @@ function editTraining() {
     });
 
     training['stages'] = stages;
-    console.log(training);
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: '/rest/trainings/' + training.id,
+        url: '/rest/trainings/',
         data: JSON.stringify(training),
         dataType: 'json',
         cache: false,
         timeout: 600000,
         success: function (data) {
             if (data !== null) {
-                window.location.href = '/trainings/' + training.id;
+                window.location.href = '/trainings/';
             }
         },
         error: function (e) {

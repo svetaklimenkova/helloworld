@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
     <link rel="stylesheet" type="text/css" href="/css/mylist.css">
+    <link rel="stylesheet" type="text/css" href="/css/block.css">
 
     <!-- Font -->
     <link href="/fonts/caveat.css" rel="stylesheet">
@@ -54,12 +55,12 @@
                 <ul>
                     <li class="active">
                         <a href="/trainings">
-                            <span><spring:message code="trainings.mine"/></span>
+                            <span><spring:message code="trainings.all"/></span>
                         </a>
                     </li>
                     <li>
-                        <a href="/users">
-                            <span><spring:message code="trainings.participants"/></span>
+                        <a href="/user/trainings/">
+                            <span><spring:message code="trainings.mine"/></span>
                         </a>
                     </li>
                     <li>
@@ -75,64 +76,53 @@
                 </ul>
             </div>
 
-            <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
+            <div id="content" class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="col-xs-12 title">
-                        <div class="title-text"><spring:message code="trainings.editing"/></div>
-                        <div class="button button-small">
-                            <button class="glyphicon glyphicon-remove-sign" id="cancel" type="button"></button>
-                        </div>
-                        <div class="button button-small">
-                            <button class="glyphicon glyphicon-ok-sign" id="ok" type="button"></button>
-                        </div>
+                    <div class="input col-lg-11"><input id="search" maxlength="100"></div>
+                    <div class="button button-small col-lg-1">
+                        <button class="glyphicon glyphicon-th-large" id="show-search" type="button"></button>
                     </div>
 
-                    <input id="id" type="hidden">
+                    <input id="is-show-search" type="hidden" value="n">
 
-                    <div class="edit-input">
+                    <div class="edit-input input-hidden col-lg-12">
                         <label for="categories"><spring:message code="trainings.categories"/></label>
-                        <select id="categories" name="categories"></select>
+                        <select id="categories" name="categories">
+                            <option selected>---</option>
+                        </select>
                     </div>
 
-                    <div class="edit-input">
-                        <label for="title"><spring:message code="trainings.title"/></label>
-                        <input type="text" name="title" maxlength="52" id="title"/>
+                    <div class="input input-hidden col-lg-12">
+                        <label for="trainer"><spring:message code="trainings.trainer"/></label>
+                        <input id="trainer" maxlength="100">
                     </div>
 
-                    <div class="edit-input">
-                        <label for="participants"><spring:message code="trainings.maxParticipants"/></label>
-                        <input type="number" name="participants" maxlength="5" id="participants"/>
-                    </div>
-
-                    <div class="edit-input">
+                    <div class="input input-hidden col-lg-12">
                         <label for="for-whom"><spring:message code="trainings.for_whom"/></label>
-                        <textarea name="for-whom" maxlength="255" id="for-whom"></textarea>
+                        <input id="for-whom" maxlength="100">
                     </div>
 
-                    <div class="edit-input">
+                    <div class="input input-hidden col-lg-12">
                         <label for="goal"><spring:message code="trainings.goal"/></label>
-                        <textarea name="goal" maxlength="255" id="goal"></textarea>
+                        <input id="goal" maxlength="100">
                     </div>
 
-                    <div class="edit-input">
-                        <label for="description"><spring:message code="trainings.description"/></label>
-                        <textarea name="description" maxlength="255" id="description"></textarea>
+                    <div class="input-hidden input-check col-lg-11">
+                        <label for="open"><spring:message code="trainings.open"/></label>
+                        <input id="open" type="checkbox" checked/>
                     </div>
 
-                    <div class="edit-stages">
-                        <div class="edit-input edit-stage">
-                            <input type="hidden" class="stage-id">
-                            <div class="stage-index"></div>
-                            <input class="stage" type="text" name="stage" maxlength="128"/>
-
-                            <div class="edit-tasks">
-                                <div class="edit-input edit-task">
-                                    <input type="hidden" class="task-id">
-                                    <textarea class="task" maxlength="255"></textarea>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="button button-small float-right input-hidden col-lg-1">
+                        <button class="glyphicon glyphicon-search" id="adv-search" type="button"></button>
                     </div>
+                </div>
+
+                <div id='result' class="row"></div>
+
+                <div class="row">
+                    <div align="center"><div class="button button-big" align="center">
+                        <button class="glyphicon glyphicon-circle-arrow-down" id="page" type="button"></button>
+                    </div></div>
                 </div>
             </div>
 
@@ -163,7 +153,7 @@
 </footer>
 
 <div class='error_box'>
-    <p id='error_message'>Error</p>
+    <p>Error</p>
 </div>
 
 <div class='message_box'>
@@ -174,8 +164,9 @@
 <script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/com/username.js"></script>
+<script src="/js/com/form.js"></script>
 
-<script src="/js/trainer/edit/training.js"></script>
+<script src="/js/user/trainings.js"></script>
 <script src="/js/com/error_message.js"></script>
 </body>
 </html>

@@ -7,7 +7,6 @@ import by.slivki.trainings.service.api.ApplicationService;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -50,7 +49,7 @@ public class DefaultController {
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer/trainings";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
-            page = "/user/applications";
+            page = "/user/trainings";
         }
 
         return page;
@@ -118,10 +117,16 @@ public class DefaultController {
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer/trainings";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
-            page = "/user/404";
+            page = "/user/trainings";
         }
 
         return page;
+    }
+
+    @GetMapping("/trainings/create/")
+    @PreAuthorize("hasRole('ROLE_TRAINER')")
+    public String trainingToCreate() {
+        return "/trainer/create";
     }
 
     @GetMapping("/trainings/{id}")
@@ -138,7 +143,7 @@ public class DefaultController {
         } else if (userDetails != null && userDetails.getAuthorities().contains(trainer)) {
             page = "/trainer/training";
         } else if (userDetails != null && userDetails.getAuthorities().contains(user)) {
-            page = "/user/404";
+            page = "/user/training";
         }
 
         return page;
@@ -148,5 +153,11 @@ public class DefaultController {
     @PreAuthorize("hasRole('ROLE_TRAINER')")
     public String trainingToEditById() {
         return "/trainer/edit/training";
+    }
+
+    @GetMapping("/user/trainings")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public String userTrainings() {
+        return "/user/mytrainings";
     }
 }

@@ -1,14 +1,7 @@
 package by.slivki.trainings.rest.mapper;
 
 import by.slivki.trainings.dao.jpa.Task;
-import by.slivki.trainings.dao.jpa.Training;
-import by.slivki.trainings.rest.dto.BaseTrainingDto;
 import by.slivki.trainings.rest.dto.TaskDto;
-import by.slivki.trainings.rest.dto.TrainingDto;
-import by.slivki.trainings.service.api.CategoryService;
-import by.slivki.trainings.service.api.UserService;
-import org.apache.catalina.mapper.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

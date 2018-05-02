@@ -1,9 +1,7 @@
 package by.slivki.trainings.dao.api;
 
 import by.slivki.trainings.dao.jpa.Application;
-import by.slivki.trainings.dao.jpa.Category;
 import by.slivki.trainings.dao.jpa.QApplication;
-import by.slivki.trainings.dao.jpa.QCategory;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;

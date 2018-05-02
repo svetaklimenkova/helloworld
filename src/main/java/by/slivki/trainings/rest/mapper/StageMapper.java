@@ -1,9 +1,7 @@
 package by.slivki.trainings.rest.mapper;
 
 import by.slivki.trainings.dao.jpa.Stage;
-import by.slivki.trainings.dao.jpa.Task;
 import by.slivki.trainings.rest.dto.StageDto;
-import by.slivki.trainings.rest.dto.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,6 +49,7 @@ public class StageMapper {
         Stage stage = new Stage();
         stage.setStageId(stageDto.getId());
         stage.setStageName(stageDto.getName());
+        stage.setStageIndex(stageDto.getIndex());
         stage.setTasks(taskMapper.toEntities(stageDto.getTasks()));
         return stage;
     }

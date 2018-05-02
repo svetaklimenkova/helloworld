@@ -1,26 +1,26 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name="tasks")
 public class Task {
     @Column
     @Id
-    private int taskId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer taskId;
     @Column
     private String taskName;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -49,5 +49,27 @@ public class Task {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Task task = (Task) o;
+
+        return new EqualsBuilder()
+                .append(taskId, task.taskId)
+                .append(taskName, task.taskName)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(taskId)
+                .append(taskName)
+                .toHashCode();
     }
 }

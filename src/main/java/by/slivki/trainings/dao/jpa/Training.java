@@ -1,12 +1,21 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.EqualsAndHashCode;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
-@EqualsAndHashCode
 @Entity
 @Table(name="trainings")
 public class Training {
@@ -30,7 +39,9 @@ public class Training {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
-    @OneToMany(fetch = FetchType.EAGER)
+    @Column
+    private boolean isOpen;
+    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL )
     @JoinColumn(name = "trainingId")
     private List<Stage> stages;
 
@@ -104,5 +115,47 @@ public class Training {
 
     public void setStages(List<Stage> stages) {
         this.stages = stages;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Training training = (Training) o;
+
+        return new EqualsBuilder()
+                .append(trainingId, training.trainingId)
+                .append(maxParticipants, training.maxParticipants)
+                .append(title, training.title)
+                .append(description, training.description)
+                .append(category, training.category)
+                .append(forWhom, training.forWhom)
+                .append(goal, training.goal)
+                .append(user, training.user)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(trainingId)
+                .append(title)
+                .append(description)
+                .append(category)
+                .append(forWhom)
+                .append(goal)
+                .append(maxParticipants)
+                .append(user)
+                .toHashCode();
     }
 }

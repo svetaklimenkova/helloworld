@@ -362,3 +362,37 @@ footer .spin {
     min-height: 50px;
     max-height: 500px;
 }
+
+.edit-stage .stage-index {
+    float: left;
+    width: 30px;
+    font-size: 120%;
+    margin-right: -30px;
+    text-align: end;
+}
+
+.edit-stage .stage {
+    width: calc(100% - 40px);
+    margin-left: 40px;
+}
+
+.edit-task {
+    margin-left: 100px;
+}
+
+.edit-task textarea{
+    height: 50px;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+.input-hidden {
+    display: none;
+}
+
+.input-check input {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border-color: #1e5969;
+}

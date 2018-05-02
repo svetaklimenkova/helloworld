@@ -98,6 +98,9 @@
                     <div class="title-text-medium"><spring:message code="trainings.trainer"/></div>
                     <div id="trainer" class="col-xs-12"></div>
 
+                    <div class="title-text-medium"><spring:message code="trainings.participants"/></div>
+                    <div id="participants" class="col-xs-12"></div>
+
                     <div class="title-text-medium"><spring:message code="trainings.for_whom"/></div>
                     <div id="for-whom" class="col-xs-12"></div>
 
@@ -138,7 +141,11 @@
 </footer>
 
 <div class='error_box'>
-    <p id='error_message'>Error</p>
+    <p>Error</p>
+</div>
+
+<div class='message_box'>
+    <p>***</p>
 </div>
 
 <script src="/js/fr/jquery-3.3.1.min.js"></script>

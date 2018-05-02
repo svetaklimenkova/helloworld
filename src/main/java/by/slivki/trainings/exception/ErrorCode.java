@@ -7,4 +7,8 @@ public class ErrorCode {
     // category
     public static final int CATEGORY_ALREADY_EXIST = 2000;
 
+    // trainings
+    public static final int TRAINING_CLOSED = 3000;
+    public static final int USER_ALREADY_IN_TRAINING = 3001;
+
 }

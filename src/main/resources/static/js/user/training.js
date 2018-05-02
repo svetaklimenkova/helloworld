@@ -1,19 +1,16 @@
 $(document).ready(function () {
     getTrainingById();
 
-    $('#edit').click(function () {
-        window.location.href = "/trainings/edit/" + window.location.href.match(/([^\/]*)\/*$/)[1];
-    });
-    $('#delete').click(function () {
+    $('#add-user-training').click(function () {
         $.ajax({
-            type: "DELETE",
+            type: "POST",
             contentType: "application/json",
-            url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1],
+            url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1] + "/user",
             cache: false,
             timeout: 600000,
             success: function (data) {
                 if (data) {
-                    window.location.href = "/trainings";
+                    showMessage(data.message);
                 }
             },
             error: function (e) {

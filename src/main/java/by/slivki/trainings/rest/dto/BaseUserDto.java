@@ -1,7 +1,5 @@
 package by.slivki.trainings.rest.dto;
 
-import lombok.Getter;
-
 public class BaseUserDto {
     private String username;
     private String mail;

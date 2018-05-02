@@ -200,7 +200,7 @@ CREATE TABLE `stages` (
   `stageId` int(11) NOT NULL AUTO_INCREMENT,
   `stageIndex` int(11) NOT NULL,
   `stageName` varchar(128) NOT NULL,
-  `trainingId` int(11) NOT NULL,
+  `trainingId` int(11),
   PRIMARY KEY (`stageId`),
   KEY `fk_training_stage_idx` (`trainingId`),
   CONSTRAINT `fk_training_stage` FOREIGN KEY (`trainingId`) REFERENCES `trainings` (`trainingId`) ON DELETE NO ACTION ON UPDATE NO ACTION

@@ -32,6 +32,9 @@
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <div class="button button-small float-left">
+                    <button class="glyphicon glyphicon-plus-sign" id="add" type="button"></button>
+                </div>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <spring:message code="main.language"/>
@@ -114,11 +117,20 @@
     </div>
 </footer>
 
+<div class='error_box'>
+    <p>Error</p>
+</div>
+
+<div class='message_box'>
+    <p>***</p>
+</div>
+
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/com/username.js"></script>
 
 <script src="/js/trainer/trainings.js"></script>
+<script src="/js/com/error_message.js"></script>
 </body>
 </html>

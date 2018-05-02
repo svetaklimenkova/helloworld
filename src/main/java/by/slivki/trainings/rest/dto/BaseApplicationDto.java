@@ -1,7 +1,5 @@
 package by.slivki.trainings.rest.dto;
 
-import lombok.Getter;
-
 import java.util.Date;
 
 public class BaseApplicationDto {
