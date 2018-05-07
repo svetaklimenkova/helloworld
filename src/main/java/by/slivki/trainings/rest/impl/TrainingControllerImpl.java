@@ -84,4 +84,11 @@ public class TrainingControllerImpl implements TrainingController {
         return ResponseEntity.ok(new RestMessage(200,
                 messageSource.getMessage("trainings.participant.added", null, locale)));
     }
+
+    @Override
+    public ResponseEntity<RestMessage> deleteUserFromTraining(@PathVariable("id") int id, Locale locale) {
+        trainingService.addUserToTraining(id, userHelper.getCurrentUser().getUsername());
+        return ResponseEntity.ok(new RestMessage(200,
+                messageSource.getMessage("trainings.participant.removed", null, locale)));
+    }
 }

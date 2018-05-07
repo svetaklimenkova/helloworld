@@ -92,6 +92,17 @@ public class TrainingServiceImpl implements TrainingService {
         return trainingMaster;
     }
 
+    @Override
+    public void deleteUserFromTraining(int trainingId, String username) {
+        TrainingMaster trainingMaster =
+                trainingMasterRepository.findByTraining_TrainingIdAndUser_Username(trainingId, username);
+        if (trainingMaster == null) {
+            throw new RestException(ErrorCode.USER_DO_NOT_IN_TRAINING);
+        }
+        /* TODO delete user tasks */
+        trainingMasterRepository.delete(trainingMaster);
+    }
+
     private void checkTrainingParticipants(Training training) {
         int trainingParticipantsCount =
                 trainingMasterRepository.countByTraining_TrainingId(training.getTrainingId());

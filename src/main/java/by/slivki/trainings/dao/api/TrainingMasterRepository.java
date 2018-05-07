@@ -18,6 +18,7 @@ public interface TrainingMasterRepository extends
         QuerydslBinderCustomizer<QTrainingMaster> {
 
     List<TrainingMaster> findAllByUser_Username(String username);
+    TrainingMaster findByTraining_TrainingIdAndUser_Username(Integer trainingId, String username);
 
     int countByTraining_TrainingId(int trainingId);
     int countByTraining_TrainingIdAndUser_Username(Integer trainingId, String username);

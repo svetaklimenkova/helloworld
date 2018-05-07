@@ -1,6 +1,10 @@
 $(document).ready(function () {
     getTrainingById();
 
+    $('#back').click(function () {
+        window.location.href = "/trainings"
+    });
+
     $('#add-user-training').click(function () {
         $.ajax({
             type: "POST",

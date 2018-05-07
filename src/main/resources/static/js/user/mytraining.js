@@ -1,9 +1,13 @@
 $(document).ready(function () {
     getTrainingById();
 
-    $('#add-user-training').click(function () {
+    $('#back').click(function () {
+        window.location.href = "/user/trainings"
+    });
+
+    $('#delete-user-training').click(function () {
         $.ajax({
-            type: "POST",
+            type: "DELETE",
             contentType: "application/json",
             url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1] + "/user",
             cache: false,
@@ -18,13 +22,14 @@ $(document).ready(function () {
             }
         });
     });
+
 });
 
 function getTrainingById() {
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1],
+        url: "/rest/user/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1],
         dataType: 'json',
         cache: false,
         timeout: 600000,
@@ -52,15 +57,74 @@ function showTraining(training) {
 
     training.stages.forEach(function(stage) {
         var stageDiv = '<div class="stage col-xs-12">' +
-            '<div class="stage-name">' + stage.index + '. ' + stage.name + '</div>' +
-            '<div class="tasks row">';
+            '<div class="stage-name">' + stage.index + '. ' + stage.name;
+        if (stage.statusId === 3) {
+            stageDiv += '<span class="glyphicon glyphicon-ok"></span>';
+        }
+        stageDiv += '</div><div class="tasks row">';
         stage.tasks.forEach(function (task) {
-            stageDiv += '<div class="task col-xs-12">' +
-                '<span class="glyphicon glyphicon-record"></span>' +
-                task.name +
-                '</div>';
+            var statusGlyphicon = "glyphicon-record";
+            if (task.statusId === 3) {
+                statusGlyphicon = "glyphicon-ok";
+            }
+            stageDiv += '<div class="task col-xs-12 row">' +
+                '<input class="task-id" type="hidden" value="' + task.id + '">' +
+                '<span class="glyphicon ' + statusGlyphicon + '"></span>' +
+                task.name;
+            if (task.statusId !== 0) {
+                stageDiv += '<div class="task-span float-right button button-small">' +
+                    '<button><span class="glyphicon glyphicon-option-horizontal"></span></button></div></div>';
+                stageDiv += '<div class="row col-xs-12 reports starthidden">';
+
+                task.reports.forEach(function (report) {
+                    var icon = "";
+                    if (report.statusId === 1) {
+                        icon = 'glyphicon glyphicon-time';
+                    } else if (report.statusId === 2) {
+                        icon = 'glyphicon glyphicon-ok';
+                    } else if (report.statusId === 3) {
+                        icon = 'glyphicon glyphicon-remove';
+                    }
+                    stageDiv += '<div class="report col-xs-12 row"><div class="col-xs-3">' +
+                        report.id + '</div><div class="col-xs-8">' + report.message + '</div>' +
+                        '<div class="col-xs-1"><span class="' + icon + '"></span></div></div>';
+                });
+
+                if (task.statusId !== 3) {
+                    stageDiv += '<div class="report col-xs-12 row"><div class="col-xs-11">' +
+                        '<textarea maxlength="1000"></textarea></div><div class="float-right button button-small">' +
+                        '<button class="send"><span class="glyphicon glyphicon-send"></span></button></div></div>';
+                }
+
+                stageDiv += '</div>';
+            } else {
+                stageDiv += '</div>';
+            }
         });
         stageDiv += '</div></div>';
         $('.stages').append(stageDiv);
+    });
+
+    $('.task-span button').click(function () {
+        $(this).next('.starthidden').slideToggle(500);
+    });
+
+    $('.send').click(function () {
+        var text = $(this).prev('textarea').val();
+        var taskId = $(this).prev('.task-id').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            data: text,
+            url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1] + "/tasks/" + taskId + '/reports',
+            success: function (data) {
+                if (data) {
+                    showMessage(data.message);
+                }
+            },
+            error: function (e) {
+                throwMessage(e.responseJSON.message);
+            }
+        });
     });
 }

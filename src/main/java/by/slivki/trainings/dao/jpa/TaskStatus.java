@@ -1,16 +1,12 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name="taskstatuses")
@@ -20,6 +16,8 @@ public class TaskStatus {
     private int taskStatusId;
     @Column
     private String taskStatusName;
+
+    public TaskStatus() {}
 
     public TaskStatus(TaskStatusEnum statusEnum) {
         this.taskStatusId = statusEnum.getI();

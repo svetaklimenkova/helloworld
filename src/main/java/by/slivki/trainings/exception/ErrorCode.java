@@ -10,5 +10,6 @@ public class ErrorCode {
     // trainings
     public static final int TRAINING_CLOSED = 3000;
     public static final int USER_ALREADY_IN_TRAINING = 3001;
+    public static final int USER_DO_NOT_IN_TRAINING = 3002;
 
 }

@@ -64,4 +64,12 @@ public interface TrainingService {
      * @return user master object
      * */
     TrainingMaster addUserToTraining(int trainingId, String username);
+
+    /**
+     * Deletes user from training by training id and user name.
+     *
+     * @param trainingId training id
+     * @param username user name
+     * */
+    void deleteUserFromTraining(int trainingId, String username);
 }

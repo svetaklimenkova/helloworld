@@ -41,7 +41,7 @@ function showTrainings(trainings, page) {
     for (var i = 0; i < trainings.length; i++) {
         $('#result').append(
             '<div class="col-sm-12 col-md-6"><div class="block"> ' +
-                '<a href="/trainings/' + trainings[i].id + '">' +
+                '<a href="/user/trainings/' + trainings[i].id + '">' +
                 '<div class="block-top" style="background: ' + getRandomColor() + '"></div></a>' +
                 '<div class="block-sub-header">' + trainings[i].category + '</div>' +
                 '<div class="block-header">' + trainings[i].title + '</div>' +

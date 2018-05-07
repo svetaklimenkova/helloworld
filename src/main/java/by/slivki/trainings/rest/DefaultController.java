@@ -160,4 +160,10 @@ public class DefaultController {
     public String userTrainings() {
         return "/user/mytrainings";
     }
+
+    @GetMapping("/user/trainings/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public String userTrainingById() {
+        return "/user/mytraining";
+    }
 }

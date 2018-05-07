@@ -86,12 +86,14 @@ function switchValid(elem, result) {
 function checkPassword() {
     $('#password').on("change paste keyup", function () {
         switchValid(this, $(this).val().length > 7);
+        switchValid($('#confirm'), $('#confirm').val() === $('#password').val());
     });
 }
 
 function checkPasswordConfirm() {
     $('#confirm').on("change paste keyup", function () {
         switchValid(this, $(this).val() === $('#password').val());
+        switchValid($('#password'), $('#password').val().length > 7);
     });
 }
 

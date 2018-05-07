@@ -8,15 +8,14 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @EqualsAndHashCode
-public class TrainingDto extends TrainingWithoutStagesDto {
+public class TrainingExtDto extends TrainingWithoutStagesDto {
+    private List<StageExtDto> stages;
 
-    private List<StageDto> stages;
-
-    public List<StageDto> getStages() {
+    public List<StageExtDto> getStages() {
         return stages;
     }
 
-    public void setStages(List<StageDto> stages) {
+    public void setStages(List<StageExtDto> stages) {
         this.stages = stages;
     }
 }

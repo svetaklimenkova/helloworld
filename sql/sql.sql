@@ -110,14 +110,13 @@ CREATE TABLE `participantstasks` (
   `taskId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `taskStatusId` int(11) NOT NULL,
-  `task` int(11) DEFAULT NULL,
+  `createdBy` datetime DEFAULT NULL,
+  `updatedBy` datetime DEFAULT NULL,
   PRIMARY KEY (`participantTaskId`),
   UNIQUE KEY `participantstasks_participantstasksId_uindex` (`participantTaskId`),
   KEY `fk_task_task_idx` (`taskId`),
   KEY `fk_user_user_idx` (`userId`),
   KEY `fk_taskstatus_taskstatus_idx` (`taskStatusId`),
-  KEY `FKsqax96ulf3cqfaw2wg43ogxq2` (`task`),
-  CONSTRAINT `FKsqax96ulf3cqfaw2wg43ogxq2` FOREIGN KEY (`task`) REFERENCES `tasks` (`taskId`),
   CONSTRAINT `fk_task_task` FOREIGN KEY (`taskId`) REFERENCES `tasks` (`taskId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_taskstatus_taskstatus` FOREIGN KEY (`taskStatusId`) REFERENCES `taskstatuses` (`taskStatusId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_user` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -146,6 +145,7 @@ CREATE TABLE `reports` (
   `taskId` int(11) NOT NULL,
   `message` text NOT NULL,
   `statusId` int(11) NOT NULL,
+  `createdBy` datetime DEFAULT NULL,
   PRIMARY KEY (`reportId`),
   KEY `fk_report_status_idx` (`statusId`),
   KEY `fk_report_user_idx` (`userId`),
@@ -213,7 +213,7 @@ CREATE TABLE `stages` (
 
 LOCK TABLES `stages` WRITE;
 /*!40000 ALTER TABLE `stages` DISABLE KEYS */;
-INSERT INTO `stages` (`stageId`, `stageIndex`, `stageName`, `trainingId`) VALUES (1, 1,'stage 11',1),(2, 2, 'stage 12',1);
+INSERT INTO `stages` (`stageId`, `stageIndex`, `stageName`, `trainingId`) VALUES (1,1,'stage 11',1),(2,2,'vgubhinjl',1),(8,3,'Cтадия 3',1),(12,4,'vgbhjnk',1),(13,1,'edrtfygh',13),(26,5,'buno',1),(29,1,'hul,;',3),(30,2,'binjokm',3);
 /*!40000 ALTER TABLE `stages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,7 +251,7 @@ DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks` (
   `taskId` int(11) NOT NULL AUTO_INCREMENT,
   `taskName` varchar(255) NOT NULL,
-  `stageId` int(11) NOT NULL,
+  `stageId` int(11) DEFAULT NULL,
   PRIMARY KEY (`taskId`),
   KEY `fk_stage_task_idx` (`stageId`),
   CONSTRAINT `fk_stage_task` FOREIGN KEY (`stageId`) REFERENCES `stages` (`stageId`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -264,7 +264,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` (`taskId`, `taskName`, `stageId`) VALUES (1,'task 111',1),(2,'task 112',1);
+INSERT INTO `tasks` (`taskId`, `taskName`, `stageId`) VALUES (1,'task 111 new',1),(7,'Таск 1',8),(11,'bhijnl',12),(12,'edrftgbhnj',13),(14,'buonikml,\';',1),(15,'nimpl,;.',2),(16,'bjnkml,',2),(17,'vyubijn',26),(18,'vuhbijn',26),(19,'vubij',26),(20,'buhinjomkl',29),(21,'bhinjomk',29),(22,'byinjkm',30),(23,'vybinjokm',30),(24,'uvbhinjokm',30),(25,'ugvbhinjkm',30);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,6 +318,7 @@ CREATE TABLE `trainingmaster` (
 
 LOCK TABLES `trainingmaster` WRITE;
 /*!40000 ALTER TABLE `trainingmaster` DISABLE KEYS */;
+INSERT INTO `trainingmaster` (`trainingMasterId`, `trainingId`, `userId`) VALUES (2,4,2);
 /*!40000 ALTER TABLE `trainingmaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,6 +338,7 @@ CREATE TABLE `trainings` (
   `goal` varchar(255) NOT NULL,
   `maxParticipants` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
+  `isOpen` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`trainingId`),
   KEY `fk_trainings_category_idx` (`categoryId`),
   KEY `fk_trainings_user_idx` (`userId`),
@@ -351,7 +353,7 @@ CREATE TABLE `trainings` (
 
 LOCK TABLES `trainings` WRITE;
 /*!40000 ALTER TABLE `trainings` DISABLE KEYS */;
-INSERT INTO `trainings` (`trainingId`, `title`, `description`, `categoryId`, `forWhom`, `goal`, `maxParticipants`, `userId`) VALUES (1,'Training','description',1,'All','No goal',20,7),(3,'hd training','vriov',3,'revgfs','rves',2,7),(4,'dhfbf training','vriov',1,'revgfs','rves',2,7),(5,'hd training','vriov',3,'revgfs','rves',2,7),(6,'fjtj training','vriov',3,'revgfs','rves',2,7),(7,'hed training','7u,fj',1,'revgfs','rves',2,7);
+INSERT INTO `trainings` (`trainingId`, `title`, `description`, `categoryId`, `forWhom`, `goal`, `maxParticipants`, `userId`, `isOpen`) VALUES (1,'Example','description esyrdutjfkhmn nmjhgbz cbmkjhgvd mkjhgdv bmhjyhgdvzx bn,jkjhgvb mkjhgv bcvbhmfkyjthgbd cbmkjhgb bmhkjuhgdvb cvbm,kjthb m,kjhgb vnmjhgb mkjhb bmhfkjnhb bmhjnhb mj',1,'All and everyone.','Nobg',20,7,1),(3,'hd training','vriov vgyjkm;,l hmlvy kjmvr njl cvghbkjnl;,\'nhgfdseftyl;\'\n;ljwedrj;asdfghjkjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkpon         jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',1,'revgfs','rves',20,7,0),(4,'dhfbf training','vriov',1,'revgfs','rves',2,7,1),(5,'hd training','vriov',3,'revgfs','rves',2,7,1),(6,'fjtj training','vriov',3,'revgfs','rves',2,7,1),(7,'hed training','7u,fj',1,'revgfs','rves',2,7,1),(13,'ftyguihokml','werftghbjn',1,'ergbhjn','werfgbh',20,7,1);
 /*!40000 ALTER TABLE `trainings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +384,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`userId`, `username`, `password`, `email`, `roleId`, `isConfirmed`) VALUES (1,'admin','$2a$10$XkSKLT38rkmmHOJxCh1tQOPKbR7VWwzZ0ZJS5ep3G9TWoSdknASEK','svetaklimenkova@mail.ru',1,1),(2,'user','$2a$10$SxnV/5PPGLQUKjFUXyqh1.1lTjwKSOwUzwyyR0Pi9Ly8oN9NIuWBG','user@mail.ru',3,1),(7,'trainer','$2a$10$XkSKLT38rkmmHOJxCh1tQOPKbR7VWwzZ0ZJS5ep3G9TWoSdknASEK','trainer@mail.ru',2,1),(8,'trainer1','$2a$10$imDPfd.qB94H9C0E18F/GuSZa9DLLjVwSuAnfYVRZZojdlnZQG7dG','trainer1@mail.ru',2,1),(11,'trainer3','$2a$10$x.yh5pjQlrinWZxW63GkAesTin6jv9hodypVvJx7Ixe6sbN83s//i','trainer3@mail.ru',2,1),(12,'trainer4','$2a$10$UM/KqCuzgGmlJQJpGobkZOxCrADUTUithSXKNg401PqzLxOu2k6GK','trainer4@MAIL.RU',2,1),(13,'user3','$2a$10$zT3HJ5.FMlsWU7uPAtYBSep/yu.55zsSO96H7lYkHr./wKXo0sYdK','user3@mail.ru',3,1);
+INSERT INTO `users` (`userId`, `username`, `password`, `email`, `roleId`, `isConfirmed`) VALUES (1,'admin','$2a$10$XkSKLT38rkmmHOJxCh1tQOPKbR7VWwzZ0ZJS5ep3G9TWoSdknASEK','svetaklimenkova@mail.ru',1,1),(2,'user','$2a$10$XkSKLT38rkmmHOJxCh1tQOPKbR7VWwzZ0ZJS5ep3G9TWoSdknASEK','user@mail.ru',3,1),(7,'trainer','$2a$10$XkSKLT38rkmmHOJxCh1tQOPKbR7VWwzZ0ZJS5ep3G9TWoSdknASEK','trainer@mail.ru',2,1),(8,'trainer1','$2a$10$imDPfd.qB94H9C0E18F/GuSZa9DLLjVwSuAnfYVRZZojdlnZQG7dG','trainer1@mail.ru',2,1),(11,'trainer3','$2a$10$x.yh5pjQlrinWZxW63GkAesTin6jv9hodypVvJx7Ixe6sbN83s//i','trainer3@mail.ru',2,1),(12,'trainer4','$2a$10$UM/KqCuzgGmlJQJpGobkZOxCrADUTUithSXKNg401PqzLxOu2k6GK','trainer4@MAIL.RU',2,1),(13,'user3','$2a$10$zT3HJ5.FMlsWU7uPAtYBSep/yu.55zsSO96H7lYkHr./wKXo0sYdK','user3@mail.ru',3,1),(14,'asasasasasasasasasasasasasasasas','$2a$10$bAogaV79GsJvefUdUVcW0uDNTadhEJw8YszdR6iS8faR483NQMlXO','email@d.vvv',3,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

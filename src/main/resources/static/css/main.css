@@ -356,7 +356,7 @@ footer .spin {
     font-weight: bold;
 }
 
-.edit-input textarea {
+.edit-input textarea, .report textarea {
     width: 100%;
     resize: vertical;
     min-height: 50px;

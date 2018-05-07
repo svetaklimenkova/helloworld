@@ -19,6 +19,8 @@ public interface ParticipantsTasksRepository extends
         CrudRepository<ParticipantsTask, Integer>, QuerydslPredicateExecutor<ParticipantsTask>,
         QuerydslBinderCustomizer<QParticipantsTask> {
 
+    ParticipantsTask findByTask_TaskIdAndUser_UserId(int taskId, int userId);
+
     @Override
     default void customize(QuerydslBindings bindings, QParticipantsTask root) { }
 }

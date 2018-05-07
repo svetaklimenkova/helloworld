@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,12 +27,14 @@ public class Report {
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taskId")
-    private Task taskId;
+    private Task task;
     @Column
     private String message;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "statusId")
     private Status status;
+    @Column
+    private Date createdBy;
 
     public int getReportId() {
         return reportId;
@@ -49,12 +52,12 @@ public class Report {
         this.user = user;
     }
 
-    public Task getTaskId() {
-        return taskId;
+    public Task getTask() {
+        return task;
     }
 
-    public void setTaskId(Task taskId) {
-        this.taskId = taskId;
+    public void setTask(Task taskId) {
+        this.task = taskId;
     }
 
     public String getMessage() {
@@ -71,5 +74,13 @@ public class Report {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Date createdBy) {
+        this.createdBy = createdBy;
     }
 }

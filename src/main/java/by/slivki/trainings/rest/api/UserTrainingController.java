@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 public interface UserTrainingController {
 
@@ -38,5 +39,5 @@ public interface UserTrainingController {
      * @return training dto
      * */
     @GetMapping(value = "/{id}")
-    ResponseEntity<?> getById(@PathVariable("id") int id);
+    ResponseEntity<?> getById(@PathVariable("id") int id, Locale locale);
 }

@@ -1,25 +1,25 @@
 package by.slivki.trainings.dao.jpa;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name="participantstasks")
 public class ParticipantsTask {
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int participantTaskId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
@@ -30,6 +30,10 @@ public class ParticipantsTask {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "taskStatusId")
     private TaskStatus taskStatus;
+    @Column
+    private Date createdBy;
+    @Column
+    private Date updatedBy;
 
     public User getUser() {
         return user;
@@ -61,5 +65,21 @@ public class ParticipantsTask {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Date createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Date updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }

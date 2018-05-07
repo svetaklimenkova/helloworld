@@ -78,15 +78,13 @@
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-xs-12 title">
-                        <div class="title-back">
-                            <a class="title-back" href="/trainings">
-                                <spring:message code="main.back"/>
-                            </a>
-                        </div>
                         <div class="title-back" id="category"></div>
                         <div class="title-text" id="title"></div>
                         <div class="button button-small">
-                            <button class="glyphicon glyphicon-plus-sign" id="add-user-training" type="button"></button>
+                            <button class="glyphicon glyphicon-remove-sign" id="back" type="button"></button>
+                        </div>
+                        <div class="button button-small">
+                            <button class="glyphicon glyphicon-minus-sign" id="delete-user-training" type="button"></button>
                         </div>
                     </div>
 

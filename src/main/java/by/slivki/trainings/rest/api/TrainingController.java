@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,7 +81,7 @@ public interface TrainingController {
 
     /**
      * Processes POST request to '/trainings/{id}/user'.
-     * Deletes training by id.
+     * Added user to training by user id.
      *
      * @param id training id
      *
@@ -89,4 +90,16 @@ public interface TrainingController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping(value = "/{id}/user")
     ResponseEntity<RestMessage> addUserToTraining(@PathVariable("id") int id, Locale locale);
+
+    /**
+     * Processes DELETE request to '/trainings/{id}/user'.
+     * Deletes user from training by user id.
+     *
+     * @param id training id
+     *
+     * @return message
+     * */
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @DeleteMapping(value = "/{id}/user")
+    ResponseEntity<RestMessage> deleteUserFromTraining(@PathVariable("id") int id, Locale locale);
 }
