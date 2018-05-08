@@ -346,7 +346,7 @@ footer .spin {
     margin-bottom: 10px;
 }
 
-.edit-input input, .edit-input textarea, .edit-input select {
+.edit-input input, .edit-input textarea, .edit-input select, .report textarea {
     border-radius: 10px;
     border: 1px solid #237585;
     background: rgba(171, 171, 255, 0.07);

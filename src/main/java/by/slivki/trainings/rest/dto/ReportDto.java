@@ -8,7 +8,7 @@ import java.util.Date;
 public class ReportDto extends BaseReportDto {
     private String training;
     private String task;
-    private Date createdBy;
+    private String from;
 
     public String getTraining() {
         return training;
@@ -26,11 +26,11 @@ public class ReportDto extends BaseReportDto {
         this.task = task;
     }
 
-    public Date getCreatedBy() {
-        return createdBy;
+    public String getFrom() {
+        return from;
     }
 
-    public void setCreatedBy(Date createdBy) {
-        this.createdBy = createdBy;
+    public void setFrom(String from) {
+        this.from = from;
     }
 }

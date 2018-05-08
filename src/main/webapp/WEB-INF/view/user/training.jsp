@@ -63,7 +63,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/reports">
+                        <a href="/user/reports">
                             <span><spring:message code="reports.many"/></span>
                         </a>
                     </li>

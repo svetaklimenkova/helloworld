@@ -166,4 +166,17 @@ public class DefaultController {
     public String userTrainingById() {
         return "/user/mytraining";
     }
+
+    @GetMapping("/user/reports")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public String reportsToUser() {
+        return "/user/reports";
+    }
+
+    @GetMapping("/profile")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public String profile() {
+        return "/user/profile";
+    }
+
 }

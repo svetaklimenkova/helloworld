@@ -4,6 +4,7 @@ import by.slivki.trainings.dao.jpa.User;
 import by.slivki.trainings.rest.api.UserController;
 import by.slivki.trainings.rest.dto.BaseUserDto;
 import by.slivki.trainings.rest.dto.SignUpUserDto;
+import by.slivki.trainings.rest.dto.UpdateUserDto;
 import by.slivki.trainings.rest.mapper.UserMapper;
 import by.slivki.trainings.service.api.UserService;
 import by.slivki.trainings.util.UserHelper;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -90,4 +92,12 @@ public class UserControllerImpl implements UserController {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<?> update(
+            @RequestBody @Valid UpdateUserDto updateUserDto) {
+        User user = userService.findByUsername(userHelper.getCurrentUser().getUsername());
+        user = userMapper.from(updateUserDto, user);
+        userService.update(user);
+        return ResponseEntity.ok(true);
+    }
 }

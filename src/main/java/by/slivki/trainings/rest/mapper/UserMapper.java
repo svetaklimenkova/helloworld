@@ -3,6 +3,8 @@ package by.slivki.trainings.rest.mapper;
 import by.slivki.trainings.dao.jpa.User;
 import by.slivki.trainings.rest.dto.BaseUserDto;
 import by.slivki.trainings.rest.dto.SignUpUserDto;
+import by.slivki.trainings.rest.dto.UpdateUserDto;
+import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,7 +19,6 @@ public class UserMapper {
 
     @Autowired
     private MessageSource messageSource;
-
     @Autowired
     private BCryptPasswordEncoder encoder;
 
@@ -51,6 +52,16 @@ public class UserMapper {
         user.setEmail(userDto.getEmail());
         user.setRole(userDto.getRole());
         user.setConfirmed(userDto.isConfirmed());
+        return user;
+    }
+
+    public User from(UpdateUserDto userDto, User user) {
+        if (userDto.getPassword() != null) {
+            user.setPassword(encoder.encode(userDto.getPassword()));
+        }
+        if (userDto.getEmail() != null) {
+            user.setEmail(userDto.getEmail());
+        }
         return user;
     }
 }

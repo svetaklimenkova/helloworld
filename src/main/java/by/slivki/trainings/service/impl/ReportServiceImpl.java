@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -32,5 +33,10 @@ public class ReportServiceImpl implements ReportService {
         report.setStatus(new Status(StatusEnum.IN_PROGRESS));
         report.setCreatedBy(new Date());
         return reportRepository.save(report);
+    }
+
+    @Override
+    public List<Report> findAllByFromUser(String username) {
+        return reportRepository.findAllByUser_Username(username);
     }
 }

@@ -5,9 +5,12 @@ import by.slivki.trainings.rest.dto.ReportDto;
 import by.slivki.trainings.rest.dto.TrainingDto;
 import by.slivki.trainings.util.RestMessage;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 public interface ReportController {
 
@@ -20,4 +23,7 @@ public interface ReportController {
     @PostMapping("/rest/trainings/{trainingId}/tasks/{taskId}/reports")
     ResponseEntity<BaseReportDto> create(
             @PathVariable("taskId") int taskId, @RequestBody String message);
+
+    @GetMapping("/rest/user/reports")
+    ResponseEntity<List<ReportDto>> getUserReports();
 }

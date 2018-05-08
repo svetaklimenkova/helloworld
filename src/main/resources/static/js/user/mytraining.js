@@ -106,12 +106,14 @@ function showTraining(training) {
     });
 
     $('.task-span button').click(function () {
-        $(this).next('.starthidden').slideToggle(500);
+        var p = $(this).parent().parent().next('.starthidden');
+        $(p).slideToggle(500);
     });
 
     $('.send').click(function () {
-        var text = $(this).prev('textarea').val();
-        var taskId = $(this).prev('.task-id').val();
+        var textarea = $(this).parent().parent().find('textarea');
+        var text = $(this).parent().parent().find('textarea').val();
+        var taskId = $(this).parent().parent().parent().prev('.task').find('.task-id').val();
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -119,7 +121,8 @@ function showTraining(training) {
             url: "/rest/trainings/" + window.location.href.match(/([^\/]*)\/*$/)[1] + "/tasks/" + taskId + '/reports',
             success: function (data) {
                 if (data) {
-                    showMessage(data.message);
+                    $(textarea).val("");
+                    //showMessage(data.message);
                 }
             },
             error: function (e) {

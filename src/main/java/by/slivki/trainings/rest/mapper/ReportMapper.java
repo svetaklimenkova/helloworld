@@ -26,9 +26,11 @@ public class ReportMapper {
         dto.setId(report.getReportId());
         dto.setMessage(report.getMessage());
         dto.setStatus(report.getStatus().getStatusName());
+        dto.setStatusId(report.getStatus().getStatusId());
         dto.setCreatedBy(report.getCreatedBy());
         dto.setTraining(report.getTask().getStage().getTraining().getTitle());
         dto.setTask(report.getTask().getTaskName());
+        dto.setFrom(report.getUser().getUsername());
         return dto;
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -62,7 +63,7 @@
                             <span><spring:message code="trainings.mine"/></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/user/reports">
                             <span><spring:message code="reports.many"/></span>
                         </a>
@@ -77,35 +78,18 @@
 
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
-                    <div class="col-xs-12 title">
-                        <div class="title-back" id="category"></div>
-                        <div class="title-text" id="title"></div>
-                        <div class="button button-small">
-                            <button class="glyphicon glyphicon-remove-sign" id="back" type="button"></button>
-                        </div>
-                        <div class="button button-small">
-                            <button class="glyphicon glyphicon-minus-sign" id="delete-user-training" type="button"></button>
-                        </div>
-                    </div>
+                    <div class="id col-xs-offset-1 col-xs-2"><b><spring:message code="reports.id"/></b></div>
+                    <div class="from col-xs-2"><b><spring:message code="reports.from"/></b></div>
+                    <div class="training col-xs-2"><b><spring:message code="reports.training"/></b></div>
+                    <div class="task col-xs-3"><b><spring:message code="reports.task"/></b></div>
+                    <div class="task col-xs-2"><b><spring:message code="report.createdBy"/></b></div>
+                </div>
+                <div id='result' class="row"></div>
 
-                    <input id="id" type="hidden">
-
-                    <div class="title-text-medium"><spring:message code="trainings.trainer"/></div>
-                    <div id="trainer" class="col-xs-12"></div>
-
-                    <div class="title-text-medium"><spring:message code="trainings.participants"/></div>
-                    <div id="participants" class="col-xs-12"></div>
-
-                    <div class="title-text-medium"><spring:message code="trainings.for_whom"/></div>
-                    <div id="for-whom" class="col-xs-12"></div>
-
-                    <div class="title-text-medium"><spring:message code="trainings.goal"/></div>
-                    <div id="goal" class="col-xs-12"></div>
-
-                    <div class="title-text-medium"><spring:message code="trainings.description"/></div>
-                    <div id="description" class="col-xs-12"></div>
-
-                    <div class="stages row"></div>
+                <div class="row">
+                    <div align="center"><div class="button button-big" align="center">
+                        <button class="glyphicon glyphicon-circle-arrow-down" id="page" type="button"></button>
+                    </div></div>
                 </div>
             </div>
 
@@ -135,20 +119,11 @@
     </div>
 </footer>
 
-<div class='error_box'>
-    <p>Error</p>
-</div>
-
-<div class='message_box'>
-    <p>***</p>
-</div>
-
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/user/mytraining.js"></script>
-<script src="/js/com/error_message.js"></script>
+<script src="/js/user/reports.js"></script>
 </body>
 </html>
