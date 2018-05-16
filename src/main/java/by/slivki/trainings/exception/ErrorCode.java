@@ -12,4 +12,6 @@ public class ErrorCode {
     public static final int USER_ALREADY_IN_TRAINING = 3001;
     public static final int USER_DO_NOT_IN_TRAINING = 3002;
 
+    // enum
+    public static final int STATUS_NOT_FOUND = 4000;
 }

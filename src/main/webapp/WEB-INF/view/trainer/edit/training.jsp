@@ -52,14 +52,9 @@
         <div class="row">
             <div class="navi col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <ul>
-                    <li class="active">
+                    <li>
                         <a href="/trainings">
                             <span><spring:message code="trainings.mine"/></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/users">
-                            <span><spring:message code="trainings.participants"/></span>
                         </a>
                     </li>
                     <li>
@@ -143,24 +138,7 @@
     </div>
 </main>
 
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="spin col-xs-12"></div>
-            <div class="clearfix hidden-xs"></div>
-
-            <div class="col-xs-12 col-sm-3 col-md-2">
-                <spring:message code="main.support"/><br>
-                svetaklimenkova@mail.ru<br>
-                svetkaklimenkova98@gmail.com</div>
-            <div class="col-xs-12 col-sm-4 col-md-3"></div>
-            <div class="col-xs-12 col-sm-5 col-md-offset-3 col-md-4" style="text-align: end">
-                © 2018 SLIVKI<br>
-                <spring:message code="main.brand_text"/>
-            </div>
-        </div>
-    </div>
-</footer>
+<jsp:include page="../../footer.jsp" />
 
 <div class='error_box'>
     <p id='error_message'>Error</p>

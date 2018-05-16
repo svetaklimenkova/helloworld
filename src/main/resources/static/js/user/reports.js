@@ -49,7 +49,7 @@ function showReports(reports, page) {
         }
 
         $('#result').append(
-            '<div class="col-sm-12"><div class="report-min"> ' +
+            '<div class="col-sm-12 report"><div class="report-min"> ' +
             '<div class="status col-xs-1"><span class="' + icon + '"></span></div>' +
             '<div class="id col-xs-2">' + reports[i].id + '</div>' +
             '<div class="from col-xs-2">' + reports[i].from + '</div>' +

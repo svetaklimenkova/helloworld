@@ -21,6 +21,7 @@ public interface ReportRepository extends
 
     List<Report> findAllByTask_TaskIdAndUser_UserId(int taskId, int userId);
     List<Report> findAllByUser_Username(String username);
+    List<Report> findAllByTask_Stage_Training_User_Username(String username);
 
     @Override
     default void customize(QuerydslBindings bindings, QReport root) { }

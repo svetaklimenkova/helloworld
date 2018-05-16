@@ -22,8 +22,6 @@ import java.util.Locale;
 public class DefaultController {
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private ApplicationService applicationService;
     @Autowired
     private ApplicationMapper applicationMapper;
@@ -173,10 +171,21 @@ public class DefaultController {
         return "/user/reports";
     }
 
+    @GetMapping("/reports")
+    @PreAuthorize("hasRole('ROLE_TRAINER')")
+    public String reportsToTrainer() {
+        return "/trainer/reports";
+    }
+
     @GetMapping("/profile")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_TRAINER')")
     public String profile() {
-        return "/user/profile";
+        UserDetails userDetails = userHelper.getCurrentUser();
+        if (userHelper.isRoleAuthority(userDetails, RoleEnum.ROLE_TRAINER)) {
+            return "/trainer/profile";
+        } else {
+            return "/user/profile";
+        }
     }
 
 }

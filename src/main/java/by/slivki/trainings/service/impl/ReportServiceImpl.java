@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -38,5 +39,20 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Report> findAllByFromUser(String username) {
         return reportRepository.findAllByUser_Username(username);
+    }
+
+    @Override
+    public List<Report> findAllByTrainer(String username) {
+        return reportRepository.findAllByTask_Stage_Training_User_Username(username);
+    }
+
+    @Override
+    public Report updateStatus(int id, int statusId) {
+        Report report = reportRepository.findById(id).orElse(null);
+        if (report != null) {
+            report.setStatus(new Status(StatusEnum.fromI(statusId)));
+            report = reportRepository.save(report);
+        }
+        return report;
     }
 }

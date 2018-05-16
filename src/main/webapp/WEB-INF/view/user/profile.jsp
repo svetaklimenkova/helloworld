@@ -93,8 +93,8 @@
                             <label for="mail"><spring:message code="form.mail"/></label>
                             <input type="email" name="email" id="mail" maxlength="254"/>
                             <span class="spin"></span>
-                            <span class="input-group-addon invalid input-check">
-                            <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
+                            <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
                                title="<spring:message code="form.mail.empty"/>"></i>
                             <input id="mail-size" type="hidden" value="<spring:message code="form.mail.size"/>">
                             <input id="mail-empty" type="hidden" value="<spring:message code="form.mail.empty"/>">
@@ -111,8 +111,8 @@
                         <label for="password"><spring:message code="form.password"/></label>
                         <input type="password" name="password" id="password" maxlength="20"/>
                         <span class="spin"></span>
-                        <span class="input-group-addon invalid input-check">
-                            <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
+                        <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
                                title="<spring:message code="form.password.size"/>"></i>
                         </span>
                     </div>
@@ -121,8 +121,8 @@
                         <label for="confirm"><spring:message code="form.confirm_password"/></label>
                         <input type="password" name="confirm" id="confirm" maxlength="20"/>
                         <span class="spin"></span>
-                        <span class="input-group-addon invalid input-check">
-                            <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
+                        <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
                                title="<spring:message code="form.confirm_password.incorrect"/>"></i>
                         </span>
                     </div>
@@ -138,24 +138,7 @@
     </div>
 </main>
 
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="spin col-xs-12"></div>
-            <div class="clearfix hidden-xs"></div>
-
-            <div class="col-xs-12 col-sm-3 col-md-2">
-                <spring:message code="main.support"/><br>
-                svetaklimenkova@mail.ru<br>
-                svetkaklimenkova98@gmail.com</div>
-            <div class="col-xs-12 col-sm-4 col-md-3"></div>
-            <div class="col-xs-12 col-sm-5 col-md-offset-3 col-md-4" style="text-align: end">
-                © 2018 SLIVKI<br>
-                <spring:message code="main.brand_text"/>
-            </div>
-        </div>
-    </div>
-</footer>
+<jsp:include page="../footer.jsp" />
 
 <div class='error_box'>
     <p>Error</p>

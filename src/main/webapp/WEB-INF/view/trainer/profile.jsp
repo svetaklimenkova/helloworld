@@ -62,7 +62,7 @@
                             <span><spring:message code="reports.many"/></span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/profile">
                             <span><spring:message code="profile.mine"/></span>
                         </a>
@@ -73,60 +73,55 @@
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-xs-12 title">
-                        <div class="title-text"><spring:message code="trainings.creation"/></div>
+                        <div class="title-text"><spring:message code="profile.mine"/></div>
                         <div class="button button-small">
-                            <button class="glyphicon glyphicon-remove-sign" id="cancel" type="button"></button>
+                            <button class="glyphicon glyphicon-remove-sign" id="back" type="button"></button>
                         </div>
                         <div class="button button-small">
-                            <button class="glyphicon glyphicon-ok-sign" id="ok" type="button"></button>
+                            <button class="glyphicon glyphicon-ok-circle" id="btn_sign_up" type="button"></button>
                         </div>
                     </div>
 
-                    <input id="id" type="hidden">
-
-                    <div class="edit-input">
-                        <label for="categories"><spring:message code="trainings.categories"/></label>
-                        <select id="categories" name="categories"></select>
-                    </div>
-
-                    <div class="edit-input">
-                        <label for="title"><spring:message code="trainings.title"/></label>
-                        <input type="text" name="title" maxlength="52" id="title"/>
-                    </div>
-
-                    <div class="edit-input">
-                        <label for="participants"><spring:message code="trainings.maxParticipants"/></label>
-                        <input type="number" name="participants" maxlength="5" id="participants"/>
-                    </div>
-
-                    <div class="edit-input">
-                        <label for="for-whom"><spring:message code="trainings.for_whom"/></label>
-                        <textarea name="for-whom" maxlength="255" id="for-whom"></textarea>
-                    </div>
-
-                    <div class="edit-input">
-                        <label for="goal"><spring:message code="trainings.goal"/></label>
-                        <textarea name="goal" maxlength="255" id="goal"></textarea>
-                    </div>
-
-                    <div class="edit-input">
-                        <label for="description"><spring:message code="trainings.description"/></label>
-                        <textarea name="description" maxlength="255" id="description"></textarea>
-                    </div>
-
-                    <div class="edit-stages">
-                        <div class="edit-input edit-stage">
-                            <input type="hidden" class="stage-id">
-                            <div class="stage-index">1</div>
-                            <input class="stage" type="text" name="stage" maxlength="128"/>
-
-                            <div class="edit-tasks">
-                                <div class="edit-input edit-task">
-                                    <input type="hidden" class="task-id">
-                                    <textarea class="task" maxlength="255"></textarea>
-                                </div>
-                            </div>
+                    <div class="title-text-medium"><spring:message code="profile.change_mail"/></div>
+                    <div class="col-xs-offset-1 col-xs-11">
+                        <div class="input">
+                            <label for="mail"><spring:message code="form.mail"/></label>
+                            <input type="email" name="email" id="mail" maxlength="254"/>
+                            <span class="spin"></span>
+                            <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
+                               title="<spring:message code="form.mail.empty"/>"></i>
+                            <input id="mail-size" type="hidden" value="<spring:message code="form.mail.size"/>">
+                            <input id="mail-empty" type="hidden" value="<spring:message code="form.mail.empty"/>">
+                            <input id="mail-exist" type="hidden" value="<spring:message code="form.mail.existed"/>">
+                            <input id="mail-invalid" type="hidden" value="<spring:message code="form.mail.invalid"/>">
+                        </span>
                         </div>
+                    </div>
+
+                    <div class="title-text-medium"><spring:message code="profile.change_password"/></div>
+                    <div class="col-xs-offset-1 col-xs-11">
+
+                    <div class="input">
+                        <label for="password"><spring:message code="form.password"/></label>
+                        <input type="password" name="password" id="password" maxlength="20"/>
+                        <span class="spin"></span>
+                        <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
+                               title="<spring:message code="form.password.size"/>"></i>
+                        </span>
+                    </div>
+
+                    <div class="input">
+                        <label for="confirm"><spring:message code="form.confirm_password"/></label>
+                        <input type="password" name="confirm" id="confirm" maxlength="20"/>
+                        <span class="spin"></span>
+                        <span class="input-group-addon valid input-check">
+                            <i class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="auto right"
+                               title="<spring:message code="form.confirm_password.incorrect"/>"></i>
+                        </span>
+                    </div>
+
                     </div>
                 </div>
             </div>
@@ -141,7 +136,7 @@
 <jsp:include page="../footer.jsp" />
 
 <div class='error_box'>
-    <p id='error_message'>Error</p>
+    <p>Error</p>
 </div>
 
 <div class='message_box'>
@@ -153,7 +148,8 @@
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/trainer/create.js"></script>
+<script src="/js/com/form.js"></script>
+<script src="/js/user/profile.js"></script>
 <script src="/js/com/error_message.js"></script>
 </body>
 </html>

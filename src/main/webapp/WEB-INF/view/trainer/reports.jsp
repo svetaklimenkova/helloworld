@@ -55,16 +55,11 @@
                 <ul>
                     <li>
                         <a href="/trainings">
-                            <span><spring:message code="trainings.all"/></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/user/trainings/">
                             <span><spring:message code="trainings.mine"/></span>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="/user/reports">
+                        <a href="/reports">
                             <span><spring:message code="reports.many"/></span>
                         </a>
                     </li>
@@ -107,6 +102,6 @@
 
 <script src="/js/com/username.js"></script>
 
-<script src="/js/user/reports.js"></script>
+<script src="/js/trainer/reports.js"></script>
 </body>
 </html>

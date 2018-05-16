@@ -1,10 +1,8 @@
 $(document).ready(function () {
 
-    checkMail();
-    checkPassword();
-    checkPasswordConfirm();
-
-    getTrainingById();
+    checkMailWithoutEmpty();
+    checkPasswordWithoutEmpty();
+    checkPasswordConfirmWithoutEmpty();
 
     $('#back').click(function () {
         window.location.href = "/trainings"
@@ -18,6 +16,7 @@ $(document).ready(function () {
             type: "POST",
             contentType: "application/json",
             url: "/rest/users/update",
+            data: JSON.stringify(data),
             success: function (data) {
                 if (data) {
                     showMessage(data.message);

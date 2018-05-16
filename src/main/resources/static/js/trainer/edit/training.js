@@ -211,8 +211,6 @@ function editTraining() {
         url: '/rest/trainings/' + training.id,
         data: JSON.stringify(training),
         dataType: 'json',
-        cache: false,
-        timeout: 600000,
         success: function (data) {
             if (data !== null) {
                 window.location.href = '/trainings/' + training.id;

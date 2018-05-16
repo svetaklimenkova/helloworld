@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -94,7 +95,10 @@ public class UserControllerImpl implements UserController {
 
     @PostMapping("/update")
     public ResponseEntity<?> update(
-            @RequestBody @Valid UpdateUserDto updateUserDto) {
+            @RequestBody(required = false) @Valid UpdateUserDto updateUserDto) {
+        if (updateUserDto == null) {
+            return ResponseEntity.ok(true);
+        }
         User user = userService.findByUsername(userHelper.getCurrentUser().getUsername());
         user = userMapper.from(updateUserDto, user);
         userService.update(user);

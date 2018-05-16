@@ -8,13 +8,12 @@ import javax.validation.constraints.Size;
 
 @Setter
 public class UpdateUserDto {
-    @NotNull
+
     @Size(min = 4, max = 32, message = "form.username.size")
     private String password;
 
-    @NotNull
-    @Email
-    @Size(min = 4, max = 32, message = "form.username.size")
+//    @Email
+    @Size(min = 4, max = 32, message = "form.email.size")
     private String email;
 
     public String getPassword() {

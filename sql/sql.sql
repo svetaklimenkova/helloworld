@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `applications`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `applications` (
   `applicationId` int(11) NOT NULL AUTO_INCREMENT,
-  `description` text NOT NULL,
+  `description` text,
   `userId` int(11) NOT NULL,
   `statusId` int(11) NOT NULL,
   `applicationTypeId` int(11) NOT NULL,
@@ -246,7 +246,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` (`taskId`, `taskName`, `stageId`) VALUES (1,'task 111 new',1),(7,'Таск 1',8),(11,'bhijnl',12),(12,'edrftgbhnj',13),(14,'buonikml,\';',1),(15,'nimpl,;.',2),(16,'bjnkml,',2),(17,'vyubijn',26),(18,'vuhbijn',26),(19,'vubij',26),(20,'buhinjomkl',29),(21,'bhinjomk',29),(22,'byinjkm',30),(23,'vybinjokm',30),(24,'uvbhinjokm',30),(25,'ugvbhinjkm',30);
+INSERT INTO `tasks` (`taskId`, `taskName`, `stageId`) VALUES (1,'task 111 new',1),(7,'Таск 1',8),(11,'bhijnl',12),(12,'edrftgbhnj',13),(14,'buonikml,;',1),(15,'nimpl,;.',2),(16,'bjnkml,',2),(17,'vyubijn',26),(18,'vuhbijn',26),(19,'vubij',26),(20,'buhinjomkl',29),(21,'bhinjomk',29),(22,'byinjkm',30),(23,'vybinjokm',30),(24,'uvbhinjokm',30),(25,'ugvbhinjkm',30);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,7 +320,7 @@ CREATE TABLE `trainings` (
   `goal` varchar(255) NOT NULL,
   `maxParticipants` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `isOpen` tinyint(1) NOT NULL DEFAULT '1',
+  `isOpen` BIT DEFAULT b'1' NULL,
   PRIMARY KEY (`trainingId`),
   KEY `fk_trainings_category_idx` (`categoryId`),
   KEY `fk_trainings_user_idx` (`userId`),
