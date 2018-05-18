@@ -28,6 +28,7 @@ public interface TrainingController {
      * @return training
      * */
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_TRAINER')")
     ResponseEntity<TrainingDto> create(@RequestBody @Valid TrainingDto trainingDto);
 
     /**
@@ -37,6 +38,7 @@ public interface TrainingController {
      * @return list of trainings
      * */
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_TRAINER', 'ROLE_USER')")
     ResponseEntity<?> getAll(
             @QuerydslPredicate(root = Training.class) Predicate predicate, Pageable pageable);
 
@@ -48,7 +50,8 @@ public interface TrainingController {
      *
      * @return training dto
      * */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_TRAINER', 'ROLE_USER')")
+    @GetMapping("/{id}")
     ResponseEntity<?> getById(@PathVariable("id") int id);
 
     /**
@@ -61,11 +64,8 @@ public interface TrainingController {
      * @return result updated dto
      * */
     @PreAuthorize("hasRole('ROLE_TRAINER')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    ResponseEntity<?> update(
-            @PathVariable("id") int id,
-            @RequestBody @Valid TrainingDto trainingDto
-    );
+    @PostMapping("/{id}")
+    ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody @Valid TrainingDto trainingDto);
 
     /**
      * Processes DELETE request to '/trainings/{id}'.

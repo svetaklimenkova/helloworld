@@ -5,6 +5,8 @@ import by.slivki.trainings.rest.api.CategoriesController;
 import by.slivki.trainings.rest.dto.CategoryDto;
 import by.slivki.trainings.rest.mapper.CategoryMapper;
 import by.slivki.trainings.service.api.CategoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +21,10 @@ import java.util.List;
 @RequestMapping("/rest/categories")
 public class CategoriesControllerImpl implements CategoriesController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CategoriesControllerImpl.class);
+
     @Autowired
     private CategoryService categoryService;
-
     @Autowired
     private CategoryMapper categoryMapper;
 

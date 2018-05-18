@@ -17,24 +17,47 @@ import java.util.List;
 public interface ReportController {
 
     /**
-     * Process POST request to '/trainings/'.
-     * Creates training for current user.
+     * Process POST request to '/rest/trainings/{trainingId}/tasks/{taskId}/reports'.
+     * Creates report for current user.
      *
-     * @return training
+     * @param taskId task id
+     * @param message message of report
+     *
+     * @return report
      * */
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping("/rest/trainings/{trainingId}/tasks/{taskId}/reports")
     ResponseEntity<BaseReportDto> create(
             @PathVariable("taskId") int taskId, @RequestBody String message);
 
+    /**
+     * Process GET request to '/rest/user/reports'.
+     * Loads all users reports.
+     *
+     * @return reports
+     * */
     @GetMapping("/rest/user/reports")
     @PreAuthorize("hasRole('ROLE_USER')")
     ResponseEntity<List<ReportDto>> getUserReports();
 
+    /**
+     * Process GET request to '/rest/reports'.
+     * Loads all users reports for current trainer.
+     *
+     * @return reports
+     * */
     @GetMapping("/rest/reports")
     @PreAuthorize("hasRole('ROLE_TRAINER')")
     ResponseEntity<List<ReportDto>> getTrainerReports();
 
+    /**
+     * Process POST request to '/rest/reports/{reportId}'.
+     * Updates report status.
+     *
+     * @return report
+     * */
     @PostMapping("/rest/reports/{reportId}")
+    @PreAuthorize("hasRole('ROLE_TRAINER')")
     ResponseEntity<BaseReportDto> update(
             @PathVariable("reportId") int reportId, @RequestParam("statusId") int statusId);
 }

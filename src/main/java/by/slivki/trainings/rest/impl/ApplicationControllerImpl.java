@@ -7,6 +7,7 @@ import by.slivki.trainings.dao.jpa.RoleEnum;
 import by.slivki.trainings.dao.jpa.StatusEnum;
 import by.slivki.trainings.dao.jpa.User;
 import by.slivki.trainings.rest.api.ApplicationController;
+import by.slivki.trainings.rest.dto.ApplicationDto;
 import by.slivki.trainings.rest.dto.BaseApplicationDto;
 import by.slivki.trainings.rest.dto.StatusDto;
 import by.slivki.trainings.rest.dto.TrainerApplicationDto;
@@ -54,7 +55,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> createApplicationOnPassword(@RequestParam String mail) {
+    public ResponseEntity<Boolean> createApplicationOnPassword(@RequestParam String mail) {
         User user = userService.findByMail(mail);
         if (user != null) {
             Application application = applicationHelper.generate(user, ApplicationTypeEnum.PASSWORD, null);
@@ -67,7 +68,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> createApplicationOnTrainer(
+    public ResponseEntity<Boolean> createApplicationOnTrainer(
             @RequestBody @Valid TrainerApplicationDto applicationDto) {
         User user = userHelper.generateTrainer(applicationDto);
         user = userService.create(user);
@@ -85,7 +86,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> getAll(Locale locale) {
+    public ResponseEntity<List<BaseApplicationDto>> getAll(Locale locale) {
         GrantedAuthority admin = new SimpleGrantedAuthority(new Role(RoleEnum.ROLE_ADMIN).getRoleName());
         UserDetails currentUser = userHelper.getCurrentUser();
 
@@ -106,7 +107,7 @@ public class ApplicationControllerImpl implements ApplicationController {
      * {@inheritDoc}
      * */
     @Override
-    public ResponseEntity<?> getApplication (@PathVariable int id, Locale locale) {
+    public ResponseEntity<ApplicationDto> getApplication (@PathVariable int id, Locale locale) {
         Application application = applicationService.getApplicationById(id);
         return ResponseEntity.ok(applicationMapper.toApplicationDto(application, locale));
     }
@@ -117,10 +118,11 @@ public class ApplicationControllerImpl implements ApplicationController {
     @Override
     public ResponseEntity<?> updateApplication (
             @PathVariable int id,
-            @RequestBody @Valid StatusDto statusDto) {
+            @RequestBody @Valid StatusDto statusDto,
+            Locale locale) {
         Application application = applicationService.updateStatus(id, StatusEnum.valueOf(statusDto.getStatus()));
         applicationService.processApplication(application);
-        return ResponseEntity.ok(application);
+        return ResponseEntity.ok(applicationMapper.toApplicationDto(application, locale));
     }
 
     /**

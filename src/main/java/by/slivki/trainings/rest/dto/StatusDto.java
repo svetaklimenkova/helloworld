@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 public class StatusDto {
     @NotNull
     @Pattern(regexp = "IN_PROGRESS|ACCEPTED|REJECTED",
-            message =("{make message}"))
+            message =("status.incorrect"))
     private String status;
 
     public String getStatus() {

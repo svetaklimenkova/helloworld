@@ -1,6 +1,7 @@
 package by.slivki.trainings.rest.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public interface CategoriesController {
      *
      * @return result of creating a category (true or false)
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<?> create(@RequestBody String categoryName);
 
@@ -34,6 +36,7 @@ public interface CategoriesController {
      *
      * @return username
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody String name);
 
@@ -43,6 +46,7 @@ public interface CategoriesController {
      *
      * @return username
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     ResponseEntity<?> delete(@PathVariable("id") int id);
 }

@@ -16,16 +16,17 @@ import java.util.Locale;
 public interface ApplicationController {
 
     /**
-     * Processes GET request to '/applications'.
+     * Processes GET request to '/rest/applications'.
      * Loads all applications.
      *
      * @return list of applications
      * */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<?> getAll(Locale locale);
 
     /**
-     * Processes GET request to '/applications/{id}'.
+     * Processes GET request to '/rest/applications/{id}'.
      * Gets application by id.
      *
      * @param id application id
@@ -37,7 +38,7 @@ public interface ApplicationController {
     ResponseEntity<?> getApplication (@PathVariable int id, Locale locale);
 
     /**
-     * Processes POST request to '/applications/{id}'.
+     * Processes POST request to '/rest/applications/{id}'.
      * Modifies status of application by id and statusDto.
      *
      * @param id application id
@@ -49,11 +50,12 @@ public interface ApplicationController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     ResponseEntity<?> updateApplication (
             @PathVariable int id,
-            @RequestBody @Valid StatusDto statusDto
+            @RequestBody @Valid StatusDto statusDto,
+            Locale locale
     );
 
     /**
-     * Processes POST request to '/applications/{id}'.
+     * Processes POST request to '/rest/applications/{id}'.
      * Deletes application by id.
      *
      * @param id application id
@@ -65,7 +67,7 @@ public interface ApplicationController {
     ResponseEntity<?> deleteApplication(@PathVariable int id);
 
     /**
-     * Processes POST request to '/applications/password'.
+     * Processes POST request to '/rest/applications/password'.
      * If user with the mail existed then it changes it and
      * receives a message to user mail.
      *
@@ -77,7 +79,7 @@ public interface ApplicationController {
     ResponseEntity<?> createApplicationOnPassword(@RequestParam String mail);
 
     /**
-     * Processes POST request to '/applications/password'.
+     * Processes POST request to '/rest/applications/password'.
      * If user with the mail existed then it changes it and
      * receives a message to user mail.
      *
