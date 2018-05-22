@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -22,6 +23,9 @@
     <link href="/fonts/caveat.css" rel="stylesheet">
 </head>
 <body>
+
+<c:import url="../preloader.jsp"/>
+
 <!-- Navigation Bar -->
 <header>
     <nav class="navbar mynav">
@@ -101,11 +105,6 @@
 </main>
 
 <jsp:include page="../footer.jsp" />
-
-<script src="/js/fr/jquery-3.3.1.min.js"></script>
-<script src="/js/fr/bootstrap.min.js"></script>
-
-<script src="/js/com/username.js"></script>
 
 <script src="/js/user/reports.js"></script>
 </body>

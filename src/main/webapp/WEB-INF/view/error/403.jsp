@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -38,6 +39,9 @@
         }
     </style>
 </head>
+
+<c:import url="../preloader.jsp"/>
+
 <header>
     <div class="container">
         <nav class="navbar mynav container-fluid">
@@ -83,13 +87,9 @@
 
 <jsp:include page="../footer.jsp" />
 
-<div id="particles"></div>
-
-<script src="/js/fr/jquery-3.3.1.min.js"></script>
-<script src="/js/fr/bootstrap.min.js"></script>
+<div class="particles"></div>
 
 <script src="/js/com/form.js"></script>
-<script src="/js/com/stars.js"></script>
 <script src="/js/home.js"></script>
 
 </body>

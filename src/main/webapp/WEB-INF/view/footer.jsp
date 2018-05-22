@@ -18,3 +18,18 @@
         </div>
     </div>
 </footer>
+
+<div class='error_box'>
+    <p id='error_message'>Error</p>
+</div>
+
+<div class='message_box'>
+    <p>***</p>
+</div>
+
+<div class="particles"></div>
+
+<script src="/js/fr/jquery-3.3.1.min.js"></script>
+<script src="/js/fr/bootstrap.min.js"></script>
+
+<script src="/js/com/common.js"></script>

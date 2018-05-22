@@ -6,22 +6,22 @@ $(document).ready(function () {
         var name = $('#category').val();
         if (name !== "") {
             data['name'] = name;
-        }
-        $.ajax({
-            type: "POST",
-            url: "/rest/categories",
-            data: name,
-            contentType: "application/json",
-            success: function (data) {
-                if(data) {
-                    showMessage($('#category_added').val());
-                    getCategoryList(name);
+            $.ajax({
+                type: "POST",
+                url: "/rest/categories",
+                data: name,
+                contentType: "application/json",
+                success: function (data) {
+                    if (data) {
+                        showMessage($('#category_added').val());
+                        getCategoryList(name);
+                    }
+                },
+                error: function (e) {
+                    throwMessage(e.responseJSON.message);
                 }
-            },
-            error: function (e) {
-                throwMessage(e.responseJSON.message);
-            }
-        });
+            });
+        }
     });
 
     $('#category').on("change paste keyup", function () {

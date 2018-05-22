@@ -1,29 +1,5 @@
 $(document).ready(function () {
-    var username = getUsername();
-    $('#username').text(username);
 });
-
-function getUsername() {
-    var username = "";
-    $.ajax({
-        type: "GET",
-        url: "/rest/users/username",
-        cache: false,
-        timeout: 600000,
-        dataType: "text",
-        async: false,
-        success: function (data) {
-            if(data) {
-                username = data;
-            }
-        },
-        error: function (e) {
-            console.log(JSON.stringify(e.responseText));
-            return false;
-        }
-    });
-    return username;
-}
 
 function isEmpty(elem) {
     var spanCheck = $(elem).parent().find('.input-check');

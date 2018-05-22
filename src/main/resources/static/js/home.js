@@ -4,6 +4,8 @@ $(document).ready(function () {
     if (result['error'] === "true") {
         $('#error').css('display', 'block');
     }
+
+    $('#username').delay(1000).trigger('click');
 });
 
 function getUrlVar(){
