@@ -33,8 +33,7 @@ function showApplications(applications) {
             { attr: 'href', name: 'link' }],
         // Since there are no elements in the list, this will be used as template.
         item: '<li><div><a class="link application-info my-list-item row">' +
-            '<div class="status col-xs-1"><span><i class="glyphicon"></i></span></div>' +
-            '<div class="id col-xs-2"></div>' +
+            '<div class="col-xs-2"><div class="status" style="float: left; margin-right: 5px"><span><i class="glyphicon"></i></span></div><div class="id" style="float: left"></div></div>' +
             '<div class="type col-xs-3"></div>' +
             '<div class="mailOfReceiver col-xs-3"></div>' +
             '<div class="updatedBy col-xs-3"></div>' +
