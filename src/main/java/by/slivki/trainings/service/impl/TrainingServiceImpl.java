@@ -58,6 +58,14 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public Training saveOrUpdate(Training training) {
         List<Stage> stages = training.getStages();
+        if (training.getTrainingId() == 0) {
+            training.setOpen(training.getMaxParticipants() > 0);
+        } else {
+            training.setOpen(
+                    trainingMasterRepository.countByTraining_TrainingId(training.getTrainingId())
+                    < training.getMaxParticipants()
+            );
+        }
         for (Stage stage : stages) {
             if (stage.getTraining() == null) {
                 stage.setTraining(training);
@@ -85,7 +93,7 @@ public class TrainingServiceImpl implements TrainingService {
         trainingMaster = trainingMasterRepository.save(trainingMaster);
 
         if (training.getStages() != null && training.getStages().size() > 0) {
-            participantsTasksService.addTasksToUser(training.getStages().get(0), user);
+            participantsTasksService.addTasksToUser(training, user);
         }
 
         checkTrainingParticipants(training);
@@ -99,8 +107,10 @@ public class TrainingServiceImpl implements TrainingService {
         if (trainingMaster == null) {
             throw new RestException(ErrorCode.USER_DO_NOT_IN_TRAINING);
         }
-        /* TODO delete user tasks */
         trainingMasterRepository.delete(trainingMaster);
+        participantsTasksService.delTasksFromUser(
+                trainingRepository.findByTrainingId(trainingId),
+                userRepository.findByUsername(username));
     }
 
     private void checkTrainingParticipants(Training training) {

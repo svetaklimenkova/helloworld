@@ -93,7 +93,9 @@
             <div class="myclearfix hidden-xs col-sm-12"></div>
             <div class="clearfix hidden-xs"></div>
 
-            <div class="description-image col-xs-12 col-sm-6">image</div>
+            <div class="description-image col-xs-12 col-sm-6">
+                <img src="/static/1.png" style="width: 100%">
+            </div>
             <div class="description-text col-xs-12 col-sm-6">
                 <spring:message code="main.join_the_trainings"/>
             </div>
@@ -104,12 +106,16 @@
             <div class="description-text col-xs-12 col-sm-6">
                 <spring:message code="main.write_reports"/>
             </div>
-            <div class="description-image col-xs-12 col-sm-6">image</div>
+            <div class="description-image col-xs-12 col-sm-6">
+                <img src="/static/3.png" style="width: 100%">
+            </div>
 
             <div class="myclearfix hidden-xs col-sm-12"></div>
             <div class="clearfix hidden-xs"></div>
 
-            <div class="description-image col-xs-12 col-sm-6">image</div>
+            <div class="description-image col-xs-12 col-sm-6">
+                <img src="/static/2.png" style="width: 100%">
+            </div>
             <div class="description-text col-xs-12 col-sm-6">
                 <spring:message code="main.achieve_goals"/>
             </div>

@@ -9,6 +9,9 @@ $(document).ready(function () {
     });
 
     $('#btn_sign_up').click(function () {
+        if ($(".invalid").length > 0) {
+            return;
+        }
         var data = {};
         addIfNotNull(data, 'password', $('#password').val());
         addIfNotNull(data, 'email', $('#mail').val());
@@ -19,7 +22,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             success: function (data) {
                 if (data) {
-                    showMessage(data.message);
+                    showMessage($('#changes').val());
                 }
             },
             error: function (e) {

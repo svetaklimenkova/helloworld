@@ -6,6 +6,8 @@ import by.slivki.trainings.dao.jpa.Role;
 import by.slivki.trainings.dao.jpa.RoleEnum;
 import by.slivki.trainings.dao.jpa.StatusEnum;
 import by.slivki.trainings.dao.jpa.User;
+import by.slivki.trainings.exception.ErrorCode;
+import by.slivki.trainings.exception.RestException;
 import by.slivki.trainings.rest.api.ApplicationController;
 import by.slivki.trainings.rest.dto.ApplicationDto;
 import by.slivki.trainings.rest.dto.BaseApplicationDto;
@@ -71,6 +73,9 @@ public class ApplicationControllerImpl implements ApplicationController {
     public ResponseEntity<Boolean> createApplicationOnTrainer(
             @RequestBody @Valid TrainerApplicationDto applicationDto) {
         User user = userHelper.generateTrainer(applicationDto);
+        if (!userService.checkUsername(user.getUsername())) {
+            throw new RestException(ErrorCode.USER_USERNAME_IS_NOT_FREE);
+        }
         user = userService.create(user);
 
         Application application = applicationHelper.generate(

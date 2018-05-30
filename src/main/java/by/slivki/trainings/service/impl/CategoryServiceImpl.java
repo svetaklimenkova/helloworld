@@ -1,6 +1,7 @@
 package by.slivki.trainings.service.impl;
 
 import by.slivki.trainings.dao.api.CategoryRepository;
+import by.slivki.trainings.dao.api.TrainingRepository;
 import by.slivki.trainings.dao.jpa.Category;
 import by.slivki.trainings.exception.ErrorCode;
 import by.slivki.trainings.exception.RestException;
@@ -15,6 +16,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private TrainingRepository trainingRepository;
 
     @Override
     public Category create(String categoryName) {
@@ -40,6 +43,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void delete(int id) {
+        if (trainingRepository.countByCategory_CategoryId(id) > 0) {
+            throw new RestException(ErrorCode.CATEGORY_UNDER_TRAINING);
+        }
         categoryRepository.deleteById(id);
     }
 

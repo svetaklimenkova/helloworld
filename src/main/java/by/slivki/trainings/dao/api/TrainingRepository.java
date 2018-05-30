@@ -24,6 +24,7 @@ public interface TrainingRepository extends
     Training findByTrainingId(int trainingId);
 
     List<Training> findAllByUser_Username(String username, Pageable pageable);
+    int countByCategory_CategoryId(int categoryId);
 
     @Override
     default void customize(QuerydslBindings bindings, QTraining root) {

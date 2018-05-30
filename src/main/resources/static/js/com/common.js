@@ -4,6 +4,32 @@ $(window).on('load', function () {
     $spinner.fadeOut('slow');
     $preloader.fadeOut('slow');
 });
+$(document).ready(function () {
+    var username = getUsername();
+    $('#username').text(username);
+});
+
+function getUsername() {
+    var username = "";
+    $.ajax({
+        type: "GET",
+        url: "/rest/users/username",
+        cache: false,
+        timeout: 600000,
+        dataType: "text",
+        async: false,
+        success: function (data) {
+            if(data) {
+                username = data;
+            }
+        },
+        error: function (e) {
+            console.log(JSON.stringify(e.responseText));
+            return false;
+        }
+    });
+    return username;
+}
 
 function throwMessage(str) {
     $('.error_box p').html(str);

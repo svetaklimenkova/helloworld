@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#cancel').click(function () {
-        window.location.href = '/trainings/' + training.id;
+        window.location.href = '/trainings/';
     });
 
     $('#ok').click(function () {

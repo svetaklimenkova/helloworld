@@ -19,13 +19,41 @@ public class ParticipantsTasksServiceImpl implements ParticipantsTasksService {
     private ParticipantsTasksRepository participantsTasksRepository;
 
     @Override
-    public void addTasksToUser(Stage stage, User user) {
-        for (Task task : stage.getTasks()) {
-            ParticipantsTask participantsTask = new ParticipantsTask();
-            participantsTask.setUser(user);
-            participantsTask.setTask(task);
-            participantsTask.setTaskStatus(new TaskStatus(TaskStatusEnum.NOT_STARTED));
-            participantsTasksRepository.save(participantsTask);
+    public void addTasksToUser(Training training, User user) {
+        if (training.getStages() == null) {
+            return;
+        }
+        for (Stage stage : training.getStages()) {
+            if (stage.getTasks() == null) {
+                continue;
+            }
+            for (Task task : stage.getTasks()) {
+                ParticipantsTask participantsTask = new ParticipantsTask();
+                participantsTask.setUser(user);
+                participantsTask.setTask(task);
+                participantsTask.setTaskStatus(new TaskStatus(TaskStatusEnum.NOT_STARTED));
+                participantsTasksRepository.save(participantsTask);
+            }
+        }
+    }
+
+    @Override
+    public void delTasksFromUser(Training training, User user) {
+        if (training.getStages() == null) {
+            return;
+        }
+        for (Stage stage : training.getStages()) {
+            if (stage.getTasks() == null) {
+                continue;
+            }
+            for (Task task : stage.getTasks()) {
+                ParticipantsTask partTask
+                        = participantsTasksRepository
+                        .findByTask_TaskIdAndUser_UserId(task.getTaskId(), user.getUserId());
+                if (partTask != null) {
+                    participantsTasksRepository.delete(partTask);
+                }
+            }
         }
     }
 }

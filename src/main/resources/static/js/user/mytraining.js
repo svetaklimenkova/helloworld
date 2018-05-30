@@ -114,6 +114,9 @@ function showTraining(training) {
         var textarea = $(this).parent().parent().find('textarea');
         var text = $(this).parent().parent().find('textarea').val();
         var taskId = $(this).parent().parent().parent().prev('.task').find('.task-id').val();
+        if (text.trim() === "") {
+            return;
+        }
         $.ajax({
             type: "POST",
             contentType: "application/json",

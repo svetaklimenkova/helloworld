@@ -136,6 +136,7 @@
         </div>
     </div>
 </main>
+<input type="hidden" id="changes" value="<spring:message code="changes_save"/>">
 
 <jsp:include page="../footer.jsp" />
 

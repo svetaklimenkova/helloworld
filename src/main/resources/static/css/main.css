@@ -78,6 +78,9 @@
     }
 }
 
+div {
+    word-wrap: break-word;
+}
 body {
     background: url(../static/background.png) repeat;
     padding: 0;

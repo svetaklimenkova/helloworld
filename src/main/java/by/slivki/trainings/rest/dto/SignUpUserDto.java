@@ -6,12 +6,14 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Setter
 public class SignUpUserDto {
     @NotNull
     @Size(min = 4, max = 32, message = "form.username.size")
+    @Pattern(regexp = "[a-zA-z0-9-.]+", message = "form.username.size")
     private String username;
 
     @NotNull

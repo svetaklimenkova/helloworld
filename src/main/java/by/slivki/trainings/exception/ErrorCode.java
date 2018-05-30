@@ -6,6 +6,7 @@ public class ErrorCode {
 
     // category
     public static final int CATEGORY_ALREADY_EXIST = 2000;
+    public static final int CATEGORY_UNDER_TRAINING = 2001;
 
     // trainings
     public static final int TRAINING_CLOSED = 3000;
@@ -14,4 +15,7 @@ public class ErrorCode {
 
     // enum
     public static final int STATUS_NOT_FOUND = 4000;
+
+    // user
+    public static final int USER_USERNAME_IS_NOT_FREE = 5000;
 }

@@ -89,9 +89,9 @@
                         <span class="spin"></span>
                         <span class="input-group-addon invalid input-check">
                             <i class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="auto right"
-                               title="<spring:message code="form.mail.empty"/>"></i>
-                            <input id="message-empty" type="hidden" value="<spring:message code="form.mail.empty"/>">
-                            <input id="message-size" type="hidden" value="<spring:message code="form.mail.size"/>">
+                               title="<spring:message code="form.message.empty"/>"></i>
+                            <input id="message-empty" type="hidden" value="<spring:message code="form.message.empty"/>">
+                            <input id="message-size" type="hidden" value="<spring:message code="form.message.size"/>">
                         </span>
                     </div>
 

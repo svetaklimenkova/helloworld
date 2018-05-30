@@ -1,13 +1,12 @@
 package by.slivki.trainings.service.impl;
 
+import by.slivki.trainings.dao.api.ParticipantsTasksRepository;
 import by.slivki.trainings.dao.api.ReportRepository;
 import by.slivki.trainings.dao.api.TaskRepository;
-import by.slivki.trainings.dao.jpa.Report;
-import by.slivki.trainings.dao.jpa.Status;
-import by.slivki.trainings.dao.jpa.StatusEnum;
-import by.slivki.trainings.dao.jpa.User;
+import by.slivki.trainings.dao.jpa.*;
 import by.slivki.trainings.service.api.ReportService;
 import by.slivki.trainings.service.api.UserService;
+import by.slivki.trainings.util.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,11 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     private ReportRepository reportRepository;
     @Autowired
+    private ParticipantsTasksRepository participantsTasksRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
+    private UserHelper userHelper;
     @Autowired
     private TaskRepository taskRepository;
 
@@ -52,6 +55,16 @@ public class ReportServiceImpl implements ReportService {
         if (report != null) {
             report.setStatus(new Status(StatusEnum.fromI(statusId)));
             report = reportRepository.save(report);
+            if (report.getStatus().getStatusId() == StatusEnum.ACCEPTED.getI()) {
+                ParticipantsTask parTask = participantsTasksRepository
+                        .findByTask_TaskIdAndUser_UserId(
+                                report.getTask().getTaskId(),
+                                report.getUser().getUserId());
+                if (parTask != null) {
+                    parTask.setTaskStatus(new TaskStatus(TaskStatusEnum.FINISHED));
+                    participantsTasksRepository.save(parTask);
+                }
+            }
         }
         return report;
     }
