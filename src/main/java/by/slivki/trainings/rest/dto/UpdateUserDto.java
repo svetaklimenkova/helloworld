@@ -9,11 +9,10 @@ import javax.validation.constraints.Size;
 @Setter
 public class UpdateUserDto {
 
-    @Size(min = 4, max = 32, message = "form.username.size")
+    @Size(min = 4, max = 20, message = "form.username.size")
     private String password;
 
-//    @Email
-    @Size(min = 4, max = 32, message = "form.email.size")
+    @Size(min = 6, max = 256, message = "form.email.size")
     private String email;
 
     public String getPassword() {

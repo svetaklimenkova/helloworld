@@ -21,6 +21,8 @@ $(document).ready(function () {
                     throwMessage(e.responseJSON.message);
                 }
             });
+        } else {
+            throwMessage($("#category_size").val());
         }
     });
 
@@ -108,7 +110,7 @@ function showCategoryList(categories) {
         if (parentDiv.find('.action').val() === 'edit') {
             var newName = parentDiv.find('.new-category').val();
             if (newName === "") {
-                throwMessage($('#category_empty').val());
+                throwMessage($("#category_size").val());
                 return;
             }
             $.ajax({

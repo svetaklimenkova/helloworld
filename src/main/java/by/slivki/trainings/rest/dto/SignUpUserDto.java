@@ -17,12 +17,12 @@ public class SignUpUserDto {
     private String username;
 
     @NotNull
-    @Size(min = 4, max = 32, message = "form.username.size")
+    @Size(min = 4, max = 20, message = "form.password.size")
     private String password;
 
     @NotNull
     @Email
-    @Size(min = 4, max = 32, message = "form.username.size")
+    @Size(min = 6, max = 256, message = "form.email.size")
     private String email;
 
     private Role role = new Role(RoleEnum.ROLE_USER);

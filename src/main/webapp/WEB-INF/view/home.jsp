@@ -78,7 +78,7 @@
                         <span class="spin"></span>
                     </div>
 
-                    <h5 align="center" id="error" style="display: none"><spring:message code="form.error.invalid_username_or_password"/></h5>
+                    <h5 align="center" id="error" style="display: none; word-wrap: normal"><spring:message code="form.error.invalid_username_or_password"/></h5>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div class="button login">

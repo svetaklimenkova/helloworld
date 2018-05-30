@@ -2,11 +2,15 @@ package by.slivki.trainings.rest.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.constraints.Size;
+
+@Validated
 public interface CategoriesController {
 
     /**
@@ -28,7 +32,7 @@ public interface CategoriesController {
      * */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(method = RequestMethod.POST)
-    ResponseEntity<?> create(@RequestBody String categoryName);
+    ResponseEntity<?> create(@RequestBody @Size(min = 2, max = 50, message = "form.categoryName.size")  String categoryName);
 
     /**
      * Process POST request to '/categories/{id}' and
@@ -38,7 +42,7 @@ public interface CategoriesController {
      * */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody String name);
+    ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody @Size(min = 2, max = 50, message = "form.categoryName.size") String name);
 
     /**
      * Process DELETE request to '/categories/{id}' and

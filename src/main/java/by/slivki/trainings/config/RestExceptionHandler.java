@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -50,4 +51,15 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<>(new RestMessage(VALID_EXCEPTION_CODE, errorMessage), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<RestMessage> invalidInputForMetod(ConstraintViolationException ex, Locale locale) {
+        String message = ex.getConstraintViolations().iterator().next().getMessage();
+        String errorMessage = messageSource.getMessage(message, null, locale);
+
+        logger.error(errorMessage);
+
+        return new ResponseEntity<>(new RestMessage(VALID_EXCEPTION_CODE, errorMessage), HttpStatus.BAD_REQUEST);
+    }
+
 }

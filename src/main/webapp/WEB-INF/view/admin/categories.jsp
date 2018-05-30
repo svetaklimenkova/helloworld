@@ -107,6 +107,7 @@
 <input id="category_empty" type="hidden" value="<spring:message code="categories.empty"/>">
 <input id="category_deleted" type="hidden" value="<spring:message code="categories.deleted"/>">
 <input id="category_really_delete" type="hidden" value="<spring:message code="categories.really_delete"/>">
+<input id="category_size" type="hidden" value="<spring:message code="form.categoryName.size"/>">
 
 <script src="/js/fr/list.min.js"></script>
 

@@ -99,6 +99,7 @@ public class UserControllerImpl implements UserController {
         if (updateUserDto == null) {
             return ResponseEntity.ok(true);
         }
+        logger.debug("--------------------------" + updateUserDto.getPassword());
         User user = userService.findByUsername(userHelper.getCurrentUser().getUsername());
         user = userMapper.from(updateUserDto, user);
         userService.update(user);
