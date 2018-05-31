@@ -90,7 +90,7 @@
                     <input id="is-show-search" type="hidden" value="n">
 
                     <div class="edit-input input-hidden col-lg-12">
-                        <label for="categories"><spring:message code="trainings.categories"/></label>
+                        <label for="categories" style="word-wrap: normal"><spring:message code="trainings.categories"/></label>
                         <select id="categories" name="categories">
                             <option selected>---</option>
                         </select>
