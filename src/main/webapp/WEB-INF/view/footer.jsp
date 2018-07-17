@@ -26,8 +26,6 @@
     <p>***</p>
 </div>
 
-<div class="particles"></div>
-
 <script src="/js/fr/jquery-3.3.1.min.js"></script>
 <script src="/js/fr/bootstrap.min.js"></script>
 

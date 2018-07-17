@@ -140,7 +140,7 @@
 </main>
 
 <jsp:include page="footer.jsp" />
-
+<div class="particles"></div>
 <script src="/js/com/form.js"></script>
 <script src="/js/home.js"></script>
 

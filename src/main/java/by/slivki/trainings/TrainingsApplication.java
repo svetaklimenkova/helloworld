@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TrainingsApplication {
 
 	public static void main(String[] args) {
-		//tgnfktbohrk
 		SpringApplication.run(new Class<?>[] {TrainingsApplication.class, JpaConfig.class}, args);
 	}
 }
