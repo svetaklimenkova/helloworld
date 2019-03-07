@@ -100,7 +100,6 @@
 
 <jsp:include page="../footer.jsp" />
 
-
 <script src="/js/fr/list.min.js"></script>
 
 <script src="/js/admin/applications.js"></script>

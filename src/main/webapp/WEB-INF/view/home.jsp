@@ -135,6 +135,17 @@
 
             <div class="myclearfix hidden-xs col-sm-12"></div>
             <div class="clearfix hidden-xs"></div>
+
+        <div class="row">
+                <div class="col-sm-12" style="text-align:center;font-size:0.7em">А пока почитайте нашу рубрику</div>
+                <div class="col-sm-12" style="text-align:center">Котоцитаты  <span id="refresh" font-size="1em" class="glyphicon glyphicon-refresh"></span></div>
+                <div class="col-md-6 col-sm-12" id="myQuoteTag" style="text-align:-webkit-right"></div>
+                <img class="col-md-5 col-sm-12" id="random_cat">
+        </div>
+
+        <div class="myclearfix hidden-xs col-sm-12"></div>
+        <div class="clearfix hidden-xs"></div>
+
         </div>
     </div>
 </main>
@@ -143,6 +154,8 @@
 <div class="particles"></div>
 <script src="/js/com/form.js"></script>
 <script src="/js/home.js"></script>
+<script type="text/javascript" src="http://petrpro.com/api/api_js.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://petrpro.com/api/widgets/quote/quote.js" charset="utf-8"></script>
 
 </body>
 </html>

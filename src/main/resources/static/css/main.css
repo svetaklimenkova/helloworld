@@ -1,4 +1,51 @@
-
+.in-navi #random_cat {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    border: #1e5969 5px solid;
+    border-radius: 10%;
+    padding: 0;
+    width: auto;
+    max-width: 100%;
+}
+#random_cat {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    border: #1e5969 5px solid;
+    border-radius: 10%;
+    padding: 0;
+    max-height: 300px;
+    width: auto;
+    max-width: 41.66666667%;
+}
+#random_cat.col-sm-12 {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    border: #1e5969 5px solid;
+    border-radius: 10%;
+    padding: 0;
+    width: auto;
+    max-width: 100%;
+}
+#refresh {
+    font-size: medium;
+}
+#petrpro-quote{
+    font-family: 'Caveat', cursive!important;
+    width: auto!important;
+}
+#petrpro-quote a {
+    font-size: 2em!important;
+}
+.in-navi #petrpro-quote a {
+    font-size: 1.4em!important;
+}
+.in-navi {
+    margin-top: 3em;
+    padding: 1em;
+}
 /* preloader */
 
 #loader-wrapper {

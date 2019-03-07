@@ -78,6 +78,12 @@
                         </a>
                     </li>
                 </ul>
+                    <div class="row in-navi">
+                        <div class="col-sm-12" style="text-align:center">Котоцитаты  <span id="refresh" font-size="1em" class="glyphicon glyphicon-refresh"></span></div>
+                        <div class="col-sm-12" id="myQuoteTag" style="text-align:-webkit-right"></div>
+                        <img class="col-sm-12" id="random_cat">
+                    </div>
+
             </div>
 
             <div id='content' class="content col-xs-12 col-sm-6 col-md-8 col-lg-9">

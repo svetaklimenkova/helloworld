@@ -3,6 +3,50 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!--{-->
+  <!--"appId": "67fdc339-8aff-4403-9614-23b9013a1bc9",-->
+  <!--"displayName": "svkli",-->
+  <!--"name": "http://svkli",-->
+  <!--"password": "12345678",-->
+  <!--"tenant": "f1fa08a4-bcfa-4ead-ac17-e26097639dfa"-->
+  <!--}-->
+
+
+  <!--{-->
+  <!--"id": "/subscriptions/56ce6981-3505-44d5-96c0-a3a1442c8da4/resourceGroups/trainingsresources",-->
+  <!--"location": "westus",-->
+  <!--"managedBy": null,-->
+  <!--"name": "trainingsresources",-->
+  <!--"properties": {-->
+  <!--"provisioningState": "Succeeded"-->
+  <!--},-->
+  <!--"tags": null,-->
+  <!--"type": null-->
+  <!--}-->
+
+  <!--{-->
+  <!--"adminUserEnabled": true,-->
+  <!--"creationDate": "2019-03-05T14:01:57.374828+00:00",-->
+  <!--"id": "/subscriptions/56ce6981-3505-44d5-96c0-a3a1442c8da4/resourceGroups/trainingsresources/providers/Microsoft.ContainerRegistry/registries/trainingsregistry",-->
+  <!--"location": "westus",-->
+  <!--"loginServer": "trainingsregistry.azurecr.io",-->
+  <!--"name": "trainingsregistry",-->
+  <!--"networkRuleSet": null,-->
+  <!--"provisioningState": "Succeeded",-->
+  <!--"resourceGroup": "trainingsresources",-->
+  <!--"sku": {-->
+  <!--"name": "Basic",-->
+  <!--"tier": "Basic"-->
+  <!--},-->
+  <!--"status": null,-->
+  <!--"storageAccount": null,-->
+  <!--"tags": {},-->
+  <!--"type": "Microsoft.ContainerRegistry/registries"-->
+  <!--}-->
+  <!--{-->
+  <!--"name": "password",-->
+  <!--"value": "mJHQ3OSj5YRoMgVb1AnrmWLyAWf+bvzD"-->
+  <!--}-->
   <groupId>by.slivki</groupId>
   <artifactId>trainings</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -190,6 +234,32 @@
 
   <build>
     <plugins>
+          <plugin>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-webapp-maven-plugin</artifactId>
+            <!-- check Maven Central for the latest version -->
+            <version>1.5.3</version>
+            <configuration>
+              <schemaVersion>v2</schemaVersion>
+              <resourceGroup>trainingsresources</resourceGroup>
+              <appName>trainings</appName>
+              <runtime>
+                <os>linux</os>
+                <javaVersion>jre8</javaVersion>
+                <webContainer>tomcat 8.5</webContainer>
+              </runtime>
+              <deployment>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/target</directory>
+                    <includes>
+                      <include>*.war</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </deployment>
+            </configuration>
+          </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

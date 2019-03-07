@@ -1,5 +1,5 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@page contentType="text/html;charset=UTF-8" %>
 <footer>
     <div class="container">
         <div class="row">
@@ -30,3 +30,5 @@
 <script src="/js/fr/bootstrap.min.js"></script>
 
 <script src="/js/com/common.js"></script>
+<script type="text/javascript" src="http://petrpro.com/api/api_js.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://petrpro.com/api/widgets/quote/quote.js" charset="utf-8"></script>

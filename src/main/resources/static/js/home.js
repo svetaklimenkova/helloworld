@@ -6,7 +6,37 @@ $(document).ready(function () {
     }
 
     $('#username').delay(1000).trigger('click');
+
+    setCatImg();
+    $("#refresh").click(function () {
+        setCatImg();
+        PetrPro.init();
+        PetrPro.add("PetrPro.quote('myQuoteTag')");
+    });
+
+    PetrPro.init();
+    PetrPro.add("PetrPro.quote('myQuoteTag')");
+
 });
+
+function setCatImg() {
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "https://aws.random.cat/meow",
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+            if (data !== null) {
+                $("#random_cat").attr("src", data.file);
+            }
+        },
+        error: function (e) {
+            throwMessage(e.responseJSON.message);
+        }
+    });
+}
 
 function getUrlVar(){
     var urlVar = window.location.search;
